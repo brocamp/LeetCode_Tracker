@@ -1,5 +1,4 @@
 name: Prettier
-
 on:
   push:
     branches:
@@ -7,15 +6,12 @@ on:
       - dev
     paths:
       - "backend/**"
-
 jobs:
   prettier:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
       - name: Install dependencies and run Prettier
         run: |
           cd backend

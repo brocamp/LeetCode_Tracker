@@ -1,0 +1,37 @@
+version: "3"
+services:
+  backend:
+    build:
+      dockerfile: Dockerfile
+      context: ./backend
+    container_name: backend
+    ports:
+      - 4000:4000
+    restart: always
+    volumes:
+      - ./backend:/app
+    env_file:
+      - ./backend/.env
+  frontend:
+    build:
+      dockerfile: Dockerfile
+      context: ./frontend
+    container_name: frontend
+    ports:
+      - 8000:8000
+    restart: always
+    volumes:
+      - ./frontend:/app
+    env_file:
+      - ./frontend/.env
+  nginx:
+    container_name: nginx_proxy
+    build:
+      context: ./proxy
+    ports:
+      - "80:80"
+    depends_on:
+      - frontend
+      - backend
+    volumes:
+      - ./proxy/nginx.conf:/etc/nginx/nginx.conf

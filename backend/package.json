@@ -1,7 +1,7 @@
 {
 	"name": "leetcode_tracker",
 	"version": "1.0.0",
-	"description": "A leetcode daily challenge tracker to monitor student's perfomance in BroCamp",
+	"description": "A leetcode daily challenge tracker to monitor student's perfomance in Brocamp",
 	"main": "src/index.ts",
 	"author": "Packapeer Academy Pvt ltd",
 	"scripts": {

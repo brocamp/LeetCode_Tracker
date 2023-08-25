@@ -1,9 +1,16 @@
-import "dotenv/config";
+import express from "express";
+import cors from "cors";
+const app = express();
+const port = 4000;
 
-const start = () => {
-	console.log("test");
-};
+app.use(cors({ origin: "*" }));
 
-start();
+app.use(express.json());
 
-export {};
+app.get("/api", (req, res) => {
+	res.send("Hello, Express with TypeScript!");
+});
+
+app.listen(port, () => {
+	console.log(`Server is listening on port ${port}`);
+});

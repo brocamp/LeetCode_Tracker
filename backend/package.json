@@ -1,12 +1,28 @@
 {
-  "name": "backend",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+	"name": "leetcode_tracker",
+	"version": "1.0.0",
+	"description": "A leetcode daily challenge tracker to monitor student's perfomance in BroCamp",
+	"main": "src/index.ts",
+	"author": "Packapeer Academy Pvt ltd",
+	"scripts": {
+		"start": "npx vite-node src/index.ts",
+		"dev": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/index.ts",
+		"prettier": "prettier --write ."
+	},
+	"license": "MIT",
+	"dependencies": {
+		"@clack/prompts": "^0.7.0",
+		"node-cron": "^3.0.2",
+		"picocolors": "^1.0.0",
+		"prettier": "^3.0.2",
+		"vite-node": "^0.34.2"
+	},
+	"devDependencies": {
+		"@types/node": "^20.5.4",
+		"@types/node-cron": "^3.0.8",
+		"nodemon": "^3.0.1"
+	},
+	"engines": {
+		"node": ">=18.0.0"
+	}
 }

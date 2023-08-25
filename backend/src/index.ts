@@ -1,6 +1,8 @@
 import "dotenv/config";
 
-const start = () => {};
+const start = () => {
+	console.log("test");
+};
 
 start();
 

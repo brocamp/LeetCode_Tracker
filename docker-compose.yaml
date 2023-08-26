@@ -1,4 +1,4 @@
-version: "3"
+version: "3.4"
 services:
   backend:
     build:
@@ -12,24 +12,26 @@ services:
       - ./backend:/app
     env_file:
       - ./backend/.env
+
   frontend:
-    build:
-      dockerfile: Dockerfile
-      context: ./frontend
+    image: node:alpine
     container_name: frontend
+    entrypoint: /bin/sh
     ports:
-      - 5173:5173
-    restart: always
+      - 8000:8000
+    working_dir: /srv/app
     volumes:
-      - ./frontend:/app
-    env_file:
-      - ./frontend/.env
+      - type: bind
+        source: ./frontend
+        target: /srv/app
+    tty: true
+
   nginx:
     container_name: nginx_proxy
     build:
       context: ./proxy
     ports:
-      - "80:80"
+      - 80:80
     depends_on:
       - frontend
       - backend

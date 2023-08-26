@@ -7,10 +7,10 @@ app.use(cors({ origin: "*" }));
 
 app.use(express.json());
 
-app.get("/api", (req, res) => {
+app.get("/api/get", (req, res) => {
 	res.send("Hello, Express with TypeScript!");
 });
 
 app.listen(port, () => {
-	console.log(`Server is listening on port ${port}`);
+	console.log(`Server is Running  on port ${port}`);
 });

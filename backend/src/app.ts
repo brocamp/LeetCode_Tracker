@@ -12,7 +12,6 @@ app.use(express.json());
 
 app.set("trust proxy", true);
 
-
 app.use(morgan("dev"));
 
 app.use("/api/admin", AdminRouter);

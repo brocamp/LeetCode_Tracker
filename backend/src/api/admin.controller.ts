@@ -1,7 +1,7 @@
 import express, { Request, Response } from "express";
 import { container } from "tsyringe";
 import AdminService from "../lib/service/admin.service";
-import { SendOTP } from "../utils/otp";
+import { SendOTP } from "../lib/service";
 import * as jwt from "jsonwebtoken";
 import { IPayload, reqAuth } from "./middleware";
 

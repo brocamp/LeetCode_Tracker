@@ -38,6 +38,5 @@ export const printAuthenticationFailure = () => {
 };
 
 export const printOutro = () => {
-	s.stop("Loaded!");
-	outro("The system is Ready to use.");
+	s.stop("The system is Ready to use.");
 };

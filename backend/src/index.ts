@@ -1,19 +1,22 @@
 import "dotenv/config";
 import "reflect-metadata";
+import cron from "node-cron";
 import { connectMongoDb } from "./config";
 import app from "./app";
 import * as cli from "./cli/ui";
+import { LeetcodeUpdaterTask } from "./handler/cronjob";
 
 const start = async () => {
 	cli.printIntro();
 
 	await connectMongoDb(process.env.MONGO_URI!);
 
-	app.listen(process.env.PORT!, () => {
-		console.log("App is listening on port 4000");
-	});
+	LeetcodeUpdaterTask.start();
 
-	cli.printOutro();
+	app.listen(process.env.PORT!, () => {
+		cli.print(`App is listening on port ${process.env.PORT} `);
+		cli.printOutro();
+	});
 };
 
 start();

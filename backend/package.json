@@ -6,7 +6,7 @@
 	"main": "src/index.ts",
 	"scripts": {
 		"start": "node build/index.js",
-		"build":"tsc",
+		"build": "tsc",
 		"dev": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/index.ts",
 		"prettier": "prettier --write ."
 	},

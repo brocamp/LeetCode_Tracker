@@ -6,13 +6,14 @@ interface ProblemHistoryEntry {
 	solutionStatus: string;
 }
 
-interface Solved {
+export interface Solved {
+	all: number;
 	easy: number;
 	medium: number;
 	hard: number;
 }
 
-export interface IUser extends Document {
+export interface IStudent extends Document {
 	name: string;
 	batch: string;
 	domain: string;
@@ -20,12 +21,12 @@ export interface IUser extends Document {
 	email: string;
 	leetcodeId: string;
 	solved: Solved;
-	lastSubmissionDate: Date;
+	lastSubmissionDate: string;
 	sevenDaySubmissionCount: number;
 	problemHistory: ProblemHistoryEntry[];
 }
 
-const studentSchema = new Schema<IUser>({
+const studentSchema = new Schema<IStudent>({
 	name: {
 		type: String,
 		required: true
@@ -51,13 +52,13 @@ const studentSchema = new Schema<IUser>({
 		required: true
 	},
 	solved: {
+		all: { type: Number, default: 0 },
 		easy: { type: Number, default: 0 },
 		medium: { type: Number, default: 0 },
 		hard: { type: Number, default: 0 }
 	},
 	lastSubmissionDate: {
-		type: Date,
-		required: true
+		type: String
 	},
 	sevenDaySubmissionCount: {
 		type: Number,
@@ -72,4 +73,4 @@ const studentSchema = new Schema<IUser>({
 	]
 });
 
-export const Students = mongoose.model<IUser>("Students", studentSchema);
+export const Students = mongoose.model<IStudent>("Students", studentSchema);

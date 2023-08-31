@@ -5,7 +5,10 @@ import app from "./app";
 
 const start = async () => {
 	await connectMongoDb(process.env.MONGO_URI!);
-	app.listen(4000, () => {
+
+	app.listen(process.env.PORT!, () => {
+
+
 		console.log("App is listening on port 4000");
 	});
 };

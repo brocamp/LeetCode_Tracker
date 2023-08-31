@@ -1,10 +1,9 @@
 import "express-async-errors";
 import express, { Request, Response } from "express";
-import cors from "cors";
 import morgan from "morgan";
 import { NotFoundError } from "./lib/errors";
-import { errorHandler } from "./api/middleware";
-import { AdminRouter } from "./api";
+import { AdminRouter } from "./lib/api";
+import { errorHandler } from "./lib/api/middleware";
 
 const app = express();
 

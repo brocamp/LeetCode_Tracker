@@ -1,9 +1,10 @@
 import express, { Request, Response } from "express";
 import { container } from "tsyringe";
-import AdminService from "../lib/service/admin.service";
-import { SendOTP } from "../lib/service";
+
 import * as jwt from "jsonwebtoken";
 import { IPayload, reqAuth } from "./middleware";
+import AdminService from "../service/admin.service";
+import { SendOTP } from "../service";
 
 const router = express.Router();
 

@@ -1,5 +1,12 @@
 version: "3"
 services:
+  mongodb:
+    image: mongo
+    ports:
+      - 27017:27017
+    container_name: mongodb
+    volumes:
+      - ./db/:/data/db
   backend:
     build:
       dockerfile: Dockerfile
@@ -12,6 +19,8 @@ services:
       - ./backend:/app
     env_file:
       - ./backend/.env
+    depends_on:
+      - mongodb
   frontend:
     build:
       dockerfile: Dockerfile
@@ -29,7 +38,7 @@ services:
     build:
       context: ./proxy
     ports:
-      - "80:80"
+      - 80:80
     depends_on:
       - frontend
       - backend

@@ -1,1 +1,2 @@
-console.log("example");
+export * from "./admin.repository";
+// export * from "./student.repository";

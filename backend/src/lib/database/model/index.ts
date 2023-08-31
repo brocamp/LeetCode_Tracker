@@ -1,1 +1,2 @@
-console.log("example");
+export * from "./admin.model";
+export * from "./students.model";

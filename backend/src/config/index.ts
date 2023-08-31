@@ -1,1 +1,1 @@
-console.log("example");
+export * from "./db.config";

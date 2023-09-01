@@ -1,21 +1,26 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
+
 import "./App.css";
-import Navbar from "./components/Navbar";
-import Login from "./components/Login";
+import { privateRoutes,routes } from "./utils/routes/routes";
 
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+
+// App component
 function App() {
-	const [count, setCount] = useState(0);
-
+	const user = true
+	// Combine and conditionally include routes based on authentication status
+	const router = createBrowserRouter([
+	  user ? privateRoutes() : {},
+	  ...routes(),
+	]);
+	// Provide the router configuration using RouterProvider
 	return (
 		<>
-     <div className="bg-[#ece8e0] w-screen h-screen ">
-				<Navbar />
-				<Login />
-			</div>
-		</>
-	);
-}
-
-export default App;
+		<div className="bg-[#ece8e0] p-4  w-screen h-screen ">
+		<RouterProvider router={router} />
+		</div>
+		</> 
+	)
+	
+  }
+  
+  export default App;

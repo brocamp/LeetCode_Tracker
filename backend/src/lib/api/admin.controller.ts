@@ -25,7 +25,7 @@ router.post("/verify-otp", async (req: Request, res: Response) => {
 		phone: admin.phone,
 		role: "admin"
 	};
-	const token = jwt.sign(payload, process.env.JWT_SECRET!, { expiresIn: "30d" });
+	const token = jwt.sign(payload, process.env.JWT_SECRET!, { expiresIn: "7d" });
 	res.status(200).json({ token });
 });
 

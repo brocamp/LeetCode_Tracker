@@ -1,0 +1,13 @@
+name: Staging Deployment
+
+on:
+  push:
+    branches:
+      - staging
+jobs:
+  
+  prettier:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2

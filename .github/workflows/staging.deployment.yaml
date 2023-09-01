@@ -4,10 +4,18 @@ on:
   push:
     branches:
       - staging
+
 jobs:
-  
-  prettier:
+  Deploying:
     runs-on: self-hosted
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+
+      - name: Down the Docker containers
+        run: |
+          cd ~/LeetCode_Tracker
+          git pull origin staging
+          sudo make down
+          sudo make all

@@ -14,7 +14,7 @@ const start = async () => {
 	LeetcodeUpdaterTask.start();
 
 	app.listen(process.env.PORT!, () => {
-		cli.print(`App is listening on port ${process.env.PORT} `);
+		cli.print(`App is Running on port ${process.env.PORT} `);
 		cli.printOutro();
 	});
 };

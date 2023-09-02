@@ -15,7 +15,7 @@ function App() {
 	// Provide the router configuration using RouterProvider
 	return (
 		<>
-		<div className="bg-[#ece8e0] p-4  w-screen h-screen ">
+		<div className="bg-[#ece8e0] p-4  w-screen h-[51rem] ">
 		<RouterProvider router={router} />
 		</div>
 		</> 

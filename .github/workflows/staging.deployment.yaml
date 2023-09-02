@@ -1,21 +1,25 @@
-name: Staging Deployment
-
+name: Deploy to EC2
 on:
   push:
     branches:
       - staging
-
 jobs:
-  Deploying:
-    runs-on: self-hosted
-
+  deploy:
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Checkout Repository
         uses: actions/checkout@v2
-
-      - name: Down the Docker containers
+      - name: Generate SSH key and Deploy
         run: |
-          cd ~/LeetCode_Tracker
+          echo "${{ secrets.PRIVATE_KEY }}" > ~/secret.pem
+          chmod 600 ~/secret.pem
+          ssh -o StrictHostKeyChecking=no -i "~/secret.pem" ${{ secrets.EC2_USERNAME }}@${{ secrets.EC2_HOST }} '   
+          cd /home/ubuntu/LeetCode_Tracker
+          git fetch --all 
+          git reset --hard origin/staging
           git pull origin staging
           sudo make down
-          sudo make all
+          cd backend && npm i
+          cd ../frontend && npmi
+          cd .. && sudo make all
+          '

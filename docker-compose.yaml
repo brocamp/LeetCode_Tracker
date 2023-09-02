@@ -30,7 +30,7 @@ services:
       - 8000:8000
     restart: always
     volumes:
-      - ./frontend:/app
+      - ./frontend/src:/app/src
     env_file:
       - ./frontend/.env
   nginx:

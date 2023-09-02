@@ -15,10 +15,10 @@ jobs:
           chmod 600 ~/secret.pem
           ssh -o StrictHostKeyChecking=no -i "~/secret.pem" ${{ secrets.EC2_USERNAME }}@${{ secrets.EC2_HOST }} '   
           cd /home/ubuntu/LeetCode_Tracker
+          sudo make down
           git fetch --all 
           git reset --hard origin/staging
           git pull origin staging
-          sudo make down
           cd backend && npm i
           cd ../frontend && npmi
           cd .. && sudo make all

@@ -14,7 +14,7 @@ services:
     container_name: backend
     ports:
       - 4000:4000
-    restart: always
+    restart: on-failure
     volumes:
       - ./backend:/app
     env_file:
@@ -28,9 +28,9 @@ services:
     container_name: frontend
     ports:
       - 8000:8000
-    restart: always
+    restart: on-failure
     volumes:
-      - ./frontend:/app
+      - ./frontend/src:/app/src
     env_file:
       - ./frontend/.env
   nginx:

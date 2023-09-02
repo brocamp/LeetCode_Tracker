@@ -1,16 +1,9 @@
-import { useState } from "react";
+import React from 'react'
 
-function Home() {
-	const [activeLink, setActiveLink] = useState(null);
-
-	// Function to handle link click and update the active link
-	const handleLinkClick = (link: any) => {
-		setActiveLink(link);
-	};
-
-	return (
-		<>
-			<div className="flex overflow-hidden shadow-lg rounded-lg  w-[25%] flex-col justify-between border-e bg-white">
+function Sidebar() {
+  return (
+    <>
+    <div className="flex overflow-hidden shadow-lg rounded-lg  flex-col justify-between border-e bg-white">
 				<div className="px-4  py-6">
 					<div className="flex flex-shrink-0 title-font font-medium items-center text-gray-900 md:mb-0">
 						<span className="ml-3 text-xl text-indigo-500 font-semibold antialiased">LeetCode_Checker</span>
@@ -53,26 +46,24 @@ function Home() {
 					</a>
 				</div>
 			</div>
-			<div className="h-62  w-[25%]  bg-white p-2 rounded-lg shadow-xl mt-2">
-                <div className="flex flex-row">
-                <div  className="animate-ping mt-4 ml-2 w-3 h-3 rounded-full bg-indigo-700"></div>
-                <h3 className=" rounded-lg px-2  py-2 text-md font-medium text-gray-500">Send new Question </h3>
-                
-                </div>
-				
+			<div className="h-62    bg-white p-2 rounded-lg shadow-2xl mt-2">
+				<div className="flex flex-row">
+					<div className="animate-ping mt-4 ml-2 w-3 h-3 rounded-full bg-indigo-700"></div>
+					<h3 className=" rounded-lg px-2  py-2 text-md font-medium text-gray-500">Send new Question </h3>
+				</div>
+
 				<textarea
-					className="w-[100%] outline-gray-400 p-2 bg-slate-50  border h-36 rounded-lg shadow-lg"
+					className="w-[100%] outline-gray-400 p-2 pl-3 bg-slate-50  shadow-xl border h-44 resize-none  rounded-lg "
 					name=""
 					id=""></textarea>
 				<button
 					type="submit"
-					className="block w-full shadow-lg bg-black py-2 mt-2 rounded-lg cursor-pointer   text-white font-semibold mb-2"
-				>
-                    Post
-            </button>
+					className="block w-full shadow-lg bg-black py-2 mt-2 rounded-lg cursor-pointer   text-white font-semibold mb-2">
+					Post
+				</button>
 			</div>
-		</>
-	);
+    </>
+  )
 }
 
-export default Home;
+export default Sidebar

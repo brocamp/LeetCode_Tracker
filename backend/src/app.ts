@@ -1,10 +1,10 @@
 import "express-async-errors";
 import express, { Request, Response } from "express";
-import morgan from "morgan";
 import cors from "cors";
 import { NotFoundError } from "./lib/errors";
-import { AdminRouter } from "./lib/api";
-import { errorHandler } from "./lib/api/middleware";
+import { AdminRouter } from "./api";
+import { errorHandler } from "./api/middleware";
+import { morganMiddleware } from "./config";
 
 const app = express();
 
@@ -14,7 +14,7 @@ app.use(cors({ origin: "*" }));
 
 app.set("trust proxy", true);
 
-app.use(morgan("dev"));
+app.use(morganMiddleware);
 
 app.use("/api/admin", AdminRouter);
 

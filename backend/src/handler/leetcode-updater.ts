@@ -1,3 +1,4 @@
+import { logger } from "../config";
 import { Students } from "../lib/database/model";
 import { getLastSubmissionDate, getProfile, getTotalSolved } from "./leetcode";
 
@@ -9,13 +10,13 @@ import { getLastSubmissionDate, getProfile, getTotalSolved } from "./leetcode";
 
 export const LeetStudentProfileUpdate = async () => {
 	const students = await Students.find({});
-
+	console.log(students);
 	// Concurrency: Process students concurrently
 	await Promise.all(
 		students.map(async (student) => {
 			try {
 				const leetcodeProfile = await getProfile(student.leetcodeId);
-				const totalSubmissions = getTotalSolved(leetcodeProfile!);
+				const totalSubmissions = getTotalSolved(leetcodeProfile!)!;
 				const lastsubmissionDate = getLastSubmissionDate(leetcodeProfile!);
 
 				student.solved = {
@@ -24,11 +25,12 @@ export const LeetStudentProfileUpdate = async () => {
 					medium: totalSubmissions.medium,
 					hard: totalSubmissions.hard
 				};
-				student.lastSubmissionDate = lastsubmissionDate;
 
+				student.lastSubmissionDate = lastsubmissionDate;
 				await student.save();
 			} catch (error: any) {
 				console.error(`Error processing student ${student._id}: ${error.message}`);
+				logger.error(error);
 			}
 		})
 	);

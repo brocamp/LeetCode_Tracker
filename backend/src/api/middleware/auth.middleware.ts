@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import * as jwt from "jsonwebtoken";
-import { BadRequestError } from "../../errors";
+import { BadRequestError } from "../../lib/errors";
 
 export interface IPayload {
 	userId: string;

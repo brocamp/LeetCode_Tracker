@@ -1,4 +1,5 @@
 import { LeetCode, UserProfile } from "leetcode-query";
+import { logger } from "../config";
 
 const leetcode = new LeetCode();
 
@@ -9,9 +10,13 @@ const leetcode = new LeetCode();
  * @returns a Promise that resolves to either a UserProfile object or undefined.
  */
 const getProfile = async (userId: string): Promise<UserProfile | undefined> => {
-	const user = await leetcode.user(userId);
-	if (user) return user;
-	else null;
+	try {
+		const user = await leetcode.user(userId);
+		if (user) return user;
+		else null;
+	} catch (error) {
+		logger.error(error);
+	}
 };
 
 /**
@@ -22,13 +27,17 @@ const getProfile = async (userId: string): Promise<UserProfile | undefined> => {
  * @returns The function `getTotalSolved` returns an object with the following properties:
  */
 const getTotalSolved = (user: UserProfile) => {
-	const acSubmissionNum = user.matchedUser?.submitStats.acSubmissionNum!;
-	return {
-		all: acSubmissionNum[0].count,
-		easy: acSubmissionNum[1].count,
-		medium: acSubmissionNum[2].count,
-		hard: acSubmissionNum[3].count
-	};
+	try {
+		const acSubmissionNum = user.matchedUser?.submitStats.acSubmissionNum!;
+		return {
+			all: acSubmissionNum[0].count,
+			easy: acSubmissionNum[1].count,
+			medium: acSubmissionNum[2].count,
+			hard: acSubmissionNum[3].count
+		};
+	} catch (error) {
+		logger.error(error);
+	}
 };
 
 /**

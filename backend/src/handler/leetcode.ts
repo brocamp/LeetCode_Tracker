@@ -41,19 +41,13 @@ const getTotalSolved = (user: UserProfile) => {
 };
 
 /**
- * The function `getLastSubmissionDate` returns the timestamp of the most recent submission in a user's
- * submission list.
- * @param {UserProfile} user - UserProfile object that contains information about a user, including
- * their recent submission list.
- * @returns The timestamp of the most recent submission in the user's recent submission list.
+ * The function `getRecentSubmissionList` returns the recent submission list of a user.
+ * @param {UserProfile} user - The user parameter is of type UserProfile.
+ * @returns The recentSubmissionList property of the user object.
  */
-const getLastSubmissionDate = (user: UserProfile) => {
-	return user.recentSubmissionList![0].timestamp;
+
+const getRecentSubmissionList = (user: UserProfile) => {
+	return user.recentSubmissionList;
 };
 
-
-const getRecentSubmissionList = (user:UserProfile) => {
-	return user.recentSubmissionList;
-}
-
-export { getProfile, getLastSubmissionDate, getTotalSolved ,getRecentSubmissionList };
+export { getProfile, getTotalSolved, getRecentSubmissionList };

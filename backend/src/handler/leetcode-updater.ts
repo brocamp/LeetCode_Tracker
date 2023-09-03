@@ -1,3 +1,4 @@
+import { logger } from "../config";
 import { Students } from "../lib/database/model";
 import { getLastSubmissionDate, getProfile, getTotalSolved, getRecentSubmissionList } from "./leetcode";
 
@@ -9,10 +10,10 @@ export const LeetStudentProfileUpdate = async () => {
 		students.map(async (student) => {
 			try {
 				const leetcodeProfile = await getProfile(student.leetcodeId);
-				const totalSubmissions = getTotalSolved(leetcodeProfile!);
+				const totalSubmissions = getTotalSolved(leetcodeProfile!)!;
 				const lastsubmissionDate = getLastSubmissionDate(leetcodeProfile!);
 				const recentSubmissions = getRecentSubmissionList(leetcodeProfile!);
-				
+
 				student.solved = {
 					all: totalSubmissions.all,
 					easy: totalSubmissions.easy,
@@ -25,27 +26,25 @@ export const LeetStudentProfileUpdate = async () => {
 				const solvedToday = recentSubmissions?.filter((submission) => {
 					return (
 						submission.statusDisplay === "Accepted" &&
-						isToday(submission.timestamp) && 
-						isAlreadySolvedOrNot(student.solvedQuestionsInThisWeek,submission.titleSlug)
+						isToday(submission.timestamp) &&
+						isAlreadySolvedOrNot(student.solvedQuestionsInThisWeek, submission.titleSlug)
 					);
 				});
 
-				console.log(solvedToday);
-				
 				student.totalSolvedCountInThisWeek += solvedToday!.length;
 
 				await student.save();
 			} catch (error: any) {
-				console.error(`Error processing student ${student._id}: ${error.message}`);
+				logger.error(error);
 			}
 		})
 	);
 
-	function isAlreadySolvedOrNot(alreaySolvedQuestions:string[],titleSlug:string){
-		if(!alreaySolvedQuestions.includes(titleSlug)){
+	function isAlreadySolvedOrNot(alreaySolvedQuestions: string[], titleSlug: string) {
+		if (!alreaySolvedQuestions.includes(titleSlug)) {
 			alreaySolvedQuestions.push(titleSlug);
 			return true;
-		}else{
+		} else {
 			return false;
 		}
 	}

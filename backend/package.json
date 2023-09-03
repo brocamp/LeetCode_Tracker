@@ -24,7 +24,8 @@
 		"node-cron": "^3.0.2",
 		"picocolors": "^1.0.0",
 		"reflect-metadata": "^0.1.13",
-		"tsyringe": "^4.8.0"
+		"tsyringe": "^4.8.0",
+		"winston": "^3.10.0"
 	},
 	"devDependencies": {
 		"@types/cors": "^2.8.13",

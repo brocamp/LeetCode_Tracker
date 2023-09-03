@@ -1,6 +1,5 @@
 import "dotenv/config";
 import "reflect-metadata";
-import cron from "node-cron";
 import { connectMongoDb } from "./config";
 import app from "./app";
 import * as cli from "./cli/ui";

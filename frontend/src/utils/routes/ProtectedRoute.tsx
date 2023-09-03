@@ -1,9 +1,8 @@
 import { Navigate, Outlet } from "react-router-dom";
 
 function ProtectedRoute() {
-	const user = true;
-	let superUser = user;
-	return superUser ? <Outlet /> : <Navigate to={"auth"} />;
+	var storedValue:any = localStorage.getItem("adminAuth")
+	return JSON.parse(storedValue) ? <Outlet /> : <Navigate to={"auth"} />;
 }
 
 export default ProtectedRoute;

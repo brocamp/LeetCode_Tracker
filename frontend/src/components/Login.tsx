@@ -1,32 +1,60 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { OtpData, PhoneNumberData, useOtpValidation, usePhoneNumberValidate } from "../utils/validation/formValidation";
 import Navbar from "./Navbar";
-
+import { adminAuth, adminVerify } from "../utils/api/config/axios.PostAPi";
+import { verifyPayload } from "../utils/api/api.Types/axios.Postapi.Types"; 
+import { useNavigate } from "react-router-dom";
+import toast, { Toaster } from 'react-hot-toast';
 
 const Login = () => {
 	const [otp, setOtp] = useState(true);
-  const {errors,handleSubmit,register,reset } = usePhoneNumberValidate();
+	const [number,setNumber] = useState("")
+  const {errors,handleSubmit,register} = usePhoneNumberValidate();
   const data = useOtpValidation();
+  const navigate = useNavigate() 
 
-	const handleFormNumber = (phone:PhoneNumberData): void => {
-		   console.log(phone,'phone');
-       
+	const handlePhoneNumber = async(data:PhoneNumberData) => {	
+		   // Admin authenrication Api
+		   const response = await adminAuth(data.phone)
+		   if(response.status === 200){
+			setOtp(false);
+			setNumber(data.phone);
+		   }else{
+		    toast.error("Ooops..! Something went wrong")
+		   }
 	};
 
-	const haldleFormOtp = (otp:OtpData): void => {
-		console.log(otp,'otpp');
-    
+	const hanldleFormOtp = async (data:OtpData)=> {
+		const verifyPayload:verifyPayload = {
+			 otp:Number(data.otp),
+			 phone:number
+		}
+		// Admin OTP verify Api
+		const response = await adminVerify(verifyPayload);
+		if(response.status === 200){
+            var isLoggedIn = true
+			localStorage.setItem("adminToken",response.data.token);
+			localStorage.setItem("adminAuth", JSON.stringify(isLoggedIn));
+			navigate('/');
+		}else{
+           toast.error("Invalied OTP or Something went wrong")
+		}
+		
 	};
 	return (
     <>
+	<Toaster/>
     <Navbar/>
     <div className="flex  pt-28 justify-center">
 			<div className="flex w-full lg:w-1/2  relative justify-center items-center space-y-8">
 				<div className="w-full   px-8 md:px-32 rounded-2xl lg:px-24">
 					{otp ? (
-						<form onSubmit={handleSubmit(handleFormNumber)} key={"phone"} className="bg-white h-[20rem]  rounded-2xl shadow-2xl p-12">
+						<form onSubmit={handleSubmit(handlePhoneNumber)} key={"phone"} className="bg-white h-[20rem]  rounded-2xl shadow-2xl p-12">
 							<h1 className="text-gray-800 font-bold text-2xl mb-1">Hey, Admin</h1>
-							<p className="text-sm font-normal text-gray-600 mb-8">Enter your Registred Number to get sign in</p>
+							{
+								errors.phone?.message ? <span className="text-sm font-normal text-red-600 mb-8">{errors.phone?.message}</span> : 							<p className="text-sm font-normal text-gray-600 mb-8">Enter your Registred Number to get sign in</p>
+
+							}
 							<div className="flex items-center cursor-pointer shadow-sm border-2 mb-8 py-2 px-3 rounded-lg ">
 								<svg
 									xmlns="http://www.w3.org/2000/svg"
@@ -39,7 +67,7 @@ const Login = () => {
 									<path d="M8 14a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" fill="#bababa"></path>
 								</svg>
 								<input className="pl-2 w-full cursor-pointer   outline-none border-none" type="text" placeholder="Phone"
-                {...register("phoneNumber")}
+                {...register("phone")}
                  />
 							</div>
 							<input
@@ -48,9 +76,11 @@ const Login = () => {
 							/>
 						</form>
 					) : (
-						<form key={"otp"} onSubmit={data.handleSubmit(haldleFormOtp)}  className="bg-white h-[20rem] rounded-2xl shadow-2xl p-12">
+						<form key={"otp"} onSubmit={data.handleSubmit(hanldleFormOtp)}  className="bg-white h-[20rem] rounded-2xl shadow-2xl p-12">
 							<h1 className="text-gray-800 font-bold text-2xl mb-1">Verify</h1>
-							<p className="text-sm font-normal text-gray-600 mb-8">Enter the OTP to verify</p>
+							{
+									data.errors.otp?.message ? <span className="text-sm font-normal text-red-600 mb-8">{data.errors.otp?.message}</span> : <p className="text-sm font-normal text-gray-600 mb-8">Enter the OTP to verify</p>
+							}
 							<div className="flex items-center cursor-pointer shadow-sm border-2 mb-8 py-2 px-3 rounded-lg ">
 								<svg
 									xmlns="http://www.w3.org/2000/svg"

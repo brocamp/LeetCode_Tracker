@@ -1,9 +1,15 @@
-import React from 'react'
+import { useNavigate } from "react-router-dom";
 
-function Sidebar() {
-  return (
-    <>
-    <div className="flex overflow-hidden shadow-lg rounded-lg  flex-col justify-between border-e bg-white">
+const Sidebar = () => {
+	const navigate = useNavigate();
+	const handleSignOut = () => {
+		localStorage.removeItem("adminToken");
+		localStorage.removeItem("adminAuth");
+		navigate("/auth");
+	};
+	return (
+		<>
+			<div className="flex overflow-hidden shadow-lg rounded-lg  flex-col justify-between border-e bg-white">
 				<div className="px-4  py-6">
 					<div className="flex flex-shrink-0 title-font font-medium items-center text-gray-900 md:mb-0">
 						<span className="ml-3 text-xl text-teal-800 font-semibold antialiased">LeetCode_Checker</span>
@@ -43,6 +49,11 @@ function Sidebar() {
 								<span> Admin@gmail.com </span>
 							</p>
 						</div>
+						<div className="ml-24">
+							<h1 onClick={handleSignOut} className="underline cursor-pointer hover:text-teal-600">
+								Sign out
+							</h1>
+						</div>
 					</a>
 				</div>
 			</div>
@@ -62,8 +73,8 @@ function Sidebar() {
 					Post
 				</button>
 			</div>
-    </>
-  )
-}
+		</>
+	);
+};
 
-export default Sidebar
+export default Sidebar;

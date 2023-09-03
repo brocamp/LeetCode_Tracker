@@ -4,10 +4,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 // Validation for Authentication
 export type PhoneNumberData = {
-  phoneNumber: string;
+  phone: string;
 };
 export const phoneNumberSchema: ZodType<PhoneNumberData> = z.object({
-  phoneNumber: z
+  phone: z
     .string()
     .min(10, { message: "Phone number should be at least 10 digits" })
     .max(10, { message: "Phone number should not exceed 10 digits" }),
@@ -30,7 +30,7 @@ export const usePhoneNumberValidate = () => {
 // Validation for OTP
 
 export type OtpData= {
-    otp: string;
+    otp:string;
   };
   export const  OtpDataSchema: ZodType<OtpData> = z.object({
    otp : z

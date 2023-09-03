@@ -6,7 +6,7 @@ function Sidebar() {
     <div className="flex overflow-hidden shadow-lg rounded-lg  flex-col justify-between border-e bg-white">
 				<div className="px-4  py-6">
 					<div className="flex flex-shrink-0 title-font font-medium items-center text-gray-900 md:mb-0">
-						<span className="ml-3 text-xl text-indigo-500 font-semibold antialiased">LeetCode_Checker</span>
+						<span className="ml-3 text-xl text-teal-800 font-semibold antialiased">LeetCode_Checker</span>
 					</div>
 					<ul className="mt-6 space-y-1">
 						<li>

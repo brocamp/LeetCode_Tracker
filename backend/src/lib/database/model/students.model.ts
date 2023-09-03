@@ -17,7 +17,7 @@ export interface IStudent extends Document {
 	solved: Solved;
 	lastSubmissionDate: string;
 	totalSolvedCountInThisWeek: number;
-	solvedQuestionsInThisWeek: string[]
+	solvedQuestionsInThisWeek: string[];
 }
 
 const studentSchema = new Schema<IStudent>({
@@ -58,10 +58,9 @@ const studentSchema = new Schema<IStudent>({
 		type: Number,
 		default: 0
 	},
-	solvedQuestionsInThisWeek:{
+	solvedQuestionsInThisWeek: {
 		type: [String],
-		default: [],
-		unique: true
+		default: []
 	}
 });
 

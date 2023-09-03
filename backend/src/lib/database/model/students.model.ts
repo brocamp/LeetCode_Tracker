@@ -1,11 +1,5 @@
 import mongoose, { Document, Schema } from "mongoose";
 
-interface ProblemHistoryEntry {
-	problemId: string;
-	difficulty: string;
-	solutionStatus: string;
-}
-
 export interface Solved {
 	all: number;
 	easy: number;
@@ -22,8 +16,8 @@ export interface IStudent extends Document {
 	leetcodeId: string;
 	solved: Solved;
 	lastSubmissionDate: string;
-	sevenDaySubmissionCount: number;
-	problemHistory: ProblemHistoryEntry[];
+	totalSolvedCountInThisWeek: number;
+	solvedQuestionsInThisWeek: string[]
 }
 
 const studentSchema = new Schema<IStudent>({
@@ -60,17 +54,15 @@ const studentSchema = new Schema<IStudent>({
 	lastSubmissionDate: {
 		type: String
 	},
-	sevenDaySubmissionCount: {
+	totalSolvedCountInThisWeek: {
 		type: Number,
 		default: 0
 	},
-	problemHistory: [
-		{
-			problemId: { type: String, required: true },
-			difficulty: { type: String, required: true },
-			solutionStatus: { type: String, required: true }
-		}
-	]
+	solvedQuestionsInThisWeek:{
+		type: [String],
+		default: [],
+		unique: true
+	}
 });
 
-export const Students = mongoose.model<IStudent>("Students", studentSchema);
+export const Students = mongoose.model<IStudent>("Student", studentSchema);

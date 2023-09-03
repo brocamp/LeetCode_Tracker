@@ -1,11 +1,5 @@
 import { Students } from "../lib/database/model";
-import { getLastSubmissionDate, getProfile, getTotalSolved } from "./leetcode";
-
-/**
- * The LeetCodeChecker function processes a list of students, retrieves their LeetCode profiles,
- * calculates their total solved submissions and last submission date, and updates their information in
- * the database.
- */
+import { getLastSubmissionDate, getProfile, getTotalSolved, getRecentSubmissionList } from "./leetcode";
 
 export const LeetStudentProfileUpdate = async () => {
 	const students = await Students.find({});
@@ -17,7 +11,8 @@ export const LeetStudentProfileUpdate = async () => {
 				const leetcodeProfile = await getProfile(student.leetcodeId);
 				const totalSubmissions = getTotalSolved(leetcodeProfile!);
 				const lastsubmissionDate = getLastSubmissionDate(leetcodeProfile!);
-
+				const recentSubmissions = getRecentSubmissionList(leetcodeProfile!);
+				
 				student.solved = {
 					all: totalSubmissions.all,
 					easy: totalSubmissions.easy,
@@ -26,10 +21,38 @@ export const LeetStudentProfileUpdate = async () => {
 				};
 				student.lastSubmissionDate = lastsubmissionDate;
 
+				//leaderboard daily updater
+				const solvedToday = recentSubmissions?.filter((submission) => {
+					return (
+						submission.statusDisplay === "Accepted" &&
+						isToday(submission.timestamp) && 
+						isAlreadySolvedOrNot(student.solvedQuestionsInThisWeek,submission.titleSlug)
+					);
+				});
+
+				console.log(solvedToday);
+				
+				student.totalSolvedCountInThisWeek += solvedToday!.length;
+
 				await student.save();
 			} catch (error: any) {
 				console.error(`Error processing student ${student._id}: ${error.message}`);
 			}
 		})
 	);
+
+	function isAlreadySolvedOrNot(alreaySolvedQuestions:string[],titleSlug:string){
+		if(!alreaySolvedQuestions.includes(titleSlug)){
+			alreaySolvedQuestions.push(titleSlug);
+			return true;
+		}else{
+			return false;
+		}
+	}
+	// Check if the date from the timestamp is today
+	function isToday(timestamp: string): boolean {
+		const dateFromTimestamp = new Date(+timestamp * 1000);
+		const currentDate = new Date();
+		return dateFromTimestamp.toDateString() === currentDate.toDateString();
+	}
 };

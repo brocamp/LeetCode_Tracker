@@ -42,4 +42,9 @@ const getLastSubmissionDate = (user: UserProfile) => {
 	return user.recentSubmissionList![0].timestamp;
 };
 
-export { getProfile, getLastSubmissionDate, getTotalSolved };
+
+const getRecentSubmissionList = (user:UserProfile) => {
+	return user.recentSubmissionList;
+}
+
+export { getProfile, getLastSubmissionDate, getTotalSolved ,getRecentSubmissionList };

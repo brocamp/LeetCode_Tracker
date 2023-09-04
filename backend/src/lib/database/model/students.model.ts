@@ -7,6 +7,15 @@ export interface Solved {
 	hard: number;
 }
 
+export interface StudentDTO {
+	name: string;
+	batch: string;
+	domain: string;
+	phone: string;
+	email: string;
+	leetcodeId: string;
+}
+
 export interface IStudent extends Document {
 	name: string;
 	batch: string;

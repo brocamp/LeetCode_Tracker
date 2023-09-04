@@ -9,7 +9,7 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
-      - name: SSH into EC2 and Deploy
+      - name: SSH into Digital Ocean Droplet and Deploy
         run: |
           sshpass -p "${{ secrets.SSH_PASSWORD }}" ssh ubuntu@${{ secrets.HOST}}
           cd /home/ubuntu/LeetCode_Tracker

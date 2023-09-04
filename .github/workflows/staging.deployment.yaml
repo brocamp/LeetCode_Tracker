@@ -13,7 +13,7 @@ jobs:
         run: |
           echo "${{ secrets.PRIVATE_KEY }}" > ~/secret.pem
           chmod 600 ~/secret.pem
-          ssh -o StrictHostKeyChecking=no -i "~/secret.pem" ${{ secrets.EC2_USERNAME }}@${{ secrets.EC2_HOST }} '   
+          ssh -o StrictHostKeyChecking=no -i "~/secret.pem" ${{ secrets.USERNAME }}@${{ secrets.HOST }} '   
           cd /home/ubuntu/LeetCode_Tracker
           sudo make down
           git fetch --all 

@@ -1,4 +1,4 @@
-name: Deploy to EC2
+name: Deploy to staging 
 on:
   push:
     branches:
@@ -9,17 +9,14 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
-      - name: Generate SSH key and Deploy
+      - name: SSH into Digital Ocean Droplet and Deploy
         run: |
-          echo "${{ secrets.PRIVATE_KEY }}" > ~/secret.pem
-          chmod 600 ~/secret.pem
-          ssh -o StrictHostKeyChecking=no -i "~/secret.pem" ${{ secrets.EC2_USERNAME }}@${{ secrets.EC2_HOST }} '   
+          sshpass -p "${{ secrets.SSH_PASSWORD }}" ssh ubuntu@${{ secrets.HOST}}
           cd /home/ubuntu/LeetCode_Tracker
           sudo make down
           git fetch --all 
           git reset --hard origin/staging
           git pull origin staging
           cd backend && npm i
-          cd ../frontend && npmi
+          cd ../frontend && npm i
           cd .. && sudo make all
-          '

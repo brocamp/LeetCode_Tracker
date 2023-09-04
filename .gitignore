@@ -1,6 +1,8 @@
 node_modules/
 .env
 db
+session
+.wwebjs_cache
 
 # Logs
 logs

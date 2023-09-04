@@ -3,6 +3,8 @@ node_modules/
 db
 
 # Logs
+.wwebjs_cache
+session
 logs
 *.log
 npm-debug.log*

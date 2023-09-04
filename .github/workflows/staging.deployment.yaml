@@ -18,8 +18,8 @@ jobs:
           sudo make down
           git fetch --all 
           git reset --hard origin/dev
-          cd backend && npm i
-          cd ../frontend && npmi
+          cd backend &&  npm i
+          cd ../frontend &&  npmi
           cd .. && sudo make all
           exit
           '

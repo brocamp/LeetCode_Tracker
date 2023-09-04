@@ -1,0 +1,68 @@
+[{
+  "name": "Ajay E R",
+  "batch": "BCE67",
+  "domain": "MEAN",
+  "phone": "123-456-7890",
+  "email": "ajay@example.com",
+  "leetcodeId": "ajay-er",
+  "solved": {
+    "all": 50,
+    "easy": 20,
+    "medium": 15,
+    "hard": 15
+  },
+  "lastSubmissionDate": "00000000",
+  "totalSolvedCountInThisWeek": 3,
+  "solvedQuestionsInThisWeek": ["problem1", "problem2", "problem3"]
+},
+{
+  "name": "Magesh S",
+  "batch": "BCE58",
+  "domain": "MERN",
+  "phone": "987-654-3210",
+  "email": "magesh@example.com",
+  "leetcodeId": "mageshp121",
+  "solved": {
+    "all": 30,
+    "easy": 10,
+    "medium": 12,
+    "hard": 8
+  },
+  "lastSubmissionDate": "000000000",
+  "totalSolvedCountInThisWeek": 4,
+  "solvedQuestionsInThisWeek": ["problem2", "problem4"]
+},
+{
+  "name": "Pranav s",
+  "batch": "BCE105",
+  "domain": "Backend Node.js",
+  "phone": "555-123-4567",
+  "email": "pranav@example.com",
+  "leetcodeId": "pranav404",
+  "solved": {
+    "all": 40,
+    "easy": 15,
+    "medium": 10,
+    "hard": 15
+  },
+  "lastSubmissionDate": "000000000",
+  "totalSolvedCountInThisWeek": 2,
+  "solvedQuestionsInThisWeek": ["problem3", "problem5"]
+},
+{
+  "name": "Aswan s",
+  "batch": "BCE105",
+  "domain": "MERN",
+  "phone": "555-123-4567",
+  "email": "aswan@example.com",
+  "leetcodeId": "aswan5352",
+  "solved": {
+    "all": 40,
+    "easy": 15,
+    "medium": 10,
+    "hard": 15
+  },
+  "lastSubmissionDate": "000000000",
+  "totalSolvedCountInThisWeek": 0,
+  "solvedQuestionsInThisWeek": []
+}]

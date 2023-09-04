@@ -1,5 +1,8 @@
 import { autoInjectable } from "tsyringe";
 import { StudentRepository } from "../database/repository/student.repository";
+import { StudentDTO } from "../database/model";
+import { getProfile } from "../../handler/leetcode";
+import { BadRequestError, NotFoundError } from "../errors";
 
 @autoInjectable()
 export class StudentService {
@@ -21,5 +24,19 @@ export class StudentService {
 	public leaderboard = async () => {
 		const topLeetcodeSolvers = await this.repository.leaderBoard();
 		return { rank: topLeetcodeSolvers };
+	};
+
+	public search = async (query: string) => {
+		const result = await this.repository.search(query);
+		return result;
+	};
+
+	public createStudent = async (data: StudentDTO) => {
+		const userId = await getProfile(data.leetcodeId);
+		if (!userId?.matchedUser) throw new BadRequestError("LeetCodeId dosen't exist");
+		let student = await this.repository.findByLeetCodeId(data.leetcodeId);
+		if (student) throw new BadRequestError("This profile already exist in database");
+		const result = await this.repository.create(data);
+		return result;
 	};
 }

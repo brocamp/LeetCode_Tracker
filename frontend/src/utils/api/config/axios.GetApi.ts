@@ -1,19 +1,12 @@
 import { AxiosRequestConfig } from 'axios';   
-import { apiRequest } from '../config/axios.Config';
+import { apiRequest, headerConfg } from '../config/axios.Config';
 
   
-export const getUsers = async ()=> {   
+export const getDailyMetrics = async ()=> {   
     const config: AxiosRequestConfig = {   
       method: 'GET',   
-      url: '/users',   
-    };   
-    return await apiRequest(config);   
-  }
-
-export const getUser = async (userId: string)=> {   
-    const config: AxiosRequestConfig = {   
-      method: 'GET',   
-      url: `/users/${userId}`,   
+      url: 'api/student/daily-metrics',
+      headers:headerConfg()   
     };   
     return await apiRequest(config);   
   }

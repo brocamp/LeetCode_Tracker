@@ -6,7 +6,6 @@ import { verifyPayload } from '../api.Types/axios.Postapi.Types';
 
 
 export const adminAuth = async (Phone:String) => {
-    console.log(Phone,'nuber');
     const config: AxiosRequestConfig = {   
       method: 'POST',   
       url: `api/admin/signin`,   
@@ -16,8 +15,6 @@ export const adminAuth = async (Phone:String) => {
   }
 
 export const adminVerify = async(verifyPayload:verifyPayload)=>{
-       console.log();
-       
        const config: AxiosRequestConfig = {   
         method: 'POST',   
         url: `api/admin/verify-otp`,   

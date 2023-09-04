@@ -1,6 +1,5 @@
 import { IStudent, Students } from "../model/students.model";
 
-
 interface ILeaderBoard {
 	name: string;
 	leetcodeId: string;

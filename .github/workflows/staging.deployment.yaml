@@ -2,7 +2,7 @@ name: Deploy to EC2
 on:
   push:
     branches:
-      - staging
+      - dev
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -17,9 +17,9 @@ jobs:
           cd /home/ubuntu/LeetCode_Tracker
           sudo make down
           git fetch --all 
-          git reset --hard origin/staging
-          git pull origin staging
+          git reset --hard origin/dev
           cd backend && npm i
           cd ../frontend && npmi
           cd .. && sudo make all
+          exit
           '

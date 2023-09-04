@@ -40,3 +40,4 @@ esac
 
 Clone Git repo and run Docker Compose
 echo "Cloning Git repo..."
+git clone https://github.com/brocamp/LeetCode_Tracker

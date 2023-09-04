@@ -19,6 +19,14 @@ case $os in
       sh get-docker.sh
       apt install docker-compose
       echo "Packages installed successfully."
+      sudo apt-get update
+      sudo apt-get install -y ca-certificates curl gnupg
+      sudo mkdir -p /etc/apt/keyrings
+      curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
+      NODE_MAJOR=20
+      echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" | sudo tee /etc/apt/sources.list.d/nodesource.list
+      sudo apt-get update
+      sudo apt-get install nodejs -y
     else
       echo "Unsupported package manager."
       exit 1
@@ -30,6 +38,5 @@ case $os in
     ;;
 esac
 
-# Clone Git repo and run Docker Compose
-# echo "Cloning Git repo..."
-# rest of the config need to added 
+Clone Git repo and run Docker Compose
+echo "Cloning Git repo..."

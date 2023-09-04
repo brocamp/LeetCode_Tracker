@@ -1,4 +1,4 @@
-import { IStudent, Students } from "../model/students.model";
+import { IStudent, StudentDTO, Students } from "../model/students.model";
 
 interface ILeaderBoard {
 	name: string;
@@ -7,7 +7,7 @@ interface ILeaderBoard {
 }
 
 export class StudentRepository {
-	async create(user: IStudent): Promise<IStudent> {
+	async create(user: StudentDTO): Promise<IStudent> {
 		return Students.create(user);
 	}
 
@@ -21,6 +21,41 @@ export class StudentRepository {
 
 	async update(userId: string, updates: Partial<IStudent>): Promise<IStudent | null> {
 		return Students.findByIdAndUpdate(userId, updates, { new: true });
+	}
+
+	async findByLeetCodeId(userId: string) {
+		const student = await Students.findOne({ leetcodeId: userId });
+		return student;
+	}
+
+	async search(query: string) {
+		const fuzzyQuery = new RegExp(this.escapeRegex(query), "gi");
+
+		const result = await Students.find({
+			$or: [
+				{
+					name: { $regex: fuzzyQuery }
+				},
+				{
+					batch: { $regex: fuzzyQuery }
+				},
+				{
+					domain: { $regex: fuzzyQuery }
+				},
+				{
+					email: query
+				},
+				{
+					leetcodeId: query
+				}
+			]
+		});
+
+		return result;
+	}
+
+	escapeRegex(text: string) {
+		return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
 	}
 
 	async getMetrics(): Promise<{ submissionCount: number }[]> {

@@ -1,0 +1,25 @@
+name: Deploy to EC2
+on:
+  push:
+    branches:
+      - dev
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+      - name: Generate SSH key and Deploy
+        run: |
+          echo "${{ secrets.PRIVATE_KEY }}" > ~/secret.pem
+          chmod 600 ~/secret.pem
+          ssh -o StrictHostKeyChecking=no -i "~/secret.pem" ${{ secrets.USERNAME }}@${{ secrets.HOST }} '   
+          cd /home/ubuntu/LeetCode_Tracker
+          sudo make down
+          git fetch --all 
+          git reset --hard origin/dev
+          cd backend &&  npm i
+          cd ../frontend &&  npmi
+          cd .. && sudo make all
+          exit
+          '

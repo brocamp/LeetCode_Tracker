@@ -1,4 +1,4 @@
-name: Deploy to EC2
+name: Deploy to staging 
 on:
   push:
     branches:
@@ -9,9 +9,9 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
-      - name: SSH into EC2 and Deploy
+      - name: SSH into Digital Ocean Droplet and Deploy
         run: |
-          sshpass -p "${{ secrets.SSH_PASSWORD }}" ssh -T -o StrictHostKeyChecking=no ubuntu@143.110.188.165
+          sshpass -p "${{ secrets.SSH_PASSWORD }}" ssh -T -o StrictHostKeyChecking=no ubuntu@${{ secrets.HOST}}   
           cd /home/ubuntu/LeetCode_Tracker
           sudo make down
           git fetch --all 

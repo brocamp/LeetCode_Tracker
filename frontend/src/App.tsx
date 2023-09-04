@@ -1,14 +1,14 @@
 
-import { useEffect } from "react";
 import "./App.css";
 // import { privateRoutes,routes } from "./utils/routes/routes";
-import { RouterProvider, createBrowserRouter,BrowserRouter,Routes,Route } from "react-router-dom";
+import { Routes,Route } from "react-router-dom";
 import Login from "./components/Login";
 import Home from "./pages/Home";
 import ErrorComponent from "./components/ErrorComponent";
 import ProtectedRoute from "./utils/routes/ProtectedRoute";
 import Analytic from "./Features/Analytic";
-import PieData from "./components/PieData";
+import { BrowserRouter } from "react-router-dom";
+
 
 
 // App component
@@ -16,9 +16,9 @@ const  App = () =>{
 	return (
 		<>
 
-		
+
 		<div className="bg-[#ece8e0] p-4  w-screen h-screen ">
-          <BrowserRouter>
+		<BrowserRouter>
 		   <Routes>
 
 			{/* Auth Route */}
@@ -37,7 +37,7 @@ const  App = () =>{
 			<Route path="*" element={<ErrorComponent/>} />
 			{/*  */}
 		   </Routes>
-		  </BrowserRouter>
+		   </BrowserRouter>
 		</div>
 		</> 
 	)

@@ -20,7 +20,7 @@ export const apiRequest = async(config: AxiosRequestConfig) => {
       return response;   
     } catch (error) {   
       console.error(error,'errr');   
-      throw error;   
+      return error;   
     }   
   };
 

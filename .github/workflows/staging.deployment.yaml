@@ -11,7 +11,7 @@ jobs:
         uses: actions/checkout@v2
       - name: SSH into Digital Ocean Droplet and Deploy
         run: |
-          sshpass -p "${{ secrets.SSH_PASSWORD }}" ssh ubuntu@${{ secrets.HOST}}
+          sshpass -p "${{ secrets.SSH_PASSWORD }}" ssh -T -o StrictHostKeyChecking=no ubuntu@${{ secrets.HOST}}   
           cd /home/ubuntu/LeetCode_Tracker
           sudo make down
           git fetch --all 

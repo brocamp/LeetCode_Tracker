@@ -36,11 +36,11 @@ services:
   nginx:
     container_name: nginx_proxy
     build:
-      context: ./proxy
+      context: ./nginx
     ports:
       - 80:80
     depends_on:
       - frontend
       - backend
     volumes:
-      - ./proxy/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf

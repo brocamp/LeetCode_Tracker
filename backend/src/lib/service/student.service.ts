@@ -17,4 +17,9 @@ export class StudentService {
 			yesterdaySolvedStudentsCount: students[0]?.submissionCount || 0
 		};
 	};
+
+	public leaderboard = async () => {
+		const topLeetcodeSolvers = await this.repository.leaderBoard();
+		return { rank: topLeetcodeSolvers };
+	};
 }

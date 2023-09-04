@@ -13,4 +13,9 @@ router.get("/daily-metrics", reqAuth, async (req: Request, res: Response) => {
 	res.status(200).json(matrics);
 });
 
+router.get("/leaderboard", reqAuth, async (req: Request, res: Response) => {
+	const rank = await Service.leaderboard();
+	res.status(200).json(rank);
+});
+
 export { router as StudentRouter };

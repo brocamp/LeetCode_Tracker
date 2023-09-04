@@ -1,5 +1,12 @@
 import { IStudent, Students } from "../model/students.model";
 
+
+interface ILeaderBoard {
+	name: string;
+	leetcodeId: string;
+	totalSolvedCountInThisWeek: number;
+}
+
 export class StudentRepository {
 	async create(user: IStudent): Promise<IStudent> {
 		return Students.create(user);
@@ -60,5 +67,27 @@ export class StudentRepository {
 
 	async countStudents(): Promise<number> {
 		return Students.find().countDocuments();
+	}
+
+	async leaderBoard(): Promise<ILeaderBoard[]> {
+		return Students.aggregate([
+			{
+				$match: { totalSolvedCountInThisWeek: { $ne: 0 } }
+			},
+			{
+				$sort: { totalSolvedCountInThisWeek: -1 }
+			},
+			{
+				$limit: 5
+			},
+			{
+				$project: {
+					_id: 0,
+					name: 1,
+					leetcodeId: 1,
+					totalSolvedCountInThisWeek: 1
+				}
+			}
+		]);
 	}
 }

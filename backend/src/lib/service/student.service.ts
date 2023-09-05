@@ -1,19 +1,23 @@
 import { autoInjectable } from "tsyringe";
 import { StudentRepository } from "../database/repository/student.repository";
+import { weeklymetricsRepository } from "../database/repository/weeklymetrics.repository";
 import { StudentDTO } from "../database/model";
-import { getProfile } from "../../handler/leetcode";
 import { BadRequestError } from "../errors";
+import { getProfile } from "../../handler/leetcode";
 
 @autoInjectable()
 export class StudentService {
-	constructor(private readonly repository: StudentRepository) {}
+	constructor(
+		private readonly studentRepository: StudentRepository,
+		private readonly weeklymetricsRepository: weeklymetricsRepository
+	) {}
 
 	public dailyMetrics = async () => {
 		//get lastsubmission count of students
-		const students = await this.repository.getMetrics();
+		const students = await this.studentRepository.getMetrics();
 
 		//get total count
-		const totalCount = await this.repository.countStudents();
+		const totalCount = await this.studentRepository.countStudents();
 
 		return {
 			totalStudents: totalCount,
@@ -22,26 +26,31 @@ export class StudentService {
 	};
 
 	public leaderboard = async () => {
-		const topLeetcodeSolvers = await this.repository.leaderBoard();
+		const topLeetcodeSolvers = await this.studentRepository.leaderBoard();
 		return { rank: topLeetcodeSolvers };
 	};
 
 	public search = async (query: string) => {
-		const result = await this.repository.search(query);
+		const result = await this.studentRepository.search(query);
 		return result;
 	};
 
 	public createStudent = async (data: StudentDTO) => {
 		const userId = await getProfile(data.leetcodeId);
 		if (!userId?.matchedUser) throw new BadRequestError("LeetCodeId dosen't exist");
-		let student = await this.repository.findByLeetCodeId(data.leetcodeId);
+		let student = await this.studentRepository.findByLeetCodeId(data.leetcodeId);
 		if (student) throw new BadRequestError("This profile already exist in database");
-		const result = await this.repository.create(data);
+		const result = await this.studentRepository.create(data);
 		return result;
 	};
 
 	public findStudentsNotDone = async () => {
-		const result = await this.repository.findStudentsNotDone();
+		const result = await this.studentRepository.findStudentsNotDone();
+		return result;
+	};
+
+	public weeklyMetrics = async () => {
+		const result = await this.weeklymetricsRepository.weeklyMetrics();
 		return result;
 	};
 }

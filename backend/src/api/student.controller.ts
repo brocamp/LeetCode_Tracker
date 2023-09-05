@@ -36,4 +36,9 @@ router.get("/not-doing", reqAuth, async (req: Request, res: Response) => {
 	res.json({ result });
 });
 
+router.get("/weekly-metrics", reqAuth,async (req: Request, res: Response) => {
+	const lastWeekReport = await Service.weeklyMetrics();
+	res.json({ lastWeekReport });
+})
+
 export { router as StudentRouter };

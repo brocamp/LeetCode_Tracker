@@ -1,5 +1,6 @@
 import { logger } from "../config";
-import { Students } from "../lib/database/model";
+import { WeeklyMetrics } from "../lib/database/model";
+import { StudentRepository } from "../lib/database/repository/student.repository";
 import { getProfile, getTotalSolved, getRecentSubmissionList } from "./leetcode";
 
 /**
@@ -8,7 +9,9 @@ import { getProfile, getTotalSolved, getRecentSubmissionList } from "./leetcode"
  * their profile information in the database.
  */
 export const LeetStudentProfileUpdate = async () => {
-	const students = await Students.find({});
+	let studentRepository = new StudentRepository();
+
+	const students = await studentRepository.findAll();
 
 	// Concurrency: Process students concurrently
 	await Promise.all(
@@ -53,6 +56,18 @@ export const LeetStudentProfileUpdate = async () => {
 			}
 		})
 	);
+
+	/* This code block is retrieving metrics from the `studentRepository` and creating a new entry in the
+	`WeeklyMetrics` collection in the database.
+	 */
+	let result = await studentRepository.getMetrics();
+	const currentDate = new Date();
+	const currentDayAbbreviation = currentDate.toLocaleString("en-US", { weekday: "long" });
+	await WeeklyMetrics.create({
+		totalStudentsSolved: result[0]?.submissionCount || 0,
+		day: currentDayAbbreviation
+	});
+
 
 	/**
 	 * This function checks if a given question titleslug

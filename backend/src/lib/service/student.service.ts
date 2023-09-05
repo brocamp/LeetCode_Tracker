@@ -2,7 +2,7 @@ import { autoInjectable } from "tsyringe";
 import { StudentRepository } from "../database/repository/student.repository";
 import { StudentDTO } from "../database/model";
 import { getProfile } from "../../handler/leetcode";
-import { BadRequestError, NotFoundError } from "../errors";
+import { BadRequestError } from "../errors";
 
 @autoInjectable()
 export class StudentService {
@@ -37,6 +37,11 @@ export class StudentService {
 		let student = await this.repository.findByLeetCodeId(data.leetcodeId);
 		if (student) throw new BadRequestError("This profile already exist in database");
 		const result = await this.repository.create(data);
+		return result;
+	};
+
+	public findStudentsNotDone = async () => {
+		const result = await this.repository.findStudentsNotDone();
 		return result;
 	};
 }

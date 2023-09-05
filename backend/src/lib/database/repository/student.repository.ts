@@ -1,4 +1,4 @@
-import { IStudent, StudentDTO, Students } from "../model/students.model";
+import { IStudent, StudentDTO, Students } from "../model";
 
 interface ILeaderBoard {
 	name: string;
@@ -61,7 +61,7 @@ export class StudentRepository {
 	async getMetrics(): Promise<{ submissionCount: number }[]> {
 		// Get the current date
 		const currentDate = new Date();
-		const startTime = currentDate.getTime() - 14 * 60 * 60 * 1000;
+		const startTime = currentDate.getTime() - 23 * 60 * 60 * 1000;
 
 		return Students.aggregate([
 			{

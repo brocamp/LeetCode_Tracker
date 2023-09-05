@@ -24,6 +24,7 @@ export interface IStudent extends Document {
 	email: string;
 	leetcodeId: string;
 	solved: Solved;
+	totalNotSubmissionCount: number;
 	lastSubmissionDate: string;
 	totalSolvedCountInThisWeek: number;
 	solvedQuestionsInThisWeek: string[];
@@ -59,6 +60,10 @@ const studentSchema = new Schema<IStudent>({
 		easy: { type: Number, default: 0 },
 		medium: { type: Number, default: 0 },
 		hard: { type: Number, default: 0 }
+	},
+	totalNotSubmissionCount: {
+		type: Number,
+		default: 0
 	},
 	lastSubmissionDate: {
 		type: String

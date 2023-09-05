@@ -4,12 +4,12 @@ import { logger } from "../../config";
 
 export const errorHandler = (err: Error, req: Request, res: Response, next: NextFunction) => {
 	try {
-		logger.error(err.stack || err);
 		if (err instanceof CustomError) {
 			return res.status(err.statusCode).send({ errors: err.serializeErrors() });
 		}
+		logger.error(err.stack || err);
 		res.status(400).send({
-			errors: [{ message: "Something went wrong" }]
+			errors: [{ message: err.message }]
 		});
 	} catch (error) {
 		logger.error(error);

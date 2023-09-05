@@ -5,6 +5,7 @@ import * as jwt from "jsonwebtoken";
 import { IPayload, reqAuth } from "./middleware";
 import AdminService from "../lib/service/admin.service";
 import { SendOTP } from "./utils";
+import { client } from "../config";
 
 const router = express.Router();
 
@@ -33,6 +34,13 @@ router.get("/profile", reqAuth, async (req: Request, res: Response) => {
 	const userId = req.user?.userId as string;
 	const profile = await Service.GetProfile(userId);
 	res.json(profile);
+});
+
+router.post("/message", reqAuth, async (req: Request, res: Response) => {
+	const message = req.body.message;
+	const groupId = process.env.WHATSAPP_GROUPID!;
+	await client.sendMessage(groupId, message);
+	res.status(200).json({ message: "okay" });
 });
 
 export { router as AdminRouter };

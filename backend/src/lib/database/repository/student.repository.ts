@@ -119,6 +119,7 @@ export class StudentRepository {
 					_id: 0,
 					name: 1,
 					leetcodeId: 1,
+					batch: 1,
 					totalSolvedCountInThisWeek: 1
 				}
 			}
@@ -137,7 +138,7 @@ export class StudentRepository {
 				},
 				{
 					totalNotSubmissionCount: {
-						$eq: 3
+						$gte: 3
 					}
 				}
 			]

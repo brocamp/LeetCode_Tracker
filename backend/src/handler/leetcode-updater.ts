@@ -30,6 +30,12 @@ export const LeetStudentProfileUpdate = async () => {
 						return submission.statusDisplay === "Accepted";
 					})?.timestamp || "00000000";
 
+				if (isToday(student.lastSubmissionDate)) {
+					student.totalNotSubmissionCount = 0;
+				} else {
+					student.totalNotSubmissionCount++;
+				}
+
 				//leaderboard daily updater
 				const solvedToday = recentSubmissions?.filter((submission) => {
 					return (

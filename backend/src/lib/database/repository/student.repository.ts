@@ -15,8 +15,21 @@ export class StudentRepository {
 		return Students.findById(userId);
 	}
 
-	async findAll(): Promise<IStudent[]> {
-		return Students.find();
+	async find() {
+		return await Students.find({});
+	}
+
+	async findAll(limit: number, page: number) {
+		const totalStudents = await Students.countDocuments();
+		const totalPages = Math.ceil(totalStudents / limit);
+		const skip = (page - 1) * limit;
+		const students = await Students.find().skip(skip).limit(limit).exec();
+		return {
+			totalStudents,
+			totalPages,
+			currentPage: page,
+			students
+		};
 	}
 
 	async update(userId: string, updates: Partial<IStudent>): Promise<IStudent | null> {

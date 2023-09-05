@@ -30,6 +30,11 @@ export class StudentService {
 		return { rank: topLeetcodeSolvers };
 	};
 
+	public findAll = async (limit: number, page: number) => {
+		const result = await this.studentRepository.findAll(limit, page);
+		return result;
+	};
+
 	public search = async (query: string) => {
 		const result = await this.studentRepository.search(query);
 		return result;

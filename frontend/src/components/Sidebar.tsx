@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Sidebar = () => {
 	const navigate = useNavigate();
@@ -16,23 +16,22 @@ const Sidebar = () => {
 					</div>
 					<ul className="mt-6 space-y-1">
 						<li>
-							<a href="" className="block rounded-lg bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700">
-								Students
-							</a>
+							<Link to={'/'}
+							className="block rounded-lg bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700">
+								Statics
+							</Link>
 						</li>
 						<li>
-							<a
-								href=""
+							<Link to={'/leaderborde'}
 								className="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700">
 								Leader Bord
-							</a>
+							</Link>
 						</li>
 						<li>
-							<a
-								href=""
+							<Link to={'/'}
 								className="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700">
-								Add Student +
-							</a>
+								Students
+							</Link>
 						</li>
 					</ul>
 				</div>

@@ -8,6 +8,8 @@ import ErrorComponent from "./components/ErrorComponent";
 import ProtectedRoute from "./utils/routes/ProtectedRoute";
 import Analytic from "./Features/Analytic";
 import { BrowserRouter } from "react-router-dom";
+import LeaderBorderStatic from "./components/LeaderBorderStatic";
+import LeaderBoard from "./Features/LeaderBorde";
 
 
 
@@ -17,7 +19,7 @@ const  App = () =>{
 		<>
 
 
-		<div className="bg-[#ece8e0] p-4  w-screen h-screen ">
+		<div className="bg-[#ece8e0] p-4  w-screen h-[51rem] ">
 		<BrowserRouter>
 		   <Routes>
 
@@ -29,6 +31,8 @@ const  App = () =>{
 			<Route element={<ProtectedRoute/>}>
 			<Route path="/" element={<Home/>}>
 		    <Route index element={<Analytic/>} />
+			<Route path="leaderborde" element={<LeaderBoard/>}/>
+			<Route path="*" errorElement={<ErrorComponent/>}/>
 			</Route>
 			</Route>
 			{/*  */}

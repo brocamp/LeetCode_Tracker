@@ -39,7 +39,7 @@ export const options = {
 const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
 
 // Replace this array with your actual data
-const rawData = [300, 100,  400,200, 500,  700,600,];
+const rawData = [300,100,400,200,500,700,600,];
 
 export const data = {
   labels,
@@ -57,10 +57,7 @@ export const data = {
 export function LineChart() {
   return (
   <>
- 
   <Line  options={options} data={data} />
- 
-  
   </>
   ) 
 }

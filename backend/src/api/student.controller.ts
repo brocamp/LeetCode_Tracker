@@ -25,6 +25,13 @@ router.get("/leaderboard", reqAuth, async (req: Request, res: Response) => {
 	res.status(200).json(rank);
 });
 
+router.get("/all", reqAuth, async (req: Request, res: Response) => {
+	const page = Number(req.query.page) || 1;
+	const limit = Number(req.query.limit) || 10;
+	const result = await Service.findAll(limit, page);
+	res.json({ result });
+});
+
 router.get("/search", reqAuth, async (req: Request, res: Response) => {
 	const query = req.query.query as string;
 	const result = await Service.search(query);
@@ -36,9 +43,9 @@ router.get("/not-doing", reqAuth, async (req: Request, res: Response) => {
 	res.json({ result });
 });
 
-router.get("/weekly-metrics", reqAuth,async (req: Request, res: Response) => {
+router.get("/weekly-metrics", reqAuth, async (req: Request, res: Response) => {
 	const lastWeekReport = await Service.weeklyMetrics();
 	res.json({ lastWeekReport });
-})
+});
 
 export { router as StudentRouter };

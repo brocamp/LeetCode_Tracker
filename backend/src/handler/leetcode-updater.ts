@@ -11,7 +11,7 @@ import { getProfile, getTotalSolved, getRecentSubmissionList } from "./leetcode"
 export const LeetStudentProfileUpdate = async () => {
 	let studentRepository = new StudentRepository();
 
-	const students = await studentRepository.findAll();
+	const students = await studentRepository.find();
 
 	// Concurrency: Process students concurrently
 	await Promise.all(
@@ -67,7 +67,6 @@ export const LeetStudentProfileUpdate = async () => {
 		totalStudentsSolved: result[0]?.submissionCount || 0,
 		day: currentDayAbbreviation
 	});
-
 
 	/**
 	 * This function checks if a given question titleslug

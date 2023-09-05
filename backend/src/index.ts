@@ -17,39 +17,39 @@ const start = async () => {
 
 	await connectMongoDb(process.env.MONGO_URI!);
 
-	client.on(Events.QR_RECEIVED, (qr: string) => {
-		qrcode.generate(qr, { small: true }, (qrcode: string) => {
-			cli.printQRCode(qrcode);
-		});
-	});
+	// client.on(Events.QR_RECEIVED, (qr: string) => {
+	// 	qrcode.generate(qr, { small: true }, (qrcode: string) => {
+	// 		cli.printQRCode(qrcode);
+	// 	});
+	// });
 
-	client.on(Events.LOADING_SCREEN, (percent: string) => {
-		if (percent == "0") {
-			cli.printLoading();
-		}
-	});
+	// client.on(Events.LOADING_SCREEN, (percent: string) => {
+	// 	if (percent == "0") {
+	// 		cli.printLoading();
+	// 	}
+	// });
 
-	client.on(Events.AUTHENTICATED, () => {
-		cli.printAuthenticated();
-	});
+	// client.on(Events.AUTHENTICATED, () => {
+	// 	cli.printAuthenticated();
+	// });
 
-	// WhatsApp authentication failure
-	client.on(Events.AUTHENTICATION_FAILURE, () => {
-		cli.printAuthenticationFailure();
-	});
+	// // WhatsApp authentication failure
+	// client.on(Events.AUTHENTICATION_FAILURE, () => {
+	// 	cli.printAuthenticationFailure();
+	// });
 
-	// WhatsApp ready
-	client.on(Events.READY, () => {
-		// Print outro
-		cli.printOutro();
-	});
+	// // WhatsApp ready
+	// client.on(Events.READY, () => {
+	// 	// Print outro
+	// 	cli.printOutro();
+	// });
 
-	// WhatsApp message
-	client.on(Events.MESSAGE_RECEIVED, async (message: any) => {
-		console.log(message);
-	});
+	// // WhatsApp message
+	// client.on(Events.MESSAGE_RECEIVED, async (message: any) => {
+	// 	console.log(message);
+	// });
 
-	await client.initialize();
+	// await client.initialize();
 
 	LeetcodeUpdaterTask.start();
 

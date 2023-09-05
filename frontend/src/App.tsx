@@ -19,7 +19,7 @@ const  App = () =>{
 		<>
 
 
-		<div className="bg-[#ece8e0] p-4  w-screen h-[51rem] ">
+		<div className="bg-[#ece8e0] p-4  w-screen h-[57rem] ">
 		<BrowserRouter>
 		   <Routes>
 

@@ -31,4 +31,9 @@ router.get("/search", reqAuth, async (req: Request, res: Response) => {
 	res.json({ result });
 });
 
+router.get("/not-doing", reqAuth, async (req: Request, res: Response) => {
+	const result = await Service.findStudentsNotDone();
+	res.json({ result });
+});
+
 export { router as StudentRouter };

@@ -1,15 +1,16 @@
 import express, { Request, Response } from "express";
 import { container } from "tsyringe";
 
-import { reqAuth } from "../middleware";
-import { StudentService } from "../service/student.service";
-import { StudentDTO } from "../database/model";
+import { reqAuth, validateRequest } from "../middleware";
+import { StudentService } from "../service";
+import { StudentDTO } from "../../database/model";
+import { studentValidator } from "./validator";
 
 const router = express.Router();
 
 const Service = container.resolve(StudentService);
 
-router.post("/add", reqAuth, async (req: Request, res: Response) => {
+router.post("/add", reqAuth, studentValidator, validateRequest, async (req: Request, res: Response) => {
 	const data = req.body as StudentDTO;
 	const result = await Service.createStudent(data);
 	res.status(200).json({ message: "Successfully added to database", result });

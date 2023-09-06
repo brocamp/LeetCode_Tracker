@@ -10,6 +10,7 @@ import Analytic from "./Features/Analytic";
 import { BrowserRouter } from "react-router-dom";
 import LeaderBorderStatic from "./components/LeaderBorderStatic";
 import LeaderBoard from "./Features/LeaderBorde";
+import StudentsDetails from "./Features/StudentsDetails";
 
 
 
@@ -32,6 +33,7 @@ const  App = () =>{
 			<Route path="/" element={<Home/>}>
 		    <Route index element={<Analytic/>} />
 			<Route path="leaderborde" element={<LeaderBoard/>}/>
+			<Route path="students" element={<StudentsDetails/>}/>
 			<Route path="*" errorElement={<ErrorComponent/>}/>
 			</Route>
 			</Route>

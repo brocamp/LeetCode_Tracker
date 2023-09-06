@@ -28,7 +28,7 @@ const Sidebar = () => {
 							</Link>
 						</li>
 						<li>
-							<Link to={'/'}
+							<Link to={'/students'}
 								className="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700">
 								Students
 							</Link>
@@ -49,7 +49,7 @@ const Sidebar = () => {
 							</p>
 						</div>
 						<div className="ml-24">
-							<h1 onClick={handleSignOut} className="underline cursor-pointer hover:text-teal-600">
+							<h1 onClick={handleSignOut} className="underline cursor-pointer hover:text-red-600">
 								Sign out
 							</h1>
 						</div>

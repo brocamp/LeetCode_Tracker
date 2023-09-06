@@ -12,7 +12,7 @@ function Home() {
 				<div className=" w-[35%] p-1 ">
 					<Sidebar />
 				</div>
-				<div className=" w-full  h-[43rem] overflow-hidden ">
+				<div className=" w-full  h-[50rem] overflow-hidden ">
 					<div className="overflow-auto ">
 						<Outlet />
 					</div>

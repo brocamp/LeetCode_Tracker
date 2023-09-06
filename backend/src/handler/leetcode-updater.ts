@@ -1,6 +1,6 @@
 import { logger } from "../config";
-import { Students, WeeklyMetrics } from "../api/database/model";
-import { StudentRepository } from "../api/database/repository/student.repository";
+import { Students, WeeklyMetrics } from "../database/model";
+import { StudentRepository } from "../database/repository";
 import { getProfile, getTotalSolved, getRecentSubmissionList } from "./leetcode";
 import { isToday, isAlreadySolvedOrNot, IsAlreadyInDb } from "./utils";
 /**

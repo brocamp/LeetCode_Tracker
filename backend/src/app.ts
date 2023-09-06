@@ -2,7 +2,7 @@ import "express-async-errors";
 import express, { Request, Response } from "express";
 import cors from "cors";
 import { NotFoundError } from "./api/errors";
-import { AdminRouter, StudentRouter } from "./api";
+import { AdminRouter, StudentRouter } from "./api/controller";
 import { errorHandler } from "./api/middleware";
 import { morganMiddleware } from "./config";
 

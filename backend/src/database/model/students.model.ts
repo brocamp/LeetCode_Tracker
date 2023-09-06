@@ -53,6 +53,7 @@ const studentSchema = new Schema<IStudent>({
 	},
 	leetcodeId: {
 		type: String,
+		unique: true,
 		required: true
 	},
 	solved: {

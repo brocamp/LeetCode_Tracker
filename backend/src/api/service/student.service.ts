@@ -1,7 +1,7 @@
 import { autoInjectable } from "tsyringe";
-import { StudentRepository } from "../database/repository/student.repository";
-import { weeklymetricsRepository } from "../database/repository/weeklymetrics.repository";
-import { StudentDTO } from "../database/model";
+import { StudentRepository } from "../../database/repository";
+import { weeklymetricsRepository } from "../../database/repository";
+import { StudentDTO } from "../../database/model";
 import { BadRequestError } from "../errors";
 import { getProfile } from "../../handler/leetcode";
 

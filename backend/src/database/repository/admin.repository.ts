@@ -1,6 +1,6 @@
 import { IAdmin, Admin } from "../model";
 
-class AdminRepository {
+export class AdminRepository {
 	async create(adminData: Partial<IAdmin>): Promise<IAdmin> {
 		const admin = await Admin.create(adminData);
 		return admin;
@@ -26,4 +26,3 @@ class AdminRepository {
 	}
 }
 
-export default AdminRepository;

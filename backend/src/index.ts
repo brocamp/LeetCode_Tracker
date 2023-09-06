@@ -10,7 +10,7 @@ import * as cli from "./cli/ui";
 import app from "./app";
 
 import { connectMongoDb } from "./config";
-import { LeetcodeUpdaterTask } from "./handler/cronjob";
+import { LeetcodeDailyUpdateTask, WeeklyDatabaseUpdateTask } from "./handler/cronjob";
 
 const start = async () => {
 	cli.printIntro();
@@ -51,7 +51,9 @@ const start = async () => {
 
 	// await client.initialize();
 
-	LeetcodeUpdaterTask.start();
+	LeetcodeDailyUpdateTask.start();
+
+	WeeklyDatabaseUpdateTask.start();
 
 	app.listen(process.env.PORT!, () => {
 		cli.print(`App is Running on port ${process.env.PORT} `);

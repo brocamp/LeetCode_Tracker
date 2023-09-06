@@ -16,6 +16,7 @@ export class StudentService {
 		//get lastsubmission count of students
 		const students = await this.studentRepository.getMetrics();
 
+		console.log(students);
 		//get total count
 		const totalCount = await this.studentRepository.countStudents();
 

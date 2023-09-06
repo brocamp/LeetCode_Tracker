@@ -1,9 +1,9 @@
 import express, { Request, Response } from "express";
 import { container } from "tsyringe";
 
-import { reqAuth } from "./middleware";
-import { StudentService } from "../lib/service/student.service";
-import { StudentDTO } from "../lib/database/model";
+import { reqAuth } from "../middleware";
+import { StudentService } from "../service/student.service";
+import { StudentDTO } from "../database/model";
 
 const router = express.Router();
 

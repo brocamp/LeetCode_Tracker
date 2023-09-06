@@ -140,21 +140,10 @@ export class StudentRepository {
 	}
 
 	async findStudentsNotDone() {
-		const today = new Date();
-		const yesterday = today.getTime() - 24 * 60 * 60 * 1000;
 		const results = await Students.find({
-			$and: [
-				{
-					lastSubmissionDate: {
-						$lt: yesterday
-					}
-				},
-				{
-					totalNotSubmissionCount: {
-						$gte: 3
-					}
-				}
-			]
+			totalNotSubmissionCount: {
+				$gte: 3
+			}
 		});
 		return results;
 	}

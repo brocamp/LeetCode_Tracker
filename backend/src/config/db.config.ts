@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { DatabaseConnectionError } from "../lib/errors";
+import { DatabaseConnectionError } from "../api/errors";
 import { print } from "../cli/ui";
 
 export const connectMongoDb = async (connectionUri: string) => {

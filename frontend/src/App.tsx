@@ -11,6 +11,8 @@ import { BrowserRouter } from "react-router-dom";
 import LeaderBorderStatic from "./components/LeaderBorderStatic";
 import LeaderBoard from "./Features/LeaderBorde";
 import StudentsDetails from "./Features/StudentsDetails";
+import AllStudentData from "./components/AllStudentData";
+import StudentsNotdone from "./components/StudentsNotdone";
 
 
 
@@ -20,7 +22,7 @@ const  App = () =>{
 		<>
 
 
-		<div className="bg-[#ece8e0] p-4  w-screen h-[57rem] ">
+		<div className="bg-[#ece8e0] p-4  w-screen h-[85rem] ">
 		<BrowserRouter>
 		   <Routes>
 
@@ -33,15 +35,17 @@ const  App = () =>{
 			<Route path="/" element={<Home/>}>
 		    <Route index element={<Analytic/>} />
 			<Route path="leaderborde" element={<LeaderBoard/>}/>
-			<Route path="students" element={<StudentsDetails/>}/>
-			<Route path="*" errorElement={<ErrorComponent/>}/>
+			<Route path="students/*" element={<StudentsDetails/>}>
+			<Route index element={<AllStudentData/>}/>
+			<Route path="notdone" element={<StudentsNotdone/>} />
 			</Route>
+			</Route>
+			<Route path="*" element={<ErrorComponent/>} />
 			</Route>
 			{/*  */}
 
 			{/* Catching invallied routes */}
-			<Route path="*" element={<ErrorComponent/>} />
-			{/*  */}
+		
 		   </Routes>
 		   </BrowserRouter>
 		</div>

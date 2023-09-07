@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import LeaderBoard from "../components/LeaderBoarde";
 import { getLeaderboard } from "../utils/api/config/axios.GetApi";
-import { toast } from "react-hot-toast";
+import { Toaster, toast } from "react-hot-toast";
 
 const  LeaderBorder = () => {
   const [leaderBordRank,setLeaderBoardRank] = useState() as any
@@ -19,6 +19,8 @@ const  LeaderBorder = () => {
       handleLeaderBoard()
   },[])  
 	return (
+		<>
+		<Toaster position="top-center"reverseOrder={false}  />
 		<div className="p-5 h-[38rem] ">
 			<div className="flex mr-6 justify-end">
 					<div className="text-center">
@@ -97,6 +99,7 @@ const  LeaderBorder = () => {
 				
 			</div>
 		</div>
+		</>
 	);
 }
 

@@ -17,3 +17,21 @@ export const getLeaderboard = async () => {
 	};
 	return await apiRequest(config);
 };
+
+export const getAllStudents=async()=>{
+	   const config:AxiosRequestConfig={
+		  method:"GET",
+		  url:"api/student/all",
+		  headers:headerConfg()
+	   };
+	   return await apiRequest(config);
+}
+
+export const getNotDoneStudents= async ()=>{
+	const config:AxiosRequestConfig={
+		method:"GET",
+		url:"api/student/not-doing",
+		headers:headerConfg()
+	 };
+	 return await apiRequest(config);
+}

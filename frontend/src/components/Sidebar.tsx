@@ -12,24 +12,24 @@ const Sidebar = () => {
 			<div className="flex overflow-hidden shadow-lg rounded-lg  flex-col justify-between border-e bg-white">
 				<div className="px-4  py-6">
 					<div className="flex flex-shrink-0 title-font font-medium items-center text-gray-900 md:mb-0">
-						<span className="ml-3 text-xl text-teal-800 font-semibold antialiased">LeetCode_Checker</span>
+						<span className="ml-3 text-2xl underline underline-offset-4 text-black font-semibold antialiased">LeetCode Checker</span>
 					</div>
 					<ul className="mt-6 space-y-1">
 						<li>
 							<Link to={'/'}
-							className="block rounded-lg bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700">
+							className="block rounded-lg bg-gray-100 px-4 py-2 text-lg font-medium text-gray-700">
 								Statics
 							</Link>
 						</li>
 						<li>
 							<Link to={'/leaderborde'}
-								className="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700">
+								className="block rounded-lg px-4 py-2 text-lg font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700">
 								Leader Bord
 							</Link>
 						</li>
 						<li>
-							<Link to={'/'}
-								className="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700">
+							<Link to={'/students'}
+								className="block rounded-lg px-4 py-2 text-lg font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700">
 								Students
 							</Link>
 						</li>
@@ -49,7 +49,7 @@ const Sidebar = () => {
 							</p>
 						</div>
 						<div className="ml-24">
-							<h1 onClick={handleSignOut} className="underline cursor-pointer hover:text-teal-600">
+							<h1 onClick={handleSignOut} className="underline cursor-pointer hover:text-red-600">
 								Sign out
 							</h1>
 						</div>

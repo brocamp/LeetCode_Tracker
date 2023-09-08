@@ -18,10 +18,12 @@ export const getLeaderboard = async () => {
 	return await apiRequest(config);
 };
 
-export const getAllStudents=async()=>{
+export const getAllStudents=async(pageNumber:number)=>{
+	console.log(pageNumber,'page number')
+	
 	   const config:AxiosRequestConfig={
 		  method:"GET",
-		  url:"api/student/all",
+		  url:`api/student/all?page=${pageNumber}`,
 		  headers:headerConfg()
 	   };
 	   return await apiRequest(config);
@@ -33,5 +35,5 @@ export const getNotDoneStudents= async ()=>{
 		url:"api/student/not-doing",
 		headers:headerConfg()
 	 };
-	 return await apiRequest(config);
+	 return await apiRequest(config)
 }

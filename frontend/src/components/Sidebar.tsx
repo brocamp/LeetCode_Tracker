@@ -33,6 +33,12 @@ const Sidebar = () => {
 								Students
 							</Link>
 						</li>
+						<li>
+							<Link to={'/students'}
+								className="block rounded-lg px-4 py-2 text-lg font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700">
+								Students
+							</Link>
+						</li>
 					</ul>
 				</div>
 				<div className="sticky inset-x-0 bottom-0 border-t border-gray-100">

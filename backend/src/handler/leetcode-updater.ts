@@ -21,7 +21,7 @@ export const LeetStudentProfileUpdate = async () => {
 				const leetcodeProfile = await getProfile(student.leetcodeId);
 				// Getting total questions solved by difficulty
 				const totalSubmissions = getTotalSolved(leetcodeProfile!)!;
-				// Getting recent array of recent submission
+				// Getting recent array of  submission
 				const recentSubmissions = getRecentSubmissionList(leetcodeProfile!);
 
 				student.solved = {
@@ -40,14 +40,14 @@ export const LeetStudentProfileUpdate = async () => {
 						);
 					})?.timestamp || student.lastSubmissionDate;
 
-				// if the last submisson date is not today will updating the totalNotSubmissionCount count
+				// if the last submisson date is not today will updating the totalNotSubmissionCount
 				if (isToday(student.lastSubmissionDate)) {
 					student.totalNotSubmissionCount = 0;
 				} else {
 					student.totalNotSubmissionCount++;
 				}
 
-				// filtering out total question solved  today from the recentsubmission list and saving in database
+				// filtering out total questions solved  today from the recentsubmission list and saving in the database
 				const solvedToday = recentSubmissions?.filter((submission) => {
 					return (
 						submission.statusDisplay === "Accepted" &&

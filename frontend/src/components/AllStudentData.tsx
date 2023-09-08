@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import { getAllStudents } from "../utils/api/config/axios.GetApi";
+import { getAllStudents, searchStudents } from "../utils/api/config/axios.GetApi";
 import { Toaster, toast } from "react-hot-toast";
 import axios from "axios";
 import { Waveform } from "@uiball/loaders";
@@ -59,19 +59,19 @@ function AllStudentData() {
       }else{
         // caling search api
         setLoading(true)
-        const response: any = await getAllStudents(currentPage)
+        const response: any = await searchStudents(searchInput)
         if (response?.status === 200) {
           setLoading(false)
-          console.log(response.data.result);
-          setTotalPageNumber(response.data.result.totalPages)
-          console.log(response.data.result.students, "sddsdsfd");
-          setAllStudentsData(response.data.result.students);
+		  console.log(response.data.result,'data');
+		  
+          setAllStudentsData(response.data.result);
+		  setTotalPageNumber(0)
         } else if (response.response.status === 404) {
           toast.error("Ooops...! Couldn't find rank table");
         } else {
           toast.error(`${response.response.data.errors[0].message}`);
         }
-        setAllStudentsData([])
+        // setAllStudentsData([])
       }
 		};
 		handleAllStudents();
@@ -108,9 +108,7 @@ const handleNext = () =>{
 
 
   const handleInputChange = (event:any) => {
-    // event.preventDefault();
     const inputValue = event.target.value
-   
     if (timer) {
       clearTimeout(timer);
     }

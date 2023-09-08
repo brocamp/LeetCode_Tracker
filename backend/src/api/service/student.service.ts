@@ -36,8 +36,8 @@ export class StudentService {
 		return result;
 	};
 
-	public search = async (query: string, page: number, limit: number) => {
-		const result = await this.studentRepository.search(query, page, limit);
+	public search = async (query: string) => {
+		const result = await this.studentRepository.search(query);
 		return result;
 	};
 

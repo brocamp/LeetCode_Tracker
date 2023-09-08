@@ -41,11 +41,9 @@ export class StudentRepository {
 		return student;
 	}
 
-	async search(query: string, page: number, limit: number) {
+	async search(query: string) {
 		const fuzzyQuery = new RegExp(this.escapeRegex(query), "gi");
-		const totalStudents = await Students.countDocuments();
-		const totalPages = Math.ceil(totalStudents / limit);
-		const skip = (page - 1) * limit;
+		
 		const result = await Students.find({
 			$or: [
 				{
@@ -65,10 +63,7 @@ export class StudentRepository {
 				}
 			]
 		})
-			.skip(skip)
-			.limit(limit)
-			.exec();
-
+			
 		return result;
 	}
 

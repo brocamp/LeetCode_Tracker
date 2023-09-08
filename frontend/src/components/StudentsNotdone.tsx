@@ -104,8 +104,8 @@ const StudentsNotdone = () => {
 					<span className=" text-lg font-medium ">User Name</span>
 				</div>
 			</div>
-			<div className="pb- h-[50rem] ">
-				<div className="mt-1 h-[45rem]  overflow-auto w-auto">
+			<div className=" ">
+				<div className="mt-1   overflow-auto w-auto">
 					{allStudentsNotDone?.map((dataObject: any, index: number) => {
 						console.log(dataObject, "ok");
 						return (

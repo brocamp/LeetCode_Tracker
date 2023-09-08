@@ -22,10 +22,9 @@ const  App = () =>{
 		<>
 
 
-		<div className="bg-[#ece8e0] p-4  w-screen h-[85rem] ">
+		<div className="bg-[#ece8e0] p-4 ">
 		<BrowserRouter>
 		   <Routes>
-
 			{/* Auth Route */}
             <Route path="/auth" element={<Login/>} />
 			{/*  */}
@@ -35,8 +34,7 @@ const  App = () =>{
 			<Route path="/" element={<Home/>}>
 		    <Route index element={<Analytic/>} />
 			<Route path="leaderborde" element={<LeaderBoard/>}/>
-			<Route path="students/*" element={<StudentsDetails/>}>
-			<Route index element={<AllStudentData/>}/>
+			<Route path="students" element={<AllStudentData/>}>
 			<Route path="notdone" element={<StudentsNotdone/>} />
 			</Route>
 			</Route>

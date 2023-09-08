@@ -28,7 +28,7 @@ function StudentsDetails() {
 	return (
 		<>
 			<Toaster position="top-center" reverseOrder={false} />
-			<div className=" h-28 bg-white justify-center items-center border flex flex-row border-black/30 shadow-xl  gap-2  rounded-lg">
+			{/* <div className=" h-16 bg-white justify-center items-center border flex flex-row border-black/30 shadow-xl  gap-2  rounded-lg">
 				<Link
 					to={"/students"}
 					onClick={handleAllStudents}
@@ -49,8 +49,8 @@ function StudentsDetails() {
 					}>
 					<span className="text-center text-lg font-medium ">Student's not done</span>
 				</Link>
-			</div>
-			<div className="h-[63rem]  p-5 rounded-lg mt-3 w-full bg-white border border-slate-200">
+			</div> */}
+			<div className=" h-[35rem]  p-5 rounded-lg mt-3 w-full bg-indigo-500 border border-slate-200">
 				<Outlet />
 			</div>
 		</>

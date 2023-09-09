@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 
 const Sidebar = () => {
 	const navigate = useNavigate();
@@ -7,36 +7,43 @@ const Sidebar = () => {
 		localStorage.removeItem("adminAuth");
 		navigate("/auth");
 	};
+     
+	const path = useLocation();
+	console.log(path,'pathjhh');
+	
+
+	
+
 	return (
 		<>
 			<div className="flex overflow-hidden shadow-lg rounded-lg  flex-col justify-between border-e bg-white">
 				<div className="px-4  py-6">
 					<div className="flex flex-shrink-0 title-font font-medium items-center text-gray-900 md:mb-0">
-						<span className="ml-3 text-2xl underline underline-offset-4 text-black font-semibold antialiased">LeetCode Checker</span>
+						<span className="ml-3 text-2xl underline underline-offset-4 text-black font-semibold antialiased">LeetCode Tracker</span>
 					</div>
 					<ul className="mt-6 space-y-1">
 						<li>
 							<Link to={'/'}
-							className="block rounded-lg bg-gray-100 px-4 py-2 text-lg font-medium text-gray-700">
+								className={ path.pathname === "/" ? "block rounded-lg px-4 py-2 text-lg font-medium text-gray-500 bg-gray-100 text-gray-700" : "block rounded-lg px-4 py-2 text-lg font-medium text-gray-500" }>
 								Statics
 							</Link>
 						</li>
 						<li>
 							<Link to={'/leaderborde'}
-								className="block rounded-lg px-4 py-2 text-lg font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700">
+								className={ path.pathname === "/leaderborde" ? "block rounded-lg px-4 py-2 text-lg font-medium text-gray-500 bg-gray-100 text-gray-700" : "block rounded-lg px-4 py-2 text-lg font-medium text-gray-500" }>
 								Leader Bord
 							</Link>
 						</li>
 						<li>
 							<Link to={'/students'}
-								className="block rounded-lg px-4 py-2 text-lg font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700">
-								Students
+                                 className={ path.pathname === "/students" ? "block rounded-lg px-4 py-2 text-lg font-medium text-gray-500 bg-gray-100 text-gray-700" : "block rounded-lg px-4 py-2 text-lg font-medium text-gray-500" }>
+                                Students
 							</Link>
 						</li>
 						<li>
-							<Link to={'/students'}
-								className="block rounded-lg px-4 py-2 text-lg font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700">
-								Students
+							<Link to={'/notdone'}
+                                 className={ path.pathname === "/notdone" ? "block rounded-lg px-4 py-2 text-lg font-medium text-gray-500 bg-gray-100 text-gray-700" : "block rounded-lg px-4 py-2 text-lg font-medium text-gray-500" }>								
+								 Students Notdone
 							</Link>
 						</li>
 					</ul>
@@ -50,8 +57,8 @@ const Sidebar = () => {
 						/>
 						<div>
 							<p className="text-xs">
-								<strong className="block font-medium">Pranav</strong>
-								<span> Admin@gmail.com </span>
+								<strong className="block font-medium">BrototypeAdmin</strong>
+								<span>Admin@gmail.com </span>
 							</p>
 						</div>
 						<div className="ml-24">

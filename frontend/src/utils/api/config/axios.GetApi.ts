@@ -37,3 +37,20 @@ export const getNotDoneStudents= async ()=>{
 	 };
 	 return await apiRequest(config)
 }
+export const searchStudents=async(query:string)=>{
+	   const config:AxiosRequestConfig={
+		  method:"GET",
+		  url:`api/student/search?query=${query}`,
+		  headers:headerConfg()
+	   };
+	   return await apiRequest(config);
+}
+
+export const weeklyMetrics=async()=>{
+	const config:AxiosRequestConfig={
+	   method:"GET",
+	   url:"api/student/weekly-metrics",
+	   headers:headerConfg()
+	};
+	return await apiRequest(config);
+}

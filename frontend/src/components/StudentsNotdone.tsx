@@ -22,6 +22,8 @@ const StudentsNotdone = () => {
 	return (
 		<>
 			<Toaster position="top-center" reverseOrder={false} />
+			
+			<div className=" h-[43rem]   p-5 rounded-lg mt-3 w-full bg-white border border-slate-200">
 			<div className=" flex justify-end pb-4">
 				<div className="text-center">
 					<button
@@ -90,79 +92,42 @@ const StudentsNotdone = () => {
 					</div>
 				</div>
 			</div>
-			<div className=" h-16 bg-[#ece8e0] p-1 justify-center items-center border flex flex-row border-slate-300 shadow-xl  gap-2  rounded-lg">
-				<div className="bg-slate-300 rounded-lg pt-1 border border-slate-400 flex justify-center h-8 w-full">
-					<span className=" text-lg font-medium ">No</span>
+				<div className=" h-16 bg-[#ece8e0] p-1 justify-center items-center border flex flex-row border-slate-300 shadow-xl  gap-2  rounded-lg">
+					<div className="bg-slate-300 rounded-lg pt-1 border border-slate-400 flex justify-center h-8 w-full">
+						<span className=" text-lg font-medium ">No</span>
+					</div>
+					<div className="bg-slate-300 rounded-lg  border border-slate-400  pt-1 flex justify-center h-8 w-full">
+						<span className=" text-lg font-medium ">Name</span>
+					</div>
+					<div className="bg-slate-300 rounded-lg border border-slate-400 pt-1 flex justify-center h-8 w-full">
+						<span className=" text-lg font-medium ">Batch</span>
+					</div>
+					<div className="bg-slate-300 rounded-lg border border-slate-400 pt-1 flex justify-center h-8 w-full">
+						<span className=" text-lg font-medium ">User Name</span>
+					</div>
 				</div>
-				<div className="bg-slate-300 rounded-lg  border border-slate-400  pt-1 flex justify-center h-8 w-full">
-					<span className=" text-lg font-medium ">Name</span>
-				</div>
-				<div className="bg-slate-300 rounded-lg border border-slate-400 pt-1 flex justify-center h-8 w-full">
-					<span className=" text-lg font-medium ">Batch</span>
-				</div>
-				<div className="bg-slate-300 rounded-lg border border-slate-400 pt-1 flex justify-center h-8 w-full">
-					<span className=" text-lg font-medium ">User Name</span>
-				</div>
-			</div>
-			<div className=" ">
-				<div className="mt-1   overflow-auto w-auto">
+
+				<div className="   mt-5 h-[27rem] pb-2  overflow-auto w-auto">
 					{allStudentsNotDone?.map((dataObject: any, index: number) => {
-						console.log(dataObject, "ok");
 						return (
 							<div
-								key={dataObject._id}
-								className=" h-12 mt-3 p-1 bg-white justify-evenly items-center border flex flex-row border-slate-400 gap-2  rounded-lg">
+								key={index}
+								className="  mt-3   bg-white justify-evenly items-center border flex flex-row border-slate-400 gap-2  rounded-lg">
 								<div className="  pt-1 flex justify-center h-8 w-full">
-									<span className=" text-lg font-medium ">{index + 1}</span>
+									<span className=" text-md font-medium ">{index + 1}</span>
 								</div>
 								<div className="  pt-1 flex justify-center h-8 w-full">
-									<span className=" text-lg font-medium ">{dataObject.name}</span>
+									<span className=" text-md font-medium ">{dataObject.name}</span>
 								</div>
 								<div className="  pt-1 flex justify-center h-8 w-full">
-									<span className=" text-lg font-medium ">{dataObject.batch}</span>
+									<span className=" text-md font-medium ">{dataObject.batch}</span>
 								</div>
 								<div className=" pt-1 flex justify-center h-8 w-full">
-									<span className=" text-lg font-medium ">{dataObject.leetcodeId}</span>
+									<span className=" text-md font-medium ">{dataObject.leetcodeId}</span>
 								</div>
 							</div>
 						);
 					})}
-				</div>
-				<div>
-					<div className=" bg-[#ece8e0] shadow-lg border border-slate-300 mt-9 rounded-lg h-14">
-						<div className="p">
-							<nav className="flex items-center space-x-2">
-								<a
-									className="text-gray-400 hover:text-black p-4 inline-flex items-center gap-2 font-medium rounded-md"
-									href="#">
-									<span aria-hidden="true">«</span>
-									<span className="sr-only">Previous</span>
-								</a>
-								<a
-									className="w-10 h-10 bg-black text-white p-4 inline-flex items-center text-sm font-medium rounded-full"
-									href="#"
-									aria-current="page">
-									1
-								</a>
-								<a
-									className="w-10 h-10 text-gray-400 hover:text-black p-4 inline-flex items-center text-sm font-medium rounded-full"
-									href="#">
-									2
-								</a>
-								<a
-									className="w-10 h-10  text-gray-400 hover:text-black p-4 inline-flex items-center text-sm font-medium rounded-full"
-									href="#">
-									3
-								</a>
-								<a
-									className="text-gray-400 hover:text-black p-4 inline-flex items-center gap-2 font-medium rounded-md"
-									href="#">
-									<span className="sr-only">Next</span>
-									<span aria-hidden="true">»</span>
-								</a>
-							</nav>
-						</div>
-					</div>
 				</div>
 			</div>
 		</>

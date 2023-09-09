@@ -34,9 +34,8 @@ const  App = () =>{
 			<Route path="/" element={<Home/>}>
 		    <Route index element={<Analytic/>} />
 			<Route path="leaderborde" element={<LeaderBoard/>}/>
-			<Route path="students" element={<AllStudentData/>}>
+			<Route path="students" element={<AllStudentData/>} />
 			<Route path="notdone" element={<StudentsNotdone/>} />
-			</Route>
 			</Route>
 			<Route path="*" element={<ErrorComponent/>} />
 			</Route>

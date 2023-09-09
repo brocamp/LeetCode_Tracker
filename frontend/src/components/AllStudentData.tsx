@@ -94,9 +94,6 @@ const handleNext = () =>{
   }
    
 }
-
-
-
 	const handleShowStudent = (userName: string) => {
 		axios.get(`https://leetcard.jacoblin.cool/${userName}?ext=heatmap&theme=forest`).then((response: any) => {
 			console.log(response, "ressssssss");
@@ -104,8 +101,6 @@ const handleNext = () =>{
 			console.log(response.data, "ssa");
 		});
 	};
-
-
 
   const handleInputChange = (event:any) => {
     const inputValue = event.target.value
@@ -160,7 +155,7 @@ const handleNext = () =>{
             onChange={handleInputChange}
 							id="default-search"
 							className="block w-[30rem] h-10 p-4 pl-10 text-sm outline-none  text-gray-900 border border-gray-300 rounded-lg bg-gray-50  focus:border-black "
-							placeholder="Search Mockups, Logos..."
+							placeholder="Search students..."
 						/>
 					</div>
           </div>

@@ -45,7 +45,7 @@ export class StudentService {
 		const userId = await getProfile(data.leetcodeId);
 		if (!userId?.matchedUser) throw new BadRequestError("LeetCodeId dosen't exist");
 		let student = await this.studentRepository.findByLeetCodeId(data.leetcodeId);
-		if (student) throw new BadRequestError("This profile already exist in database");
+		if (student) throw new BadRequestError("This profile already exist");
 		const result = await this.studentRepository.create(data);
 		return result;
 	};

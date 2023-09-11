@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
 import { getNotDoneStudents } from "../utils/api/config/axios.GetApi";
+import axios from "axios";
 
 const StudentsNotdone = () => {
 	const [allStudentsNotDone, setAllStudentsNotDone] = useState() as any;
+	const [std, setStd] = useState() as any;
 
 	useEffect(() => {
 		const handleLeaderBoard = async () => {
@@ -19,6 +21,15 @@ const StudentsNotdone = () => {
 		};
 		handleLeaderBoard();
 	}, []);
+
+	const handleShowStudent = (userName: string) => {
+		axios.get(`https://leetcard.jacoblin.cool/${userName}?ext=heatmap&theme=forest`).then((response: any) => {
+			console.log(response, "ressssssss");
+			setStd(response.data);
+			console.log(response.data, "ssa");
+		});
+	};
+
 	return (
 		<>
 			<Toaster position="top-center" reverseOrder={false} />
@@ -112,9 +123,40 @@ const StudentsNotdone = () => {
 						return (
 							<div
 								key={index}
-								className="  mt-3   bg-white justify-evenly items-center border flex flex-row border-slate-400 gap-2  rounded-lg">
+								className="  mt-3 h-12  bg-white justify-evenly items-center border flex flex-row border-slate-400 gap-2  rounded-lg">
 								<div className="  pt-1 flex justify-center h-8 w-full">
-									<span className=" text-md font-medium ">{index + 1}</span>
+								
+								<div className="    flex  h-8 w-full">
+									<div className="hs-tooltip inline-block ml-5  [--trigger:hover]">
+										<a className="hs-tooltip-toggle block text-center" href="javascript:;">
+											<span
+												onMouseEnter={() => handleShowStudent(dataObject.leetcodeId)}
+												className="inline-flex items-center gap-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+												<span className="w-1.5 h-1.5 inline-block bg-indigo-400 rounded-full" />
+												View
+											</span>
+
+											<div
+												className="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible hidden opacity-0 transition-opacity inline-block absolute invisible z-10 max-w-xs "
+												role="tooltip">
+												<span className="pt-3  px-4 block text-lg font-bold text-gray-800 dark:text-white">
+													<svg
+													   className="rounded-lg border mt-36 ml-32 border-gray-500"
+														width="500"
+														height="320"
+														viewBox="0 0 500 320"
+														version="1.1"
+														xmlns="http://www.w3.org/2000/svg"
+														xmlnsXlink="http://www.w3.org/1999/xlink"
+														dangerouslySetInnerHTML={{ __html: std }}
+													/>
+												</span>
+											</div>
+										</a>
+									</div>
+
+									<span className=" ml-10 text-md font-medium ">{index + 1}</span>
+								</div>
 								</div>
 								<div className="  pt-1 flex justify-center h-8 w-full">
 									<span className=" text-md font-medium ">{dataObject.name}</span>

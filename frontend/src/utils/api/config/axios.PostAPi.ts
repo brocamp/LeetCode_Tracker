@@ -1,7 +1,8 @@
 
 import { AxiosRequestConfig } from 'axios';   
-import { apiRequest } from '../config/axios.Config';
+import { apiRequest, headerConfg } from '../config/axios.Config';
 import { verifyPayload } from '../api.Types/axios.Postapi.Types';
+import { studentAuth } from '../../validation/formValidation';
 
 
 
@@ -21,4 +22,14 @@ export const adminVerify = async(verifyPayload:verifyPayload)=>{
         data:verifyPayload
       };   
       return await apiRequest(config);   
-}  
+}
+
+export const studentsAuth= async (authPayload:studentAuth)=>{
+      const config:AxiosRequestConfig = {
+            method:'POST',
+            url:`api/student/add`,
+            headers:headerConfg(),
+            data:authPayload
+      };
+      return await apiRequest(config)
+}

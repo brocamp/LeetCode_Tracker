@@ -13,6 +13,7 @@ import LeaderBoard from "./Features/LeaderBorde";
 import StudentsDetails from "./Features/StudentsDetails";
 import AllStudentData from "./components/AllStudentData";
 import StudentsNotdone from "./components/StudentsNotdone";
+import StudentLogin from "./components/StudentLogin";
 
 
 
@@ -27,6 +28,7 @@ const  App = () =>{
 		   <Routes>
 			{/* Auth Route */}
             <Route path="/auth" element={<Login/>} />
+			<Route path="/auth-student" element={<StudentLogin/>} />
 			{/*  */}
 
 			{/* ProtectedRoute */}

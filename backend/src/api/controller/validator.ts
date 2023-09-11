@@ -72,7 +72,7 @@ export const studentValidator = [
 		.withMessage("LeetCode ID is required")
 		.isLength({ min: 2 })
 		.withMessage("LeetCode ID should be at least 2 characters long")
-		.isLength({ max: 10 })
+		.isLength({ max: 15 })
 		.withMessage("LeetCode ID should be less than 10 characters")
 ];
 

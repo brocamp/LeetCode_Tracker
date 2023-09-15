@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { OtpData, PhoneNumberData, useOtpValidation, usePhoneNumberValidate } from "../utils/validation/formValidation";
 import Navbar from "./Navbar";
 import { adminAuth, adminVerify } from "../utils/api/config/axios.PostAPi";
@@ -6,23 +6,26 @@ import { verifyPayload } from "../utils/api/api.Types/axios.Postapi.Types";
 import { useNavigate } from "react-router-dom";
 import toast, { Toaster } from 'react-hot-toast';
 
+
+
 const Login = () => {
 	const [otp, setOtp] = useState(true);
 	const [number,setNumber] = useState("")
   const {errors,handleSubmit,register} = usePhoneNumberValidate();
   const data = useOtpValidation();
   const navigate = useNavigate() 
-
 	const handlePhoneNumber = async(data:PhoneNumberData) => {	
 		   // Admin authenrication Api
-		   const response = await adminAuth(data.phone)
+		   const response:any = await adminAuth(data.phone);
 		   if(response.status === 200){
 			setOtp(false);
-			setNumber(data.phone);
+			setNumber(data.phone)
+		   }else if(response.response.status === 404){
+			toast.error("Ooops..! Error occured");
 		   }else{
-		    toast.error("Ooops..! Something went wrong")
-		   }
-	};
+			toast.error("Ooops...! Invalid mobile phone provide a valid phone")
+		}
+	}
 
 	const hanldleFormOtp = async (data:OtpData)=> {
 		const verifyPayload:verifyPayload = {
@@ -30,20 +33,23 @@ const Login = () => {
 			 phone:number
 		}
 		// Admin OTP verify Api
-		const response = await adminVerify(verifyPayload);
+		const response:any = await adminVerify(verifyPayload);
 		if(response.status === 200){
             var isLoggedIn = true
 			localStorage.setItem("adminToken",response.data.token);
 			localStorage.setItem("adminAuth", JSON.stringify(isLoggedIn));
+			toast.success("SuccesFully logged in")
 			navigate('/');
+		}else if(response.response.status === 404){
+			toast.error("Ooops..! Error occured")
 		}else{
-           toast.error("Invalied OTP or Something went wrong")
+			toast.error("Ooops...! Invalied OTP");
 		}
 		
 	};
 	return (
     <>
-	<Toaster/>
+    <Toaster position="top-center"reverseOrder={false}  />
     <Navbar/>
     <div className="flex  pt-28 justify-center">
 			<div className="flex w-full lg:w-1/2  relative justify-center items-center space-y-8">

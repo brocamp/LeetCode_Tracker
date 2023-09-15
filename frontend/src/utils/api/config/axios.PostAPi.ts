@@ -1,12 +1,12 @@
 
 import { AxiosRequestConfig } from 'axios';   
-import { apiRequest } from '../config/axios.Config';
+import { apiRequest, headerConfg } from '../config/axios.Config';
 import { verifyPayload } from '../api.Types/axios.Postapi.Types';
+import { studentAuth } from '../../validation/formValidation';
 
 
 
 export const adminAuth = async (Phone:String) => {
-    console.log(Phone,'nuber');
     const config: AxiosRequestConfig = {   
       method: 'POST',   
       url: `api/admin/signin`,   
@@ -16,12 +16,20 @@ export const adminAuth = async (Phone:String) => {
   }
 
 export const adminVerify = async(verifyPayload:verifyPayload)=>{
-       console.log();
-       
        const config: AxiosRequestConfig = {   
         method: 'POST',   
         url: `api/admin/verify-otp`,   
         data:verifyPayload
       };   
       return await apiRequest(config);   
-}  
+}
+
+export const studentsAuth= async (authPayload:studentAuth)=>{
+      const config:AxiosRequestConfig = {
+            method:'POST',
+            url:`api/student/add`,
+            headers:headerConfg(),
+            data:authPayload
+      };
+      return await apiRequest(config)
+}

@@ -1,9 +1,9 @@
 import { autoInjectable } from "tsyringe";
-import AdminRepository from "../database/repository/admin.repository";
 import { BadRequestError } from "../errors/badrequest.error";
+import { AdminRepository } from "../../database/repository";
 
 @autoInjectable()
-class AdminService {
+export class AdminService {
 	constructor(private readonly repository: AdminRepository) {}
 
 	public SignIn = async (phone: string) => {
@@ -33,4 +33,3 @@ class AdminService {
 	};
 }
 
-export default AdminService;

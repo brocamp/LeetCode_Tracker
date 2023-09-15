@@ -1,4 +1,4 @@
-import { IStudent, Students } from "../model/students.model";
+import { IStudent, StudentDTO, Students } from "../model";
 
 interface ILeaderBoard {
 	name: string;
@@ -7,7 +7,7 @@ interface ILeaderBoard {
 }
 
 export class StudentRepository {
-	async create(user: IStudent): Promise<IStudent> {
+	async create(user: StudentDTO): Promise<IStudent> {
 		return Students.create(user);
 	}
 
@@ -15,18 +15,66 @@ export class StudentRepository {
 		return Students.findById(userId);
 	}
 
-	async findAll(): Promise<IStudent[]> {
-		return Students.find();
+	async find() {
+		return await Students.find({});
+	}
+
+	async findAll(limit: number, page: number) {
+		const totalStudents = await Students.countDocuments();
+		const totalPages = Math.ceil(totalStudents / limit);
+		const skip = (page - 1) * limit;
+		const students = await Students.find().skip(skip).limit(limit).exec();
+		return {
+			totalStudents,
+			totalPages,
+			currentPage: page,
+			students
+		};
 	}
 
 	async update(userId: string, updates: Partial<IStudent>): Promise<IStudent | null> {
 		return Students.findByIdAndUpdate(userId, updates, { new: true });
 	}
 
+	async findByLeetCodeId(userId: string) {
+		const student = await Students.findOne({ leetcodeId: userId });
+		return student;
+	}
+
+	async search(query: string) {
+		const fuzzyQuery = new RegExp(this.escapeRegex(query), "gi");
+		
+		const result = await Students.find({
+			$or: [
+				{
+					name: { $regex: fuzzyQuery }
+				},
+				{
+					batch: { $regex: fuzzyQuery }
+				},
+				{
+					domain: { $regex: fuzzyQuery }
+				},
+				{
+					email: query
+				},
+				{
+					leetcodeId: query
+				}
+			]
+		})
+			
+		return result;
+	}
+
+	escapeRegex(text: string) {
+		return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+	}
+
 	async getMetrics(): Promise<{ submissionCount: number }[]> {
 		// Get the current date
 		const currentDate = new Date();
-		const startTime = currentDate.getTime() - 14 * 60 * 60 * 1000;
+		const startTime = currentDate.getTime() - 23 * 60 * 60 * 1000;
 
 		return Students.aggregate([
 			{
@@ -84,9 +132,19 @@ export class StudentRepository {
 					_id: 0,
 					name: 1,
 					leetcodeId: 1,
+					batch: 1,
 					totalSolvedCountInThisWeek: 1
 				}
 			}
 		]);
+	}
+
+	async findStudentsNotDone() {
+		const results = await Students.find({
+			totalNotSubmissionCount: {
+				$gte: 3
+			}
+		});
+		return results;
 	}
 }

@@ -2,22 +2,24 @@ import express, { Request, Response } from "express";
 import { container } from "tsyringe";
 
 import * as jwt from "jsonwebtoken";
-import { IPayload, reqAuth } from "./middleware";
-import AdminService from "../lib/service/admin.service";
-import { SendOTP } from "./utils";
+import { IPayload, reqAuth, validateRequest } from "../middleware";
+import { AdminService } from "../service";
+import { SendOTP } from "../utils";
+import { client } from "../../config";
+import { messageValidator, otpValidator, signinValidator } from "./validator";
 
 const router = express.Router();
 
 const Service = container.resolve(AdminService);
 
-router.post("/signin", async (req: Request, res: Response) => {
+router.post("/signin", signinValidator, validateRequest, async (req: Request, res: Response) => {
 	const { phone } = req.body;
 	const admin = await Service.SignIn(phone);
 	await SendOTP(admin.otp as number, admin.phone);
 	res.status(200).json({ message: "otp sended to your mobile number" });
 });
 
-router.post("/verify-otp", async (req: Request, res: Response) => {
+router.post("/verify-otp", otpValidator, validateRequest, async (req: Request, res: Response) => {
 	const { otp, phone } = req.body;
 	const admin = await Service.VerifyOtp(otp, phone);
 	const payload: IPayload = {
@@ -25,7 +27,7 @@ router.post("/verify-otp", async (req: Request, res: Response) => {
 		phone: admin.phone,
 		role: "admin"
 	};
-	const token = jwt.sign(payload, process.env.JWT_SECRET!, { expiresIn: "7d" });
+	const token = jwt.sign(payload, process.env.JWT_SECRET!, { expiresIn: process.env.JWT_EXPIRE! });
 	res.status(200).json({ token });
 });
 
@@ -33,6 +35,13 @@ router.get("/profile", reqAuth, async (req: Request, res: Response) => {
 	const userId = req.user?.userId as string;
 	const profile = await Service.GetProfile(userId);
 	res.json(profile);
+});
+
+router.post("/message", reqAuth, messageValidator, validateRequest, async (req: Request, res: Response) => {
+	const message = req.body.message;
+	const groupId = process.env.WHATSAPP_GROUPID!;
+	await client.sendMessage(groupId, message);
+	res.status(200).json({ message: "okay" });
 });
 
 export { router as AdminRouter };

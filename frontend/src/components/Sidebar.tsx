@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 
 const Sidebar = () => {
 	const navigate = useNavigate();
@@ -7,32 +7,44 @@ const Sidebar = () => {
 		localStorage.removeItem("adminAuth");
 		navigate("/auth");
 	};
+     
+	const path = useLocation();
+	console.log(path,'pathjhh');
+	
+
+	
+
 	return (
 		<>
 			<div className="flex overflow-hidden shadow-lg rounded-lg  flex-col justify-between border-e bg-white">
 				<div className="px-4  py-6">
 					<div className="flex flex-shrink-0 title-font font-medium items-center text-gray-900 md:mb-0">
-						<span className="ml-3 text-xl text-teal-800 font-semibold antialiased">LeetCode_Checker</span>
+						<span className="ml-3 text-2xl underline underline-offset-4 text-black font-semibold antialiased">LeetCode Tracker</span>
 					</div>
 					<ul className="mt-6 space-y-1">
 						<li>
-							<a href="" className="block rounded-lg bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700">
-								Students
-							</a>
+							<Link to={'/'}
+								className={ path.pathname === "/" ? "block rounded-lg px-4 py-2 text-lg font-medium text-gray-500 bg-gray-100 text-gray-700" : "block rounded-lg px-4 py-2 text-lg font-medium text-gray-500" }>
+								Statics
+							</Link>
 						</li>
 						<li>
-							<a
-								href=""
-								className="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700">
+							<Link to={'/leaderborde'}
+								className={ path.pathname === "/leaderborde" ? "block rounded-lg px-4 py-2 text-lg font-medium text-gray-500 bg-gray-100 text-gray-700" : "block rounded-lg px-4 py-2 text-lg font-medium text-gray-500" }>
 								Leader Bord
-							</a>
+							</Link>
 						</li>
 						<li>
-							<a
-								href=""
-								className="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700">
-								Add Student +
-							</a>
+							<Link to={'/students'}
+                                 className={ path.pathname === "/students" ? "block rounded-lg px-4 py-2 text-lg font-medium text-gray-500 bg-gray-100 text-gray-700" : "block rounded-lg px-4 py-2 text-lg font-medium text-gray-500" }>
+                                Students
+							</Link>
+						</li>
+						<li>
+							<Link to={'/notdone'}
+                                 className={ path.pathname === "/notdone" ? "block rounded-lg px-4 py-2 text-lg font-medium text-gray-500 bg-gray-100 text-gray-700" : "block rounded-lg px-4 py-2 text-lg font-medium text-gray-500" }>								
+								 Students Notdone
+							</Link>
 						</li>
 					</ul>
 				</div>
@@ -45,12 +57,12 @@ const Sidebar = () => {
 						/>
 						<div>
 							<p className="text-xs">
-								<strong className="block font-medium">Pranav</strong>
-								<span> Admin@gmail.com </span>
+								<strong className="block font-medium">BrototypeAdmin</strong>
+								<span>Admin@gmail.com </span>
 							</p>
 						</div>
 						<div className="ml-24">
-							<h1 onClick={handleSignOut} className="underline cursor-pointer hover:text-teal-600">
+							<h1 onClick={handleSignOut} className="underline cursor-pointer hover:text-red-600">
 								Sign out
 							</h1>
 						</div>

@@ -1,21 +1,27 @@
 import { logger } from "../config";
-import { Students } from "../lib/database/model";
+import { Students, WeeklyMetrics } from "../database/model";
+import { StudentRepository } from "../database/repository";
 import { getProfile, getTotalSolved, getRecentSubmissionList } from "./leetcode";
-
+import { isToday, isAlreadySolvedOrNot, IsAlreadyInDb } from "./utils";
 /**
  * The LeetStudentProfileUpdate function updates the profiles of Leet students by retrieving their
  * LeetCode submissions, calculating their total solved count and recent submissions, and updating
  * their profile information in the database.
  */
 export const LeetStudentProfileUpdate = async () => {
-	const students = await Students.find({});
+	let studentRepository = new StudentRepository();
+
+	const students = await studentRepository.find();
 
 	// Concurrency: Process students concurrently
 	await Promise.all(
 		students.map(async (student) => {
 			try {
+				// Getting leetcode profile
 				const leetcodeProfile = await getProfile(student.leetcodeId);
+				// Getting total questions solved by difficulty
 				const totalSubmissions = getTotalSolved(leetcodeProfile!)!;
+				// Getting recent array of  submission
 				const recentSubmissions = getRecentSubmissionList(leetcodeProfile!);
 
 				student.solved = {
@@ -24,18 +30,29 @@ export const LeetStudentProfileUpdate = async () => {
 					medium: totalSubmissions.medium,
 					hard: totalSubmissions.hard
 				};
-
+				// finding the recent submissionDate is today or not
 				student.lastSubmissionDate =
-					recentSubmissions?.find((submission) => {
-						return submission.statusDisplay === "Accepted";
-					})?.timestamp || "00000000";
+					recentSubmissions?.find((problem) => {
+						return (
+							isToday(problem.timestamp) &&
+							problem.statusDisplay === "Accepted" &&
+							isAlreadySolvedOrNot(student.solvedQuestionsInThisWeek, problem.titleSlug)
+						);
+					})?.timestamp || student.lastSubmissionDate;
 
-				//leaderboard daily updater
+				// if the last submisson date is not today will updating the totalNotSubmissionCount
+				if (isToday(student.lastSubmissionDate)) {
+					student.totalNotSubmissionCount = 0;
+				} else {
+					student.totalNotSubmissionCount++;
+				}
+
+				// filtering out total questions solved  today from the recentsubmission list and saving in the database
 				const solvedToday = recentSubmissions?.filter((submission) => {
 					return (
 						submission.statusDisplay === "Accepted" &&
 						isToday(submission.timestamp) &&
-						isAlreadySolvedOrNot(student.solvedQuestionsInThisWeek, submission.titleSlug)
+						IsAlreadyInDb(student.solvedQuestionsInThisWeek, submission.titleSlug)
 					);
 				});
 
@@ -43,33 +60,33 @@ export const LeetStudentProfileUpdate = async () => {
 
 				await student.save();
 			} catch (error: any) {
-				logger.error(error);
+				logger.error(error.stack);
 			}
 		})
 	);
 
-	/**
-	 * This function checks if a given question titleslug
-	 * is already solved. If the title slug is not in the list of already solved questions,
-	 * it adds it and returns true. Otherwise, if the title slug is already in the list, it returns false.
+	/* This code block is retrieving metrics from the `studentRepository` and creating a new entry in the
+	`WeeklyMetrics` collection in the database.
 	 */
-	function isAlreadySolvedOrNot(alreaySolvedQuestions: string[], titleSlug: string) {
-		if (!alreaySolvedQuestions.includes(titleSlug)) {
-			alreaySolvedQuestions.push(titleSlug);
-			return true;
-		} else {
-			return false;
-		}
-	}
+	let result = await studentRepository.getMetrics();
 
-	/**
-	 * The function `isToday` checks if a given timestamp corresponds to the current date.
-	 * @param {string} timestamp - The `timestamp` parameter is a string representing a Unix timestamp.
-	 * @returns a boolean value indicating whether the given timestamp represents the current date or not.
-	 */
-	function isToday(timestamp: string): boolean {
-		const dateFromTimestamp = new Date(+timestamp * 1000);
-		const currentDate = new Date();
-		return dateFromTimestamp.toDateString() === currentDate.toDateString();
-	}
+	const currentDate = new Date();
+
+	const currentDay = currentDate.toLocaleString("en-US", { weekday: "long" });
+
+	await WeeklyMetrics.create({
+		totalStudentsSolved: result[0]?.submissionCount || 0,
+		day: currentDay
+	});
+};
+
+export const weeklyUpdate = async () => {
+	const students = await Students.find({});
+
+	await Promise.all(
+		students.map(async (student) => {
+			student.totalSolvedCountInThisWeek = 0;
+			await student.save();
+		})
+	);
 };

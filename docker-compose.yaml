@@ -16,6 +16,7 @@ services:
       - 4000:4000
     restart: on-failure
     volumes:
+      - /app/node_modules
       - ./backend:/app
     env_file:
       - ./backend/.env
@@ -30,6 +31,7 @@ services:
       - 8000:8000
     restart: on-failure
     volumes:
+      - /app/node_modules
       - ./frontend/src:/app/src
     env_file:
       - ./frontend/.env

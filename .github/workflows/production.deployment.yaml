@@ -1,0 +1,21 @@
+name: Deploying To Production
+on:
+  push:
+    branches: [master]
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: ssh and rolling out deployment
+        uses: appleboy/ssh-action@v0.1.2
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          script: |
+            cd LeetCode_Tracker
+            git fetch origin master
+            git reset --hard origin/master
+            sudo make down
+            sudo make all
+            exit

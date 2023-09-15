@@ -17,10 +17,10 @@ client:
 	cd $(FRONTEND_DIR) && npm run dev
 
 build:
-	docker-compose build 
+	docker compose build 
 
 run:
-	docker-compose up -d
+	docker compose up -d
 
 down:
-	docker-compose down
+	docker compose down

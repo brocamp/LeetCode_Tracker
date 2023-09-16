@@ -28,7 +28,7 @@ services:
       - 8000:8000
     restart: on-failure
     env_file:
-      - ./frontend/.env
+      - ./frontend/.env.production
   nginx:
     container_name: nginx_proxy
     build:

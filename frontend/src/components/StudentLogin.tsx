@@ -22,18 +22,19 @@ function StudentLogin() {
 	return (
 		<>
 			<Toaster position="top-center" reverseOrder={false} />
+
 			<Navbar />
 			<div className="flex h-[50rem]  justify-center">
 				<div className="flex w-full lg:w-1/2  relative justify-center items-center space-y-8">
 					<div className="w-full   md:px-32 rounded-2xl lg:px-24">
 						<form
 							key={"studentAuth"}
+
 							onSubmit={handleSubmit(handleStudentsAuth)}
 							className="bg-white h-[rem]  rounded-2xl shadow-2xl p-10">
 							<h1 className="text-gray-800 mb-5 font-bold text-2xl ">
 								Hey, Amigo 🚀 <br />{" "}
 							</h1>
-
 							{errors.name ? (
 								<span className="text-sm font-normal text-red-600 mb-8">{errors.name?.message}</span>
 							) : (
@@ -41,6 +42,7 @@ function StudentLogin() {
 							)}
 							<div className="flex items-center cursor-pointer shadow-sm border-2 mb-3 py-2 px-3 rounded-lg ">
 								<input
+
 									className="pl-2 w-full cursor-pointer   outline-none border-none"
 									type="text"
 									placeholder="Name"
@@ -83,6 +85,7 @@ function StudentLogin() {
 								<p className="ml-2 mb-1">Batch</p>
 							)}
 							<div className="flex items-center cursor-pointer shadow-sm border-2 mb-3 py-2 px-3 rounded-lg ">
+
 								<input
 									className="pl-2 w-full cursor-pointer   outline-none border-none"
 									type="text"
@@ -95,6 +98,7 @@ function StudentLogin() {
 							) : (
 								<p className="ml-2 mb-1">Whatsapp number</p>
 							)}
+
 							<div className="flex items-center cursor-pointer shadow-sm border-2 mb-2 py-2 px-3 rounded-lg ">
 								<input
 									className="pl-2 w-full cursor-pointer   outline-none border-none"
@@ -103,7 +107,6 @@ function StudentLogin() {
 									{...register("phone")}
 								/>
 							</div>
-
 							{errors.email?.message ? (
 								<span className="text-sm font-normal text-red-600 mb-8">{errors.email?.message}</span>
 							) : (
@@ -117,7 +120,6 @@ function StudentLogin() {
 									{...register("email")}
 								/>
 							</div>
-
 							{errors.leetcodeId?.message ? (
 								<span className="text-sm font-normal text-red-600 mb-8">{errors.leetcodeId?.message}</span>
 							) : (

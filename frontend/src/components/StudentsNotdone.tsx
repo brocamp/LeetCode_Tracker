@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
 import { getNotDoneStudents } from "../utils/api/config/axios.GetApi";
 import axios from "axios";
-
 const StudentsNotdone = () => {
 	const [allStudentsNotDone, setAllStudentsNotDone] = useState() as any;
 	const [std, setStd] = useState() as any;
@@ -20,17 +19,14 @@ const StudentsNotdone = () => {
 		};
 		handleLeaderBoard();
 	}, []);
-
 	const handleShowStudent = (userName: string) => {
 		axios.get(`https://leetcard.jacoblin.cool/${userName}?ext=heatmap&theme=forest`).then((response: any) => {
 			setStd(response.data);
 		});
 	};
-
 	return (
 		<>
 			<Toaster position="top-center" reverseOrder={false} />
-
 			<div className=" h-[43rem]   p-5 rounded-lg mt-3 w-full bg-white border border-slate-200">
 				<div className=" flex justify-end pb-4">
 					<div className="text-center">
@@ -96,10 +92,13 @@ const StudentsNotdone = () => {
 										</button>
 									</div>
 								</div>
+
 							</div>
 						</div>
 					</div>
 				</div>
+
+
 				<div className=" h-16 bg-[#ece8e0] p-1 justify-center items-center border flex flex-row border-slate-300 shadow-xl  gap-2  rounded-lg">
 					<div className="bg-slate-300 rounded-lg pt-1 border border-slate-400 flex justify-center h-8 w-full">
 						<span className=" text-lg font-medium ">No</span>
@@ -150,7 +149,6 @@ const StudentsNotdone = () => {
 												</div>
 											</a>
 										</div>
-
 										<span className=" ml-10 text-md font-medium ">{index + 1}</span>
 									</div>
 								</div>

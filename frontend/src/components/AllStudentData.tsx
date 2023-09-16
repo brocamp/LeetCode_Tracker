@@ -1,7 +1,9 @@
+
 import { useEffect, useState } from "react";
 import { getAllStudents, searchStudents } from "../utils/api/config/axios.GetApi";
 import { Toaster, toast } from "react-hot-toast";
 import axios from "axios";
+
 
 type UserData = [
 	{
@@ -30,6 +32,8 @@ function AllStudentData() {
 	const [std, setStd] = useState() as any;
 	const [totalpageNumber, setTotalPageNumber] = useState(1);
 	const [currentPage, setCurrentPage] = useState(1);
+
+
 	const [searchInput, setSearchInput] = useState("") as any;
 	const [isInputEmpty, setIsInputEmpty] = useState(true);
 
@@ -39,6 +43,7 @@ function AllStudentData() {
 				const response: any = await getAllStudents(currentPage);
 				if (response?.status === 200) {
 					setTotalPageNumber(response.data.result.totalPages);
+
 					setAllStudentsData(response.data.result.students);
 				} else if (response.response.status === 404) {
 					toast.error("Ooops...! Couldn't find rank table");
@@ -47,9 +52,9 @@ function AllStudentData() {
 				}
 			} else {
 				// caling search api
-
 				const response: any = await searchStudents(searchInput);
 				if (response?.status === 200) {
+
 					setAllStudentsData(response.data.result);
 					setTotalPageNumber(0);
 				} else if (response.response.status === 404) {
@@ -134,6 +139,7 @@ function AllStudentData() {
 							/>
 						</div>
 					</div>
+
 				</div>
 				<div className=" h-16 bg-[#ece8e0] p-1 justify-center items-center border flex flex-row border-slate-300 shadow-xl  gap-2  rounded-lg">
 					<div className="bg-slate-300 rounded-lg pt-1 border border-slate-400 flex justify-center h-8 w-full">
@@ -172,6 +178,7 @@ function AllStudentData() {
 												<span className="pt-3  px-4 block text-lg font-bold text-gray-800 dark:text-white">
 													<svg
 														className="rounded-lg border mt-36 ml-32 border-gray-500"
+
 														width="500"
 														height="320"
 														viewBox="0 0 500 320"

@@ -1,5 +1,4 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
-
 const Sidebar = () => {
 	const navigate = useNavigate();
 	const handleSignOut = () => {
@@ -7,14 +6,13 @@ const Sidebar = () => {
 		localStorage.removeItem("adminAuth");
 		navigate("/auth");
 	};
-
 	const path = useLocation();
-
 	return (
 		<>
 			<div className="flex overflow-hidden shadow-lg rounded-lg  flex-col justify-between border-e bg-white">
 				<div className="px-4  py-6">
 					<div className="flex flex-shrink-0 title-font font-medium items-center text-gray-900 md:mb-0">
+
 						<span className="ml-3 text-2xl underline underline-offset-4 text-black font-semibold antialiased">
 							LeetCode Tracker
 						</span>
@@ -28,10 +26,12 @@ const Sidebar = () => {
 										? "block rounded-lg px-4 py-2 text-lg font-medium text-gray-500 bg-gray-100 text-gray-700"
 										: "block rounded-lg px-4 py-2 text-lg font-medium text-gray-500"
 								}>
+
 								Statics
 							</Link>
 						</li>
 						<li>
+
 							<Link
 								to={"/leaderborde"}
 								className={
@@ -39,6 +39,7 @@ const Sidebar = () => {
 										? "block rounded-lg px-4 py-2 text-lg font-medium text-gray-500 bg-gray-100 text-gray-700"
 										: "block rounded-lg px-4 py-2 text-lg font-medium text-gray-500"
 								}>
+
 								Leader Bord
 							</Link>
 						</li>
@@ -62,6 +63,7 @@ const Sidebar = () => {
 										: "block rounded-lg px-4 py-2 text-lg font-medium text-gray-500"
 								}>
 								Students Notdone
+
 							</Link>
 						</li>
 					</ul>

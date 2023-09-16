@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { getDailyMetrics } from "../utils/api/config/axios.GetApi";
 import toast, { Toaster } from "react-hot-toast";
 
+
+
 function PieData() {
 	const [isHovered, setIsHovered] = useState(false);
 	const [completedStudents, setCompletedStudents] = useState<number>(0);
@@ -14,6 +16,7 @@ function PieData() {
 		const dailyMetricsHandler = async () => {
 			const response: any = await getDailyMetrics();
 			if (response.status === 200) {
+
 				const notCompletedStudents = response.data.totalStudents - response.data.yesterdaySolvedStudentsCount;
 				const completPersantage = (response.data.yesterdaySolvedStudentsCount / response.data.totalStudents) * 100;
 				setNotCompletedStudents(notCompletedStudents);
@@ -65,6 +68,7 @@ function PieData() {
 									className={
 										isHovered ? "  text-center  text-lg font-bold" : "text-slate-500 text-center text-lg  font-bold"
 									}>
+
 									{isHovered ? `${notCompletePersantage.toFixed(1)}%` : `${completePersantage.toFixed(1)}%`}
 								</h1>
 							</div>

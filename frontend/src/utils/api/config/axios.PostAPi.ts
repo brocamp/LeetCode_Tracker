@@ -3,6 +3,7 @@ import { apiRequest, headerConfg } from "../config/axios.Config";
 import { verifyPayload } from "../api.Types/axios.Postapi.Types";
 import { studentAuth } from "../../validation/formValidation";
 
+
 export const adminAuth = async (Phone: string) => {
 	const config: AxiosRequestConfig = {
 		method: "POST",
@@ -21,6 +22,7 @@ export const adminVerify = async (verifyPayload: verifyPayload) => {
 	return await apiRequest(config);
 };
 
+
 export const studentsAuth = async (authPayload: studentAuth) => {
 	const config: AxiosRequestConfig = {
 		method: "POST",
@@ -30,3 +32,4 @@ export const studentsAuth = async (authPayload: studentAuth) => {
 	};
 	return await apiRequest(config);
 };
+

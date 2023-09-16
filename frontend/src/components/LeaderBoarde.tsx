@@ -1,3 +1,4 @@
+
 const LeaderBoard = (prop: any) => {
 	return (
 		<>
@@ -40,3 +41,4 @@ const LeaderBoard = (prop: any) => {
 };
 
 export default LeaderBoard;
+

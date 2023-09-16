@@ -23,6 +23,7 @@ const LeaderBorder = () => {
 			<Toaster position="top-center" reverseOrder={false} />
 			<div className="p-5 h-[38rem] ">
 				<div className="flex mr-6 justify-end">
+
 					<div className="text-center">
 						<button
 							type="button"
@@ -89,6 +90,7 @@ const LeaderBorder = () => {
 							</div>
 						</div>
 					</div>
+
 				</div>
 				<div className="p-5   h-[38rem]">
 					{leaderBordRank?.map((object: any, index: number) => {
@@ -99,5 +101,6 @@ const LeaderBorder = () => {
 		</>
 	);
 };
+
 
 export default LeaderBorder;

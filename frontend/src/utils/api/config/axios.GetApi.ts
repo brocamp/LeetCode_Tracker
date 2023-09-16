@@ -52,3 +52,4 @@ export const weeklyMetrics = async () => {
 	};
 	return await apiRequest(config);
 };
+

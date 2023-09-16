@@ -6,6 +6,8 @@ import { verifyPayload } from "../utils/api/api.Types/axios.Postapi.Types";
 import { useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 
+
+
 const Login = () => {
 	const [otp, setOtp] = useState(true);
 	const [number, setNumber] = useState("");
@@ -25,6 +27,7 @@ const Login = () => {
 		}
 	};
 
+
 	const hanldleFormOtp = async (data: OtpData) => {
 		const verifyPayload: verifyPayload = {
 			otp: Number(data.otp),
@@ -41,6 +44,7 @@ const Login = () => {
 		} else if (response.response.status === 404) {
 			toast.error("Ooops..! Error occured");
 		} else {
+
 			toast.error("Ooops...! Invalied OTP");
 		}
 	};

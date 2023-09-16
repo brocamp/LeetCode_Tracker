@@ -29,25 +29,3 @@ services:
     restart: on-failure
     env_file:
       - ./frontend/.env.production
-  nginx:
-    container_name: nginx_proxy
-    build:
-      dockerfile: Dockerfile.prod
-      context: ./proxy
-    ports:
-      - 80:80
-      - 443:443
-    depends_on:
-      - frontend
-      - backend
-    volumes:
-      - ./proxy/nginx-prod.conf:/etc/nginx/nginx.conf
-      - ./certbot/conf:/etc/letsencrypt
-      - ./certbot/www:/var/www/certbot
-  certbot:
-    image: certbot/certbot
-    container_name: certbot
-    volumes:
-      - ./certbot/conf:/etc/letsencrypt
-      - ./certbot/www:/var/www/certbot
-    command: certonly --webroot -w /var/www/certbot --force-renewal --email pranavofficial404@gmail.com -d leet.brototype.com --agree-tos

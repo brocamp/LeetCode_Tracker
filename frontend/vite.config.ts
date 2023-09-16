@@ -10,5 +10,11 @@ export default defineConfig({
 		watch: {
 			usePolling: true
 		}
+	},
+	build: {
+		chunkSizeWarningLimit: 1600
+	},
+	preview: {
+		port: 8000
 	}
 });

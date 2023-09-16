@@ -1,37 +1,26 @@
-import axios, { AxiosRequestConfig } from 'axios';   
+import axios, { AxiosRequestConfig } from "axios";
 
+export const api = axios.create({
+	baseURL: import.meta.env.VITE_APP_BASE_URL,
+	timeout: 5000
+});
 
+export const apiRequest = async (config: AxiosRequestConfig) => {
+	try {
+		const response = await api(config);
+		return response;
+	} catch (error) {
+		console.error(error, "errr");
+		return error;
+	}
+};
 
-export const api = axios.create({   
-    baseURL: 'http://localhost:80/',   
-    timeout: 5000,   
-  });
+export const headerConfg = () => {
+	const token = localStorage.getItem("adminToken");
+	if (token) {
+		return {
+			Authorization: ` Bearer ${token}`
+		};
+	}
+};
 
-//   const token = sessionStorage.getItem('jwt');
-
-// if (token) {   
-//   api.defaults.headers.common['Authorization'] = `Bearer ${token}`;   
-// }
-
-
-export const apiRequest = async(config: AxiosRequestConfig) => {   
-    try {   
-      const response = await api(config);   
-      return response;   
-    } catch (error) {   
-      console.error(error,'errr');   
-      return error;   
-    }   
-  };
-
-
-export const headerConfg = () =>{
-  const token = localStorage.getItem('adminToken')
-  if (token) {   
-       return  {
-        'Authorization':` Bearer ${token}`
-      }  
-     }
-}
-
-  

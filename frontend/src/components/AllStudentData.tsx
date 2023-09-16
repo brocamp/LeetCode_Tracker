@@ -1,8 +1,9 @@
-import { useEffect, useState, useRef } from "react";
+
+import { useEffect, useState } from "react";
 import { getAllStudents, searchStudents } from "../utils/api/config/axios.GetApi";
 import { Toaster, toast } from "react-hot-toast";
 import axios from "axios";
-import { Waveform } from "@uiball/loaders";
+
 
 type UserData = [
 	{
@@ -31,24 +32,18 @@ function AllStudentData() {
 	const [std, setStd] = useState() as any;
 	const [totalpageNumber, setTotalPageNumber] = useState(1);
 	const [currentPage, setCurrentPage] = useState(1);
-	const [loading, setLoading] = useState(false);
-	const [hasMore, setHasmore] = useState(false);
+
+
 	const [searchInput, setSearchInput] = useState("") as any;
 	const [isInputEmpty, setIsInputEmpty] = useState(true);
 
 	useEffect(() => {
-		setLoading(true);
-
 		const handleAllStudents = async () => {
 			if (isInputEmpty) {
-				// ge all student api
-				setLoading(true);
 				const response: any = await getAllStudents(currentPage);
 				if (response?.status === 200) {
-					console.log(response.data.result);
-					setLoading(false);
 					setTotalPageNumber(response.data.result.totalPages);
-					console.log(response.data.result.students, "sddsdsfd");
+
 					setAllStudentsData(response.data.result.students);
 				} else if (response.response.status === 404) {
 					toast.error("Ooops...! Couldn't find rank table");
@@ -57,11 +52,8 @@ function AllStudentData() {
 				}
 			} else {
 				// caling search api
-				setLoading(true);
 				const response: any = await searchStudents(searchInput);
 				if (response?.status === 200) {
-					setLoading(false);
-					console.log(response.data.result, "data");
 
 					setAllStudentsData(response.data.result);
 					setTotalPageNumber(0);
@@ -93,9 +85,7 @@ function AllStudentData() {
 	};
 	const handleShowStudent = (userName: string) => {
 		axios.get(`https://leetcard.jacoblin.cool/${userName}?ext=heatmap&theme=forest`).then((response: any) => {
-			console.log(response, "ressssssss");
 			setStd(response.data);
-			console.log(response.data, "ssa");
 		});
 	};
 
@@ -106,7 +96,6 @@ function AllStudentData() {
 		}
 		timer = setTimeout(() => {
 			setSearchInput(event.target.value);
-			console.log(inputValue);
 		}, 1000);
 		if (inputValue === "") {
 			setSearchInput("");
@@ -150,18 +139,7 @@ function AllStudentData() {
 							/>
 						</div>
 					</div>
-					{/* {searchInput && (
-              <div className="text-center ml-5 ">
-              <button
-                type="button"
-                onClick={handleClearInput}
-                className="block w-28 shadow-lg bg-black py-2 m rounded-lg cursor-pointer   text-white font-semibold mb-2"
-                data-hs-overlay="#hs-sign-out-alert">
-                Clear
-              </button>
-            </div>
-      )}
-    */}
+
 				</div>
 				<div className=" h-16 bg-[#ece8e0] p-1 justify-center items-center border flex flex-row border-slate-300 shadow-xl  gap-2  rounded-lg">
 					<div className="bg-slate-300 rounded-lg pt-1 border border-slate-400 flex justify-center h-8 w-full">
@@ -199,7 +177,8 @@ function AllStudentData() {
 												role="tooltip">
 												<span className="pt-3  px-4 block text-lg font-bold text-gray-800 dark:text-white">
 													<svg
-													   className="rounded-lg border mt-36 ml-32 border-gray-500"
+														className="rounded-lg border mt-36 ml-32 border-gray-500"
+
 														width="500"
 														height="320"
 														viewBox="0 0 500 320"

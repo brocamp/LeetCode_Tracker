@@ -1,7 +1,7 @@
 import axios, { AxiosRequestConfig } from "axios";
 
 export const api = axios.create({
-	baseURL: import.meta.env.VITE_APP_BASE_URL,
+	baseURL: "http://leet.brototype.com",
 	timeout: 5000
 });
 
@@ -23,4 +23,3 @@ export const headerConfg = () => {
 		};
 	}
 };
-

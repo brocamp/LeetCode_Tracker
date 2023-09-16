@@ -5,7 +5,6 @@ import * as jwt from "jsonwebtoken";
 import { IPayload, reqAuth, validateRequest } from "../middleware";
 import { AdminService } from "../service";
 import { SendOTP } from "../utils";
-import { client } from "../../config";
 import { messageValidator, otpValidator, signinValidator } from "./validator";
 
 const router = express.Router();
@@ -38,9 +37,7 @@ router.get("/profile", reqAuth, async (req: Request, res: Response) => {
 });
 
 router.post("/message", reqAuth, messageValidator, validateRequest, async (req: Request, res: Response) => {
-	const message = req.body.message;
-	const groupId = process.env.WHATSAPP_GROUPID!;
-	await client.sendMessage(groupId, message);
+	// NEED TO IMPLEMENT
 	res.status(200).json({ message: "okay" });
 });
 

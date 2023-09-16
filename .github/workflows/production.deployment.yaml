@@ -16,6 +16,6 @@ jobs:
             cd LeetCode_Tracker
             git fetch origin master
             git reset --hard origin/master
-            sudo make down
-            sudo make all
+             make down-prod
+             make prod
             exit

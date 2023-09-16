@@ -1,0 +1,46 @@
+version: "3"
+services:
+  mongodb:
+    image: mongo
+    ports:
+      - 27017:27017
+    container_name: mongodb
+    volumes:
+      - ./db/:/data/db
+  backend:
+    build:
+      dockerfile: Dockerfile.prod
+      context: ./backend
+    container_name: backend
+    ports:
+      - 4000:4000
+    restart: on-failure
+    env_file:
+      - ./backend/.env
+    depends_on:
+      - mongodb
+  frontend:
+    build:
+      dockerfile: Dockerfile.prod
+      context: ./frontend
+    container_name: frontend
+    ports:
+      - 8000:8000
+    restart: on-failure
+    env_file:
+      - ./frontend/.env
+  nginx:
+    container_name: nginx_proxy
+    build:
+      dockerfile: Dockerfile.prod
+      context: ./proxy
+    ports:
+      - 80:80
+      - 443:443
+    depends_on:
+      - frontend
+      - backend
+    volumes:
+      - ./proxy/nginx-prod.conf:/etc/nginx/nginx.conf
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/www:/var/www/certbot

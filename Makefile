@@ -1,26 +1,16 @@
 # Makefile
 
-# Variables
-BACKEND_DIR = backend
-FRONTEND_DIR = frontend
-PROJECT= LeetCode Checker Server
-
 # Targets
-.PHONY: server client build
+.PHONY: prod dev 
 
-all: build run 
+prod:
+	docker compose -f docker-compose-prod.yaml up --build -d 
 
-server: ;@echo "Starting ${PROJECT}....."; \
-	cd $(BACKEND_DIR) && npm start
+dev:
+	docker compose -f docker-compose-dev.yaml up --build -d
 
-client:
-	cd $(FRONTEND_DIR) && npm run dev
+down-dev:
+	docker compose -f docker-compose-dev.yaml down
 
-build:
-	docker compose build 
-
-run:
-	docker compose up -d
-
-down:
-	docker compose down
+down-prod:
+	docker compose -f docker-compose-prod.yaml down

@@ -79,9 +79,6 @@ export const studentAuthSchema: ZodType<studentAuth> = z.object({
 	email: z.string().email({ message: "Invalid email format" }),
 	leetcodeId: z
 		.string()
-		.refine((value) => /^[a-zA-Z0-9]+$/.test(value), {
-			message: "leetCodeId must contain only alphanumeric characters"
-		})
 		.refine((value) => value.trim() !== "", {
 			message: "Name cannot be empty"
 		}),

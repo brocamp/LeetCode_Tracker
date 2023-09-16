@@ -1,4 +1,3 @@
-import React from "react";
 import Navbar from "./Navbar";
 import { studentAuth, useStudentAuth } from "../utils/validation/formValidation";
 import { studentsAuth } from "../utils/api/config/axios.PostAPi";
@@ -9,11 +8,11 @@ function StudentLogin() {
 
 	const handleStudentsAuth =  async(data: studentAuth) => {
           const response:any = await studentsAuth(data);
-                if(response.status === 200){
+                if(response?.status === 200){
                     toast.success("Successfully registrated");
                     reset()
-                }else if(response.response.status === 400){
-                    toast.error(`${response.response.data.errors[0].message}`);
+                }else if(response?.response.status === 400){
+                    toast.error(`${response?.response.data.errors[0].message}`);
                     reset()
                 }else{
                     toast.error("Somthing went wrong");

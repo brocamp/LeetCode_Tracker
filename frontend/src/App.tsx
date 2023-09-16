@@ -8,9 +8,7 @@ import ErrorComponent from "./components/ErrorComponent";
 import ProtectedRoute from "./utils/routes/ProtectedRoute";
 import Analytic from "./Features/Analytic";
 import { BrowserRouter } from "react-router-dom";
-import LeaderBorderStatic from "./components/LeaderBorderStatic";
 import LeaderBoard from "./Features/LeaderBorde";
-import StudentsDetails from "./Features/StudentsDetails";
 import AllStudentData from "./components/AllStudentData";
 import StudentsNotdone from "./components/StudentsNotdone";
 import StudentLogin from "./components/StudentLogin";
@@ -21,16 +19,13 @@ import StudentLogin from "./components/StudentLogin";
 const  App = () =>{
 	return (
 		<>
-
-
-		<div className="bg-[#ece8e0] p-4 ">
+		<div className="bg-[#ece8e0] h-screen p-4 ">
 		<BrowserRouter>
 		   <Routes>
 			{/* Auth Route */}
             <Route path="/auth" element={<Login/>} />
 			<Route path="/auth-student" element={<StudentLogin/>} />
 			{/*  */}
-
 			{/* ProtectedRoute */}
 			<Route element={<ProtectedRoute/>}>
 			<Route path="/" element={<Home/>}>
@@ -42,9 +37,7 @@ const  App = () =>{
 			<Route path="*" element={<ErrorComponent/>} />
 			</Route>
 			{/*  */}
-
 			{/* Catching invallied routes */}
-		
 		   </Routes>
 		   </BrowserRouter>
 		</div>

@@ -6,7 +6,7 @@ import { studentAuth } from '../../validation/formValidation';
 
 
 
-export const adminAuth = async (Phone:String) => {
+export const adminAuth = async (Phone:string) => {
     const config: AxiosRequestConfig = {   
       method: 'POST',   
       url: `api/admin/signin`,   

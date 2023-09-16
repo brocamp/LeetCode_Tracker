@@ -11,7 +11,6 @@ const StudentsNotdone = () => {
 		const handleLeaderBoard = async () => {
 			const response: any = await getNotDoneStudents();
 			if (response?.status === 200) {
-				console.log(response, "response");
 				setAllStudentsNotDone(response.data.result);
 			} else if (response.response.status === 404) {
 				toast.error("Ooops...! Couldn't find rank table");
@@ -24,9 +23,7 @@ const StudentsNotdone = () => {
 
 	const handleShowStudent = (userName: string) => {
 		axios.get(`https://leetcard.jacoblin.cool/${userName}?ext=heatmap&theme=forest`).then((response: any) => {
-			console.log(response, "ressssssss");
 			setStd(response.data);
-			console.log(response.data, "ssa");
 		});
 	};
 

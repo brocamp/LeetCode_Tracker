@@ -18,9 +18,7 @@ export const getLeaderboard = async () => {
 	return await apiRequest(config);
 };
 
-export const getAllStudents=async(pageNumber:number)=>{
-	console.log(pageNumber,'page number')
-	
+export const getAllStudents=async(pageNumber:number)=>{	
 	   const config:AxiosRequestConfig={
 		  method:"GET",
 		  url:`api/student/all?page=${pageNumber}`,

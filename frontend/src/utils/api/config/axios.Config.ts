@@ -2,17 +2,13 @@ import axios, { AxiosRequestConfig } from 'axios';
 
 
 
+
+
+
 export const api = axios.create({   
-    baseURL: 'http://localhost:80/',   
+    baseURL:import.meta.env.VITE_APP_BASE_URL,
     timeout: 5000,   
   });
-
-//   const token = sessionStorage.getItem('jwt');
-
-// if (token) {   
-//   api.defaults.headers.common['Authorization'] = `Bearer ${token}`;   
-// }
-
 
 export const apiRequest = async(config: AxiosRequestConfig) => {   
     try {   

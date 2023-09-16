@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import LeaderBoard from "../components/LeaderBoarde";
 import { getLeaderboard } from "../utils/api/config/axios.GetApi";
-import { ToastBar, Toaster, toast } from "react-hot-toast";
+import { Toaster, toast } from "react-hot-toast";
 
 const  LeaderBorder = () => {
   const [leaderBordRank,setLeaderBoardRank] = useState() as any

@@ -1,4 +1,4 @@
-import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
+import { Link, useLocation, useNavigate, } from "react-router-dom";
 
 const Sidebar = () => {
 	const navigate = useNavigate();
@@ -9,11 +9,7 @@ const Sidebar = () => {
 	};
      
 	const path = useLocation();
-	console.log(path,'pathjhh');
 	
-
-	
-
 	return (
 		<>
 			<div className="flex overflow-hidden shadow-lg rounded-lg  flex-col justify-between border-e bg-white">

@@ -12,9 +12,9 @@ export default defineConfig({
 		}
 	},
 	build: {
-		chunkSizeWarningLimit: 1600,
+		chunkSizeWarningLimit: 1600
 	},
-	preview:{
-		port:8000
+	preview: {
+		port: 8000
 	}
 });

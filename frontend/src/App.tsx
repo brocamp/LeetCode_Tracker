@@ -1,7 +1,6 @@
-
 import "./App.css";
 // import { privateRoutes,routes } from "./utils/routes/routes";
-import { Routes,Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Login from "./components/Login";
 import Home from "./pages/Home";
 import ErrorComponent from "./components/ErrorComponent";
@@ -13,37 +12,34 @@ import AllStudentData from "./components/AllStudentData";
 import StudentsNotdone from "./components/StudentsNotdone";
 import StudentLogin from "./components/StudentLogin";
 
-
-
 // App component
-const  App = () =>{
+const App = () => {
 	return (
 		<>
-		<div className="bg-[#ece8e0] h-screen p-4 ">
-		<BrowserRouter>
-		   <Routes>
-			{/* Auth Route */}
-            <Route path="/auth" element={<Login/>} />
-			<Route path="/auth-student" element={<StudentLogin/>} />
-			{/*  */}
-			{/* ProtectedRoute */}
-			<Route element={<ProtectedRoute/>}>
-			<Route path="/" element={<Home/>}>
-		    <Route index element={<Analytic/>} />
-			<Route path="leaderborde" element={<LeaderBoard/>}/>
-			<Route path="students" element={<AllStudentData/>} />
-			<Route path="notdone" element={<StudentsNotdone/>} />
-			</Route>
-			<Route path="*" element={<ErrorComponent/>} />
-			</Route>
-			{/*  */}
-			{/* Catching invallied routes */}
-		   </Routes>
-		   </BrowserRouter>
-		</div>
-		</> 
-	)
-	
-  }
-  
-  export default App;
+			<div className="bg-[#ece8e0] h-screen p-4 ">
+				<BrowserRouter>
+					<Routes>
+						{/* Auth Route */}
+						<Route path="/auth" element={<Login />} />
+						<Route path="/auth-student" element={<StudentLogin />} />
+						{/*  */}
+						{/* ProtectedRoute */}
+						<Route element={<ProtectedRoute />}>
+							<Route path="/" element={<Home />}>
+								<Route index element={<Analytic />} />
+								<Route path="leaderborde" element={<LeaderBoard />} />
+								<Route path="students" element={<AllStudentData />} />
+								<Route path="notdone" element={<StudentsNotdone />} />
+							</Route>
+							<Route path="*" element={<ErrorComponent />} />
+						</Route>
+						{/*  */}
+						{/* Catching invallied routes */}
+					</Routes>
+				</BrowserRouter>
+			</div>
+		</>
+	);
+};
+
+export default App;

@@ -49,11 +49,22 @@ function PieData() {
 							onMouseEnter={handleMouseEnter}
 							onMouseLeave={handleMouseLeave}>
 							<div className="flex flex-col justify-center ">
-								<h1 className={isHovered ? "text-slate-600 text-lg text-center font-bold" : "text-lg text-center font-bold"}>Students</h1>
-								<h1 className={isHovered ? "text-center text-lg font-bold" : "text-slate-500 text-center text-lg font-bold"}>
-									{isHovered ?  `${notCompletedStudents}/${totalStudents}`:  `${completedStudents}/${totalStudents}`}
+								<h1
+									className={
+										isHovered ? "text-slate-600 text-lg text-center font-bold" : "text-lg text-center font-bold"
+									}>
+									Students
 								</h1>
-								<h1 className={isHovered ? "  text-center  text-lg font-bold" : "text-slate-500 text-center text-lg  font-bold"}>
+								<h1
+									className={
+										isHovered ? "text-center text-lg font-bold" : "text-slate-500 text-center text-lg font-bold"
+									}>
+									{isHovered ? `${notCompletedStudents}/${totalStudents}` : `${completedStudents}/${totalStudents}`}
+								</h1>
+								<h1
+									className={
+										isHovered ? "  text-center  text-lg font-bold" : "text-slate-500 text-center text-lg  font-bold"
+									}>
 									{isHovered ? `${notCompletePersantage.toFixed(1)}%` : `${completePersantage.toFixed(1)}%`}
 								</h1>
 							</div>

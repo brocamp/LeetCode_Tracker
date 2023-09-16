@@ -77,11 +77,9 @@ export const studentAuthSchema: ZodType<studentAuth> = z.object({
 		.min(10, { message: "Whatsapp number should be atleast 10 digits" })
 		.max(10, { message: "Whatsapp number should not exceed 10 digits" }),
 	email: z.string().email({ message: "Invalid email format" }),
-	leetcodeId: z
-		.string()
-		.refine((value) => value.trim() !== "", {
-			message: "Name cannot be empty"
-		}),
+	leetcodeId: z.string().refine((value) => value.trim() !== "", {
+		message: "Name cannot be empty"
+	}),
 	batch: z
 		.string()
 		.refine((value) => value.length >= 4 && value.length <= 6, {

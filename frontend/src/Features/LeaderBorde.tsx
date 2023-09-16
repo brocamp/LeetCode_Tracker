@@ -3,26 +3,26 @@ import LeaderBoard from "../components/LeaderBoarde";
 import { getLeaderboard } from "../utils/api/config/axios.GetApi";
 import { Toaster, toast } from "react-hot-toast";
 
-const  LeaderBorder = () => {
-  const [leaderBordRank,setLeaderBoardRank] = useState() as any
-  useEffect(()=>{
-      const handleLeaderBoard = async ()=>{
-        const response:any = await getLeaderboard();
-        if (response?.status === 200) {
-          setLeaderBoardRank( response.data.rank)
-        } else if (response.response.status === 404) {
-          toast.error("Ooops...! Couldn't find rank table");
-        } else {
-          toast.error(`${response.response.data.errors[0].message}`);
-        }
-      };
-      handleLeaderBoard()
-  },[])  
+const LeaderBorder = () => {
+	const [leaderBordRank, setLeaderBoardRank] = useState() as any;
+	useEffect(() => {
+		const handleLeaderBoard = async () => {
+			const response: any = await getLeaderboard();
+			if (response?.status === 200) {
+				setLeaderBoardRank(response.data.rank);
+			} else if (response.response.status === 404) {
+				toast.error("Ooops...! Couldn't find rank table");
+			} else {
+				toast.error(`${response.response.data.errors[0].message}`);
+			}
+		};
+		handleLeaderBoard();
+	}, []);
 	return (
 		<>
-		<Toaster position="top-center"reverseOrder={false}  />
-		<div className="p-5 h-[38rem] ">
-			<div className="flex mr-6 justify-end">
+			<Toaster position="top-center" reverseOrder={false} />
+			<div className="p-5 h-[38rem] ">
+				<div className="flex mr-6 justify-end">
 					<div className="text-center">
 						<button
 							type="button"
@@ -89,18 +89,15 @@ const  LeaderBorder = () => {
 							</div>
 						</div>
 					</div>
+				</div>
+				<div className="p-5   h-[38rem]">
+					{leaderBordRank?.map((object: any, index: number) => {
+						return <LeaderBoard index={index} rank={object} />;
+					})}
+				</div>
 			</div>
-			<div className="p-5   h-[38rem]">
-        {
-           leaderBordRank?.map((object:any,index: number)=>{
-           return <LeaderBoard index={index}  rank={object}/>
-         })
-        }
-				
-			</div>
-		</div>
 		</>
 	);
-}
+};
 
 export default LeaderBorder;

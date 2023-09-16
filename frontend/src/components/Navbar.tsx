@@ -1,4 +1,3 @@
-
 function Navbar() {
 	return (
 		<>

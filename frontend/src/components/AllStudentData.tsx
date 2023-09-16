@@ -1,4 +1,4 @@
-import { useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import { getAllStudents, searchStudents } from "../utils/api/config/axios.GetApi";
 import { Toaster, toast } from "react-hot-toast";
 import axios from "axios";
@@ -34,7 +34,6 @@ function AllStudentData() {
 	const [isInputEmpty, setIsInputEmpty] = useState(true);
 
 	useEffect(() => {
-
 		const handleAllStudents = async () => {
 			if (isInputEmpty) {
 				const response: any = await getAllStudents(currentPage);
@@ -48,7 +47,7 @@ function AllStudentData() {
 				}
 			} else {
 				// caling search api
-				
+
 				const response: any = await searchStudents(searchInput);
 				if (response?.status === 200) {
 					setAllStudentsData(response.data.result);
@@ -135,7 +134,6 @@ function AllStudentData() {
 							/>
 						</div>
 					</div>
-					
 				</div>
 				<div className=" h-16 bg-[#ece8e0] p-1 justify-center items-center border flex flex-row border-slate-300 shadow-xl  gap-2  rounded-lg">
 					<div className="bg-slate-300 rounded-lg pt-1 border border-slate-400 flex justify-center h-8 w-full">
@@ -173,7 +171,7 @@ function AllStudentData() {
 												role="tooltip">
 												<span className="pt-3  px-4 block text-lg font-bold text-gray-800 dark:text-white">
 													<svg
-													   className="rounded-lg border mt-36 ml-32 border-gray-500"
+														className="rounded-lg border mt-36 ml-32 border-gray-500"
 														width="500"
 														height="320"
 														viewBox="0 0 500 320"

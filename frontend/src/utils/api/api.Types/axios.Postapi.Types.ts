@@ -1,4 +1,4 @@
 export type verifyPayload = {
-	otp:number,
-	phone:string
-}
+	otp: number;
+	phone: string;
+};

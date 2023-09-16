@@ -3,7 +3,8 @@ node_modules/
 db
 session
 .wwebjs_cache
-
+.env.development
+.env.production
 # Logs
 logs
 *.log

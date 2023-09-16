@@ -10,7 +10,7 @@ const router = express.Router();
 
 const Service = container.resolve(StudentService);
 
-router.post("/add", reqAuth, studentValidator, validateRequest, async (req: Request, res: Response) => {
+router.post("/add", studentValidator, validateRequest, async (req: Request, res: Response) => {
 	const data = req.body as StudentDTO;
 	const result = await Service.createStudent(data);
 	res.status(200).json({ message: "Successfully added to database", result });
@@ -35,7 +35,7 @@ router.get("/all", reqAuth, async (req: Request, res: Response) => {
 
 router.get("/search", reqAuth, async (req: Request, res: Response) => {
 	const query = req.query.query as string;
-	
+
 	const result = await Service.search(query);
 	res.json({ result });
 });

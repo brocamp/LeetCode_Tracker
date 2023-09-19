@@ -43,6 +43,17 @@ export const studentValidator = [
 		.isLength({ max: 10 })
 		.withMessage("Batch should be less than 10 characters"),
 
+	// Last name validation
+	body("lastName")
+		.notEmpty()
+		.trim()
+		.withMessage("LastName is required")
+		.bail()
+		.isLength({ min: 1 })
+		.withMessage("LastName should be at least 2 characters long")
+		.isLength({ max: 20 })
+		.withMessage("LastName should be less than 50 characters"),
+
 	// Domain validation
 	body("domain")
 		.notEmpty()
@@ -70,7 +81,7 @@ export const studentValidator = [
 		.trim()
 		.bail()
 		.withMessage("LeetCode ID is required")
-		.isLength({ min: 2 })
+		.isLength({ min: 1 })
 		.withMessage("LeetCode ID should be at least 2 characters long")
 		.isLength({ max: 15 })
 		.withMessage("LeetCode ID should be less than 10 characters")

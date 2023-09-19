@@ -7,7 +7,7 @@ export class AdminRepository {
 	}
 
 	async findById(id: string): Promise<IAdmin | null> {
-		const admin = await Admin.findById(id).exec();
+		const admin = await Admin.findById(id).select({ otp: 0, _id: 0 }).exec();
 		return admin;
 	}
 
@@ -25,4 +25,3 @@ export class AdminRepository {
 		await Admin.findByIdAndDelete(id).exec();
 	}
 }
-

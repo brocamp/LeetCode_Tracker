@@ -43,7 +43,7 @@ export class StudentRepository {
 
 	async search(query: string) {
 		const fuzzyQuery = new RegExp(this.escapeRegex(query), "gi");
-		
+
 		const result = await Students.find({
 			$or: [
 				{
@@ -62,8 +62,8 @@ export class StudentRepository {
 					leetcodeId: query
 				}
 			]
-		})
-			
+		});
+
 		return result;
 	}
 
@@ -146,5 +146,10 @@ export class StudentRepository {
 			}
 		});
 		return results;
+	}
+
+	async findByPhone(phone: string) {
+		const student = await Students.findOne({ phone });
+		return student;
 	}
 }

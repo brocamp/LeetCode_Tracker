@@ -44,6 +44,8 @@ export class StudentService {
 	public createStudent = async (data: StudentDTO) => {
 		const userId = await getProfile(data.leetcodeId);
 		if (!userId?.matchedUser) throw new BadRequestError("LeetCodeId dosen't exist");
+		const phone = await this.studentRepository.findByPhone(data.phone);
+		if (phone) throw new BadRequestError("Phone number already registerd");
 		let student = await this.studentRepository.findByLeetCodeId(data.leetcodeId);
 		if (student) throw new BadRequestError("This profile already exist");
 		const result = await this.studentRepository.create(data);

@@ -1,12 +1,5 @@
 version: "3"
 services:
-  mongodb:
-    image: mongo
-    ports:
-      - 27017:27017
-    container_name: mongodb
-    volumes:
-      - ./mongo_data/:/data/db
   backend:
     build:
       dockerfile: Dockerfile.prod
@@ -29,5 +22,3 @@ services:
     restart: on-failure
     env_file:
       - ./frontend/.env.production
-volumes:
-  mongo_data:

@@ -6,7 +6,7 @@ import * as cli from "../cli/ui";
 `node-cron` library. This task is scheduled to run every day at midnight (0 hours and 0 minutes)
 using the cron expression `"0 0 * * *"`. */
 export const LeetcodeDailyUpdateTask = cron.schedule(
-	"*/1 * * * * ",
+	"30 23 * * *",
 	async () => {
 		cli.print("Students LeetCode Data Updating");
 		await LeetStudentProfileUpdate();

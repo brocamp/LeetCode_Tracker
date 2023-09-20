@@ -10,8 +10,6 @@ services:
     restart: on-failure
     env_file:
       - ./backend/.env
-    depends_on:
-      - mongodb
   frontend:
     build:
       dockerfile: Dockerfile.prod

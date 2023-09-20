@@ -1,196 +1,179 @@
-[{
-
-  "name": "Ajay E R",
-  "batch": "BCE67",
-  "domain": "MEAN",
-  "phone": "123-456-7890",
-  "email": "ajay@example.com",
-  "leetcodeId": "ajay-er",
-  "solved": {
-    "all": 49,
-    "easy": 41,
-    "medium": 8,
-    "hard": 0
-  },
-  "lastSubmissionDate": "1693886949",
-  "totalSolvedCountInThisWeek": 6,
-  "solvedQuestionsInThisWeek": [
-    "check-if-n-and-its-double-exist",
-    "create-hello-world-function"
-  ],
-  "__v": 2,
-  "totalNotSubmissionCount": 0
-},
-{
-  
-  "name": "Magesh S",
-  "batch": "BCE58",
-  "domain": "MERN",
-  "phone": "987-654-3210",
-  "email": "magesh@example.com",
-  "leetcodeId": "mageshp121",
-  "solved": {
-    "all": 23,
-    "easy": 22,
-    "medium": 1,
-    "hard": 0
-  },
-  "lastSubmissionDate": "1693884415",
-  "totalSolvedCountInThisWeek": 5,
-  "solvedQuestionsInThisWeek": [
-    "two-sum"
-  ],
-  "__v": 1,
-  "totalNotSubmissionCount": 0
-},
-{
-
-  "name": "Pranav s",
-  "batch": "BCE105",
-  "domain": "Backend Node.js",
-  "phone": "555-123-4567",
-  "email": "pranav@example.com",
-  "leetcodeId": "pranav404",
-  "solved": {
-    "all": 107,
-    "easy": 85,
-    "medium": 21,
-    "hard": 1
-  },
-  "lastSubmissionDate": "1693886646",
-  "totalSolvedCountInThisWeek": 4,
-  "solvedQuestionsInThisWeek": [
-    "roman-to-integer",
-    "find-the-index-of-the-first-occurrence-in-a-string"
-  ],
-  "__v": 2,
-  "totalNotSubmissionCount": 0
-},
-{
-
-  "name": "Aswin s",
-  "batch": "BCE105",
-  "domain": "MERN",
-  "phone": "555-123-4567",
-  "email": "aswan@example.com",
-  "leetcodeId": "priya",
-  "solved": {
-    "all": 154,
-    "easy": 54,
-    "medium": 91,
-    "hard": 9
-  },
-  "lastSubmissionDate": "1651547010",
-  "totalSolvedCountInThisWeek": 3,
-  "solvedQuestionsInThisWeek": [],
-  "totalNotSubmissionCount": 5
-},
-{
-
-  "name": "Zhaoran K",
-  "batch": "BCE72",
-  "domain": "MEAN",
-  "phone": "111-222-3333",
-  "email": "zhaoran@example.com",
-  "leetcodeId": "zhaoran",
-  "solved": {
-    "all": 773,
-    "easy": 195,
-    "medium": 432,
-    "hard": 146
-  },
-  "lastSubmissionDate": "1693817098",
-  "totalSolvedCountInThisWeek": 0,
-  "solvedQuestionsInThisWeek": [],
-  "totalNotSubmissionCount": 5
-},
-{
-
-  "name": "Sithis",
-  "batch": "BCE72",
-  "domain": "GO",
-  "phone": "111-222-3333",
-  "email": "sithi@example.com",
-  "leetcodeId": "Sithis",
-  "solved": {
-    "all": 688,
-    "easy": 215,
-    "medium": 407,
-    "hard": 66
-  },
-  "lastSubmissionDate": "1693690946",
-  "totalSolvedCountInThisWeek": 0,
-  "solvedQuestionsInThisWeek": [],
-  "totalNotSubmissionCount": 5
-},
-{
-
-  "name": "singh",
-  "batch": "BCE72",
-  "domain": "Java",
-  "phone": "111-222-3333",
-  "email": "mega@example.com",
-  "leetcodeId": "alphaomega05",
-  "solved": {
-    "all": 91,
-    "easy": 64,
-    "medium": 21,
-    "hard": 6
-  },
-  "lastSubmissionDate": "1693708418",
-  "totalSolvedCountInThisWeek": 3,
-  "solvedQuestionsInThisWeek": [
-    "count-symmetric-integers",
-    "double-a-number-represented-as-a-linked-list",
-    "max-pair-sum-in-an-array"
-  ],
-  "__v": 1,
-  "totalNotSubmissionCount": 5
-},
-{
-
-  "name": "sivam",
-  "batch": "BCE72",
-  "domain": "Java",
-  "phone": "111-222-3333",
-  "email": "shivamnares@example.com",
-  "leetcodeId": "shivamnaresh02",
-  "solved": {
-    "all": 725,
-    "easy": 208,
-    "medium": 408,
-    "hard": 109
-  },
-  "lastSubmissionDate": "1693888515",
-  "totalSolvedCountInThisWeek": 4,
-  "solvedQuestionsInThisWeek": [
-    "minimum-operations-to-make-a-special-number",
-    "count-symmetric-integers",
-    "unique-paths",
-    "copy-list-with-random-pointer"
-  ],
-  "__v": 3,
-  "totalNotSubmissionCount": 0
-},
-{
-
-  "name": "fayiz cj",
-  "batch": "BCE95",
-  "domain": "MERN",
-  "phone": "123-456-7890",
-  "email": "fayiz@example.com",
-  "leetcodeId": "fayizcj",
-  "solved": {
-    "all": 34,
-    "easy": 33,
-    "medium": 1,
-    "hard": 0
-  },
-  "lastSubmissionDate": "1693888436",
-  "totalSolvedCountInThisWeek": 4,
-  "solvedQuestionsInThisWeek": [
-    "add-digits"
-  ],
-  "__v": 2,
-  "totalNotSubmissionCount": 0
-}]
+[
+	{
+		"name": "Ajay E R",
+		"batch": "BCE67",
+		"domain": "MEAN",
+		"phone": "123-456-7890",
+		"email": "ajay@example.com",
+		"leetcodeId": "ajay-er",
+		"solved": {
+			"all": 49,
+			"easy": 41,
+			"medium": 8,
+			"hard": 0
+		},
+		"lastSubmissionDate": "1693886949",
+		"totalSolvedCountInThisWeek": 6,
+		"solvedQuestionsInThisWeek": ["check-if-n-and-its-double-exist", "create-hello-world-function"],
+		"__v": 2,
+		"totalNotSubmissionCount": 0
+	},
+	{
+		"name": "Magesh S",
+		"batch": "BCE58",
+		"domain": "MERN",
+		"phone": "987-654-3210",
+		"email": "magesh@example.com",
+		"leetcodeId": "mageshp121",
+		"solved": {
+			"all": 23,
+			"easy": 22,
+			"medium": 1,
+			"hard": 0
+		},
+		"lastSubmissionDate": "1693884415",
+		"totalSolvedCountInThisWeek": 5,
+		"solvedQuestionsInThisWeek": ["two-sum"],
+		"__v": 1,
+		"totalNotSubmissionCount": 0
+	},
+	{
+		"name": "Pranav s",
+		"batch": "BCE105",
+		"domain": "Backend Node.js",
+		"phone": "555-123-4567",
+		"email": "pranav@example.com",
+		"leetcodeId": "pranav404",
+		"solved": {
+			"all": 107,
+			"easy": 85,
+			"medium": 21,
+			"hard": 1
+		},
+		"lastSubmissionDate": "1693886646",
+		"totalSolvedCountInThisWeek": 4,
+		"solvedQuestionsInThisWeek": ["roman-to-integer", "find-the-index-of-the-first-occurrence-in-a-string"],
+		"__v": 2,
+		"totalNotSubmissionCount": 0
+	},
+	{
+		"name": "Aswin s",
+		"batch": "BCE105",
+		"domain": "MERN",
+		"phone": "555-123-4567",
+		"email": "aswan@example.com",
+		"leetcodeId": "priya",
+		"solved": {
+			"all": 154,
+			"easy": 54,
+			"medium": 91,
+			"hard": 9
+		},
+		"lastSubmissionDate": "1651547010",
+		"totalSolvedCountInThisWeek": 3,
+		"solvedQuestionsInThisWeek": [],
+		"totalNotSubmissionCount": 5
+	},
+	{
+		"name": "Zhaoran K",
+		"batch": "BCE72",
+		"domain": "MEAN",
+		"phone": "111-222-3333",
+		"email": "zhaoran@example.com",
+		"leetcodeId": "zhaoran",
+		"solved": {
+			"all": 773,
+			"easy": 195,
+			"medium": 432,
+			"hard": 146
+		},
+		"lastSubmissionDate": "1693817098",
+		"totalSolvedCountInThisWeek": 0,
+		"solvedQuestionsInThisWeek": [],
+		"totalNotSubmissionCount": 5
+	},
+	{
+		"name": "Sithis",
+		"batch": "BCE72",
+		"domain": "GO",
+		"phone": "111-222-3333",
+		"email": "sithi@example.com",
+		"leetcodeId": "Sithis",
+		"solved": {
+			"all": 688,
+			"easy": 215,
+			"medium": 407,
+			"hard": 66
+		},
+		"lastSubmissionDate": "1693690946",
+		"totalSolvedCountInThisWeek": 0,
+		"solvedQuestionsInThisWeek": [],
+		"totalNotSubmissionCount": 5
+	},
+	{
+		"name": "singh",
+		"batch": "BCE72",
+		"domain": "Java",
+		"phone": "111-222-3333",
+		"email": "mega@example.com",
+		"leetcodeId": "alphaomega05",
+		"solved": {
+			"all": 91,
+			"easy": 64,
+			"medium": 21,
+			"hard": 6
+		},
+		"lastSubmissionDate": "1693708418",
+		"totalSolvedCountInThisWeek": 3,
+		"solvedQuestionsInThisWeek": [
+			"count-symmetric-integers",
+			"double-a-number-represented-as-a-linked-list",
+			"max-pair-sum-in-an-array"
+		],
+		"__v": 1,
+		"totalNotSubmissionCount": 5
+	},
+	{
+		"name": "sivam",
+		"batch": "BCE72",
+		"domain": "Java",
+		"phone": "111-222-3333",
+		"email": "shivamnares@example.com",
+		"leetcodeId": "shivamnaresh02",
+		"solved": {
+			"all": 725,
+			"easy": 208,
+			"medium": 408,
+			"hard": 109
+		},
+		"lastSubmissionDate": "1693888515",
+		"totalSolvedCountInThisWeek": 4,
+		"solvedQuestionsInThisWeek": [
+			"minimum-operations-to-make-a-special-number",
+			"count-symmetric-integers",
+			"unique-paths",
+			"copy-list-with-random-pointer"
+		],
+		"__v": 3,
+		"totalNotSubmissionCount": 0
+	},
+	{
+		"name": "fayiz cj",
+		"batch": "BCE95",
+		"domain": "MERN",
+		"phone": "123-456-7890",
+		"email": "fayiz@example.com",
+		"leetcodeId": "fayizcj",
+		"solved": {
+			"all": 34,
+			"easy": 33,
+			"medium": 1,
+			"hard": 0
+		},
+		"lastSubmissionDate": "1693888436",
+		"totalSolvedCountInThisWeek": 4,
+		"solvedQuestionsInThisWeek": ["add-digits"],
+		"__v": 2,
+		"totalNotSubmissionCount": 0
+	}
+]

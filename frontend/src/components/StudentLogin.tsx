@@ -1,27 +1,41 @@
 import { studentAuth, useStudentAuth } from "../utils/validation/formValidation";
 import { studentsAuth } from "../utils/api/config/axios.PostAPi";
 import { Toaster, toast } from "react-hot-toast";
+import { Waveform } from "@uiball/loaders";
+import { useState } from "react";
 function StudentLogin() {
     const { errors, handleSubmit, reset, register } = useStudentAuth();
+    const [loader,setLoader]  = useState(false)
 
     const handleStudentsAuth = async (data: studentAuth) => {
-        const response: any = await studentsAuth(data);
-        if (response?.status === 200) {
-            toast.success("Successfully registered");
-            reset();
-        } else if (response?.response.status === 400) {
-            toast.error(`${response?.response.data.errors[0].message}`);
-            reset();
-        } else {
-            toast.error("Somthing went wrong");
-            reset();
+        setLoader(true);
+        if(loader){
+            toast('Please waite request under process!', {
+                icon: '⏳',
+                duration:580,
+                style:{background:"" , width:"30rem",borderColor:"#D2042D",borderWidth:".2rem", borderRadius:"3rem"}
+              })
+        }else{
+            const response: any = await studentsAuth(data);
+            if (response?.status === 200) {
+                setLoader(false)
+                toast.success("Successfully registered");
+                reset();
+            } else if (response?.response.status === 400) {
+                setLoader(false)
+                toast.error(`${response?.response.data.errors[0].message}`);
+            } else {
+                setLoader(false)
+                toast.error("Somthing went wrong");
+            }
         }
+        
     };
     return (
-        <>
-            <Toaster position="top-center" reverseOrder={false} />
-            <div className="flex mt-5 justify-center">
-                <div className="flex w-full lg:w-1/2  relative justify-center items-center space-y-8">
+        <div >
+            <Toaster position="top-center"  reverseOrder={false} />
+            <div className="flex mt-5 h-[62rem]  justify-center">
+                <div className="flex w-full  lg:w-1/2   justify-center items-center ">
                     <div className="w-full   md:px-32 rounded-2xl lg:px-24">
                         <form
                             key={"studentAuth"}
@@ -37,7 +51,7 @@ function StudentLogin() {
                             </div>
                             <div className="flex flex-col justify-start">
                                 {errors.name ? (
-                                    <span className="text-sm font-normal text-red-600 mb-8">{errors.name?.message}</span>
+                                    <span className="text-sm font-normal text-red-600 ">{errors.name?.message}</span>
                                 ) : (
                                     <p className="ml-2 mb-1">First Name</p>
                                 )}
@@ -50,7 +64,7 @@ function StudentLogin() {
                                     />
                                 </div>
                                 {errors.lastName ? (
-                                    <span className="text-sm font-normal text-red-600 mb-8">{errors.lastName?.message}</span>
+                                    <span className="text-sm font-normal text-red-600 ">{errors.lastName?.message}</span>
                                 ) : (
                                     <p className="ml-2 mb-1">Last Name</p>
                                 )}
@@ -68,6 +82,18 @@ function StudentLogin() {
                             ) : (
                                 <p className="ml-2 mb-1">Domain</p>
                             )}
+
+                            {
+                               loader && (<div className=" absolute pt-[4rem] md:pl-[12rem] pl-[7rem]">
+                               <Waveform 
+                                size={40}
+                                lineWeight={3.5}
+                                speed={1} 
+                                color="black" 
+                               />
+                            </div>)
+                            }
+                              
                             <div className="flex  hover:border-black/70 items-center cursor-pointer shadow-sm border-2 mb-3 py-2 px-3 rounded-lg ">
                                 <select
                                     placeholder="Domain"
@@ -102,7 +128,7 @@ function StudentLogin() {
                                 <input
                                     className="pl-2 w-full cursor-pointer   outline-none border-none"
                                     type="text"
-                                    placeholder="E.g: BCE55"
+                                    placeholder="e.g: BCE55"
                                     {...register("batch")}
                                 />
                             </div>
@@ -155,7 +181,7 @@ function StudentLogin() {
                     </div>
                 </div>
             </div>
-        </>
+            </div>
     );
 }
 

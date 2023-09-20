@@ -28,6 +28,8 @@ function PieData() {
 				toast.error("Ooops...! Couldn't find Daily metrics");
 			} else {
 				toast.error(`${response.response.data.errors[0].message}`);
+				
+				
 			}
 		};
 		dailyMetricsHandler();

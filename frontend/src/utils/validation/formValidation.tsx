@@ -56,7 +56,7 @@ export const useOtpValidation = () => {
 // Validation for students login
 
 export type studentAuth = {
-name: string;
+  name: string;
   lastName:string;
   phone: string;
   email: string;
@@ -70,14 +70,14 @@ export const studentAuthSchema: ZodType<studentAuth> = z.object({
     .refine((value) => value.trim() !== "", {
       message: "Name cannot be empty"
     })
-    .refine((value) => /^[a-zA-Z]+$/.test(value), {
-      message: "First name must contain only alphabetic characters"
+    .refine((value) => /^[a-zA-Z ]+$/.test(value), {
+      message: "Name must contain only alphabetic characters"
     }),
   lastName:z.string()
   .refine((value) => value.trim() !== "", {
     message: "Name cannot be empty"
   })
-  .refine((value) => /^[a-zA-Z]+$/.test(value), {
+  .refine((value) => /^[a-zA-Z ]+$/.test(value), {
     message: "Last name must contain only alphabetic characters"
   }),
   phone: z
@@ -91,18 +91,18 @@ export const studentAuthSchema: ZodType<studentAuth> = z.object({
   }),
   batch: z
     .string()
-    .refine((value) => value.length >= 4 && value.length <= 6, {
-      message: "Batch must be between 4 and 6 characters long"
+    .refine((value) => value.length >= 5 && value.length <= 6, {
+      message: "Please provide the batch based one the example"
     })
-    .refine((value) => /^[a-zA-Z0-9]+$/.test(value), {
-      message: "Special charatcters are not accepted"
+    .refine((value) => /^[A-Z0-9 ]+$/.test(value), {
+      message: "Special charatcters or small leters are not  accepted "
     })
     .refine((value) => value.trim() !== "", {
       message: "Name cannot be empty"
     }),
   domain: z
     .string()
-    .refine((value) => /^[A-Z]+$/.test(value), {
+    .refine((value) => /^[A-Z ]+$/.test(value), {
       message: "Domain must contain only uppercase letters"
     })
     .refine((value) => value.trim() !== "", {

@@ -19,7 +19,7 @@ import StudentLogin from "./components/StudentLogin";
 const App = () => {
 	return (
 		<>
-			<div className="bg-[#ece8e0] h-screen p-4 ">
+			<div className="bg-[#ece8e0] h-[66rem] p-4 ">
 				<BrowserRouter>
 					<Routes>
 						{/* Auth Route */}

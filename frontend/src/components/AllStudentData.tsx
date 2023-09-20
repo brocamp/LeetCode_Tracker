@@ -107,6 +107,7 @@ function AllStudentData() {
 
 	return (
 		<>
+		
 			<Toaster position="top-center" reverseOrder={false} />
 			<div className=" h-[43rem]   p-5 rounded-lg mt-3 w-full bg-white border border-slate-200">
 				<div className="mb-3 w-[50%] flex justify-between">
@@ -178,7 +179,6 @@ function AllStudentData() {
 												<span className="pt-3  px-4 block text-lg font-bold text-gray-800 dark:text-white">
 													<svg
 														className="rounded-lg border mt-36 ml-32 border-gray-500"
-
 														width="500"
 														height="320"
 														viewBox="0 0 500 320"
@@ -213,7 +213,7 @@ function AllStudentData() {
 							<nav className=" ml-5  items-center rounded-lg  space-x-2">
 								<span
 									onClick={handlePrev}
-									className="text-gray-500 hover:text-black p-4 inline-flex items-center gap-2 rounded-md">
+									className="text-gray-500 cursor-pointer hover:text-black p-4 inline-flex items-center gap-2 rounded-md">
 									<span aria-hidden="true">«</span>
 									<span className="sr-only">Previous</span>
 								</span>
@@ -222,13 +222,13 @@ function AllStudentData() {
 										key={index + 1}
 										className={`w-10 h-10 ${
 											currentPage === index + 1 ? "bg-black text-white" : "text-gray-500 hover:text-black"
-										} p-4 inline-flex items-center text-sm font-medium rounded-full`}
+										} p-4 inline-flex cursor-pointer items-center text-sm font-medium rounded-full`}
 										onClick={() => handlePageChange(index + 1)}>
 										{index + 1}
 									</span>
 								))}
 								<span
-									className="text-gray-500 hover:text-black p-4 inline-flex items-center gap-2 rounded-md"
+									className="text-gray-500 cursor-pointer hover:text-black p-4 inline-flex items-center gap-2 rounded-md"
 									onClick={handleNext}>
 									<span className="sr-only">Next</span>
 									<span aria-hidden="true">»</span>

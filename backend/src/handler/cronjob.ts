@@ -2,9 +2,9 @@ import cron from "node-cron";
 import { LeetStudentProfileUpdate, weeklyUpdate } from "./leetcode-updater";
 import * as cli from "../cli/ui";
 
-/* The code is defining a task called `LeetcodeUpdaterTask` using the `cron.schedule` function from the
-`node-cron` library. This task is scheduled to run every day at midnight (0 hours and 0 minutes)
-using the cron expression `"0 0 * * *"`. */
+/* The code is defining a task called `LeetcodeDailyUpdateTask` using the `cron.schedule` function from
+the `node-cron` library. This task is scheduled to run every day at 23:15 (11:15 PM) in the
+Asia/Kolkata timezone. */
 export const LeetcodeDailyUpdateTask = cron.schedule(
 	"30 23 * * *",
 	async () => {
@@ -17,6 +17,9 @@ export const LeetcodeDailyUpdateTask = cron.schedule(
 	}
 );
 
+/* The code is defining a task called `WeeklyDatabaseUpdateTask` using the `cron.schedule` function
+from the `node-cron` library. This task is scheduled to run every Sunday at 23:00 (11:00 PM) in the
+Asia/Kolkata timezone. */
 export const WeeklyDatabaseUpdateTask = cron.schedule(
 	"0 23 * * 0",
 	async () => {
@@ -28,4 +31,3 @@ export const WeeklyDatabaseUpdateTask = cron.schedule(
 		timezone: "Asia/Kolkata"
 	}
 );
-// ' */1 * * * * ' you can test the job for running every minute using this

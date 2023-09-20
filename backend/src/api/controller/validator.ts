@@ -50,8 +50,8 @@ export const studentValidator = [
 		.withMessage("LastName is required")
 		.bail()
 		.isLength({ min: 1 })
-		.withMessage("LastName should be at least 2 characters long")
-		.isLength({ max: 20 })
+		.withMessage("LastName should be at least 1 characters long")
+		.isLength({ max: 50 })
 		.withMessage("LastName should be less than 50 characters"),
 
 	// Domain validation
@@ -82,9 +82,9 @@ export const studentValidator = [
 		.bail()
 		.withMessage("LeetCode ID is required")
 		.isLength({ min: 1 })
-		.withMessage("LeetCode ID should be at least 2 characters long")
-		.isLength({ max: 30 })
-		.withMessage("LeetCode ID should be less than 10 characters")
+		.withMessage("LeetCode ID should be at least 1 characters long")
+		.isLength({ max: 40 })
+		.withMessage("LeetCode ID should be less than 40 characters")
 ];
 
 export const signinValidator = [

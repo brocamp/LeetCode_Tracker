@@ -89,7 +89,7 @@ function AllStudentData() {
         axios.get(`https://leetcard.jacoblin.cool/${userName}?ext=heatmap&theme=forest`).then((response: any) => {
             setSvgData(response.data);
             setUiControll(true);
-            clearTimeout(time) 
+            
         });
     }
     const handleShowStudent = (userName: string) => {
@@ -177,11 +177,10 @@ function AllStudentData() {
                                 key={index}
                                 className="  mt-3 h-12  bg-white justify-evenly items-center border flex flex-row border-slate-400 gap-2  rounded-lg">
                                 <div className="   pt-1 flex  h-8 w-full">
-                                    <div className="hs-tooltip inline-block ml-5 [--trigger:click] ">
+                                    <div className="hs-tooltip inline-block ml-5 [--trigger:hover] ">
                                         <a className="hs-tooltip-toggle block text-center" href="javascript:;">
                                             <span
-                                                onClick={() => handleShowStudent(dataObject.leetcodeId)}
-                                                onMouseLeave={clearSvgData}
+                                                onMouseEnter={() => handleShowStudent(dataObject.leetcodeId)}
                                                 className="inline-flex items-center gap-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
                                                 <span className="w-1.5 h-1.5 inline-block bg-indigo-400 rounded-full" />
                                                 View
@@ -208,7 +207,7 @@ function AllStudentData() {
                                         </a>
                                     </div>
 
-                                    <span className=" ml-10 text-md font-medium ">{index + 1}</span>
+                                    <span className=" ml-10 text-md font-medium ">{currentPage === 1 ? (currentPage*0+(index+1)):(currentPage*10+(index+1))}</span>
                                 </div>
                                 <div className="  pt-1 flex justify-center h-8 w-full">
                                     <span className=" text-md font-medium ">{dataObject.name}</span>

@@ -94,6 +94,7 @@ const LeaderBorder = () => {
 				</div>
 				<div className="p-5   h-[38rem]">
 					{leaderBordRank?.map((object: any, index: number) => {
+						
 						return <LeaderBoard index={index} rank={object} />;
 					})}
 				</div>

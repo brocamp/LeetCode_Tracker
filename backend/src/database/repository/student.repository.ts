@@ -74,7 +74,13 @@ export class StudentRepository {
 	async getMetrics(): Promise<{ submissionCount: number }[]> {
 		// Get the current date
 		const currentDate = new Date();
-		const startTime = currentDate.getTime() - 23 * 60 * 60 * 1000;
+		
+		// Calculate the starting time of yesterday (12:00 AM)
+		const startTime = new Date(currentDate);
+		startTime.setHours(0, 0, 0, 0);// Set to 00:00:00:000
+
+		// Get the Unix timestamp in milliseconds
+		const unixTimestamp = startTime.getTime();
 
 		return Students.aggregate([
 			{
@@ -93,7 +99,7 @@ export class StudentRepository {
 			{
 				$match: {
 					submission: {
-						$gte: startTime
+						$gte: unixTimestamp
 					}
 				}
 			},

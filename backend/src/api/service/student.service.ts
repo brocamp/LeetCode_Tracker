@@ -14,15 +14,14 @@ export class StudentService {
 
 	public dailyMetrics = async () => {
 		//get lastsubmission count of students
-		const students = await this.studentRepository.getMetrics();
+		const studentsSolvedCount = await this.weeklymetricsRepository.getLastDaySubmissionCount();
 
-		console.log(students);
 		//get total count
 		const totalCount = await this.studentRepository.countStudents();
 
 		return {
 			totalStudents: totalCount,
-			yesterdaySolvedStudentsCount: students[0]?.submissionCount || 0
+			yesterdaySolvedStudentsCount: studentsSolvedCount[0]?.totalStudentsSolved || 0
 		};
 	};
 

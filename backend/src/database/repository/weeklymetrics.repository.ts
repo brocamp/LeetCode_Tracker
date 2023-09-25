@@ -18,4 +18,21 @@ export class weeklymetricsRepository {
 			}
 		]);
 	}
+
+	async getLastDaySubmissionCount():Promise<{totalStudentsSolved:number}[]> {
+		return WeeklyMetrics.aggregate([
+			{
+				$sort: { createdAt: -1 }
+			},
+			{
+				$limit: 1
+			},
+			{
+				$project: {
+					_id: 0,
+					totalStudentsSolved: 1,
+				}
+			}
+		]);
+	}
 }

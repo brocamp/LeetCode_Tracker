@@ -65,17 +65,16 @@ export const LeetStudentProfileUpdate = async () => {
 		})
 	);
 
-	/* This code block is retrieving metrics from the `studentRepository` and creating a new entry in the
-	`WeeklyMetrics` collection in the database.
-	 */
-	let result = await studentRepository.getMetrics();
+	
+	/* This code block is responsible for updating the weekly metrics of student submissions. */
+	let submissionResult = await studentRepository.getMetrics();
 
 	const currentDate = new Date();
 
 	const currentDay = currentDate.toLocaleString("en-US", { weekday: "long" });
 
 	await WeeklyMetrics.create({
-		totalStudentsSolved: result[0]?.submissionCount || 0,
+		totalStudentsSolved: submissionResult[0]?.submissionCount || 0,
 		day: currentDay
 	});
 };

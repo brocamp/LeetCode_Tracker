@@ -6,7 +6,6 @@ import { useState } from "react";
 function StudentLogin() {
     const { errors, handleSubmit, reset, register } = useStudentAuth();
     const [loader,setLoader]  = useState(false)
-
     const handleStudentsAuth = async (data: studentAuth) => {
         setLoader(true);
         if(loader){

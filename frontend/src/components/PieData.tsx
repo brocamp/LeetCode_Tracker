@@ -16,7 +16,6 @@ function PieData() {
 		const dailyMetricsHandler = async () => {
 			const response: any = await getDailyMetrics();
 			if (response.status === 200) {
-
 				const notCompletedStudents = response.data.totalStudents - response.data.yesterdaySolvedStudentsCount;
 				const completPersantage = (response.data.yesterdaySolvedStudentsCount / response.data.totalStudents) * 100;
 				setNotCompletedStudents(notCompletedStudents);
@@ -28,8 +27,6 @@ function PieData() {
 				toast.error("Ooops...! Couldn't find Daily metrics");
 			} else {
 				toast.error(`${response.response.data.errors[0].message}`);
-				
-				
 			}
 		};
 		dailyMetricsHandler();

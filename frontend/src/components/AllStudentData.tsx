@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { getAllStudents, searchStudents } from "../utils/api/config/axios.GetApi";
 import { Toaster, toast } from "react-hot-toast";
 import axios from "axios";
-import { Ring,DotSpinner } from "@uiball/loaders";
+import { Ring } from "@uiball/loaders";
 
 type UserData = [
 	{
@@ -35,7 +35,7 @@ function AllStudentData() {
 	const [totalpageNumber, setTotalPageNumber] = useState(1);
 	const [currentPage, setCurrentPage] = useState(1);
 	const [uiControle, setUiControll] = useState(false);
-	let time: any;
+
 
 	const [searchInput, setSearchInput] = useState("") as any;
 	const [isInputEmpty, setIsInputEmpty] = useState(true);

@@ -46,7 +46,8 @@ router.get("/not-doing", reqAuth, async (req: Request, res: Response) => {
 });
 
 router.get("/weekly-metrics", reqAuth, async (req: Request, res: Response) => {
-	const lastWeekReport = await Service.weeklyMetrics();
+	let lastWeekReport = await Service.weeklyMetrics();
+	lastWeekReport = lastWeekReport.reverse();
 	res.json({ lastWeekReport });
 });
 

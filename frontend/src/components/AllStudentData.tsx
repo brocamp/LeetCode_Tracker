@@ -85,18 +85,13 @@ function AllStudentData() {
 			setCurrentPage((prev) => prev + 1);
 		}
 	};
-	const apiCall = (userName: string) => {
+
+	const handleShowStudent = (userName: string) => {
 		axios.get(`https://leetcard.jacoblin.cool/${userName}?ext=heatmap&theme=forest`).then((response: any) => {
 			setSvgData(response.data);
 			setUiControll(true);
 		});
 	};
-	const handleShowStudent = (userName: string) => {
-		time = setTimeout(() => {
-			apiCall(userName);
-		}, 100);
-	};
-
 	const clearSvgData = () => {
 		setSvgData("");
 		setUiControll(false);

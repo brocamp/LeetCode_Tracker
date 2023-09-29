@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import LeaderBoard from "../components/LeaderBoarde";
+import LeaderBoard from "../components/LeaderBoard";
 import { getLeaderboard } from "../utils/api/config/axios.GetApi";
 import { Toaster, toast } from "react-hot-toast";
 
@@ -34,13 +34,13 @@ const LeaderBorder = () => {
 					</div>
 					<div
 						id="hs-sign-out-alert"
-						className="hs-overlay hidden w-full h-full fixed top-0 left-0 z-[60] overflow-x-hidden overflow-y-auto">
+						className="hs-overlay  bg-black/20  hidden w-full h-full fixed top-0 left-0 z-[60] overflow-x-hidden overflow-y-auto">
 						<div className="hs-overlay-open:mt-7 hs-overlay-open:opacity-100 hs-overlay-open:duration-500 mt-0 opacity-0 ease-out transition-all sm:max-w-lg sm:w-full m-3 sm:mx-auto">
-							<div className="relative flex flex-col bg-white shadow-lg rounded-xl">
-								<div className="absolute top-2 right-2">
+							<div className="relative flex flex-col top-56 bg-white shadow-lg rounded-xl">
+								<div className="absolute top-5 bg-[#ece8e0] rounded-xl  right-6">
 									<button
 										type="button"
-										className="inline-flex flex-shrink-0 justify-center items-center h-8 w-8 rounded-md text-gray-500 hover:text-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-white transition-all text-sm dark:focus:ring-gray-700 dark:focus:ring-offset-gray-800"
+										className="inline-flex flex-shrink-0 justify-center items-center h-8 w-8 rounded-md text-black hover:text-   transition-all text-sm"
 										data-hs-overlay="#hs-sign-out-alert">
 										<span className="sr-only">Close</span>
 										<svg
@@ -55,7 +55,7 @@ const LeaderBorder = () => {
 												fill="currentColor"
 											/>
 										</svg>
-									</button>
+									</button>	
 								</div>
 								<div className="p-4 sm:p-10 text-center overflow-y-auto">
 									{/* Icon */}
@@ -81,7 +81,7 @@ const LeaderBorder = () => {
 										</a>
 										<button
 											type="button"
-											className="py-2.5 px-4 inline-flex justify-center  hover:-translate-y-1 transition-all duration-500 items-center gap-2 rounded-md border border-transparent font-semibold bg-blue-500 text-white  text-sm "
+											className="py-2.5 px-4 inline-flex justify-center bg-black  hover:-translate-y-1 transition-all duration-500 items-center gap-2 rounded-md border border-transparent font-semibold  text-white  text-sm "
 											data-hs-overlay="#hs-sign-out-alert">
 											Publish
 										</button>

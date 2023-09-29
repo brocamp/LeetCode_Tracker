@@ -1,5 +1,8 @@
+import { Link } from "react-router-dom";
 
 const LeaderBoard = (prop: any) => {
+	console.log(prop);
+	
 	return (
 		<>
 			<div
@@ -18,6 +21,12 @@ const LeaderBoard = (prop: any) => {
 					<div className="h-full w-full">
 						<h1 className="text-center text-lg font-medium text-teal-800">Solved/week</h1>
 					</div>
+					<div className="h-full w-full">
+						<h1 className="text-center text-lg font-medium text-teal-800">UserId</h1>
+					</div>
+					<div className="h-full w-full">
+						<h1 className="text-center text-lg font-medium text-teal-800">Profile</h1>
+					</div>
 				</div>
 				<div className="flex h-14 w-full flex-row gap-2  rounded-lg bg-slate-100 p-2">
 					<div className="h-full flex justify-center  pl-2 w-full">
@@ -33,6 +42,12 @@ const LeaderBoard = (prop: any) => {
 					</div>
 					<div className="h-full p-2 w-full">
 						<h1 className="text-center">{prop.rank.totalSolvedCountInThisWeek}</h1>
+					</div>
+					<div className="h-full p-2 w-full">
+						<h1 className="text-center">{prop.rank.leetcodeId}</h1>
+					</div>
+					<div className="h-full p-2 w-full">
+						<Link to={`https://leetcode.com/${prop.rank.leetcodeId}/`}  className="text-blue-600 ml-10 cursor-pointer underline underline-offset-2 text-lg text-center">View</Link>
 					</div>
 				</div>
 			</div>

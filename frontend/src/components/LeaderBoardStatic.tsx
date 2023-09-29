@@ -1,4 +1,4 @@
-function LeaderBorderStatic() {
+function LeaderBoardStatic() {
 	return (
 		<>
 			<div className="grid grid-cols-3  grid-rows-5 gap-6">
@@ -31,4 +31,4 @@ function LeaderBorderStatic() {
 	);
 }
 
-export default LeaderBorderStatic;
+export default LeaderBoardStatic;

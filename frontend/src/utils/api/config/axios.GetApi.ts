@@ -1,5 +1,5 @@
 import { AxiosRequestConfig } from "axios";
-import { apiRequest, headerConfg } from "../config/axios.Config";
+import { apiRequest, headerConfg } from "./axios.Config";
 
 export const getDailyMetrics = async () => {
 	const config: AxiosRequestConfig = {

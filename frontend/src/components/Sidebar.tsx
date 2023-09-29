@@ -23,11 +23,11 @@ const Sidebar = () => {
 								to={"/"}
 								className={
 									path.pathname === "/"
-										? "block rounded-lg px-4 py-2 text-lg font-medium text-gray-500 bg-gray-100 text-gray-700"
+										? "block rounded-lg px-4 py-2 text-lg font-medium text-gray-500 bg-gray-100"
 										: "block rounded-lg px-4 py-2 text-lg font-medium text-gray-500"
 								}>
 
-								Statics
+                              Statistics
 							</Link>
 						</li>
 						<li>
@@ -36,11 +36,11 @@ const Sidebar = () => {
 								to={"/leaderborde"}
 								className={
 									path.pathname === "/leaderborde"
-										? "block rounded-lg px-4 py-2 text-lg font-medium text-gray-500 bg-gray-100 text-gray-700"
+										? "block rounded-lg px-4 py-2 text-lg font-medium text-gray-500 bg-gray-100"
 										: "block rounded-lg px-4 py-2 text-lg font-medium text-gray-500"
 								}>
 
-								Leader Bord
+								Leader Board
 							</Link>
 						</li>
 						<li>
@@ -48,7 +48,7 @@ const Sidebar = () => {
 								to={"/students"}
 								className={
 									path.pathname === "/students"
-										? "block rounded-lg px-4 py-2 text-lg font-medium text-gray-500 bg-gray-100 text-gray-700"
+										? "block rounded-lg px-4 py-2 text-lg font-medium text-gray-500 bg-gray-100"
 										: "block rounded-lg px-4 py-2 text-lg font-medium text-gray-500"
 								}>
 								Students
@@ -59,7 +59,7 @@ const Sidebar = () => {
 								to={"/notdone"}
 								className={
 									path.pathname === "/notdone"
-										? "block rounded-lg px-4 py-2 text-lg font-medium text-gray-500 bg-gray-100 text-gray-700"
+										? "block rounded-lg px-4 py-2 text-lg font-medium text-gray-500 bg-gray-100"
 										: "block rounded-lg px-4 py-2 text-lg font-medium text-gray-500"
 								}>
 								Students Notdone
@@ -94,7 +94,6 @@ const Sidebar = () => {
 					<div className="animate-ping mt-4 ml-2 w-3 h-3 rounded-full bg-indigo-700"></div>
 					<h3 className=" rounded-lg px-2  py-2 text-md font-medium text-gray-500">Send new Question </h3>
 				</div>
-
 				<textarea
 					className="w-[100%] outline-gray-400 p-2 pl-3 bg-slate-50  shadow-xl border h-44 resize-none  rounded-lg "
 					name=""

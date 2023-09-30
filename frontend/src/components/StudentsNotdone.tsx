@@ -168,7 +168,7 @@ const StudentsNotdone = () => {
 										</button>
 										<div
 											id="hs-static-backdrop-modal"
-											className="hs-overlay hidden w-full  h-full fixed top-60 left-0 ml-24 z-[60]  overflow-x-hidden overflow-y-auto [--overlay-backdrop:static]"
+											className="hs-overlay hidden fixed inset-0 z-[60] overflow-x-hidden overflow-y-auto bg-black bg-opacity-50 flex justify-center items-center"
 											data-hs-overlay-keyboard="false">
 											<div className="hs-overlay-open:mt-7 hs-overlay-open:opacity-100 hs-overlay-open:duration-500 mt-0 opacity-0  ease-out transition-all sm:max-w-lg sm:w-full m-3 sm:mx-auto">
 												<div className="flex flex-col bg-white border shadow-sm rounded-xl">

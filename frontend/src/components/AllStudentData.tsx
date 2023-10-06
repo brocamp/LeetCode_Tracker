@@ -234,7 +234,7 @@ function AllStudentData() {
 										</div>
 									</>
 									<span className=" ml-10 text-md font-medium ">
-										{currentPage === 1 ? index + 1 : (currentPage - 1) * 10 + index + 1}
+										{currentPage === 1 ? index + 1 : (currentPage - 1) * 100 + index + 1}
 									</span>
 								</div>
 								<div className="  pt-1 flex justify-center h-8 w-full">

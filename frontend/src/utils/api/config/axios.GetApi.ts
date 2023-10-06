@@ -19,9 +19,10 @@ export const getLeaderboard = async () => {
 };
 
 export const getAllStudents = async (pageNumber: number) => {
+	const pageLimit = 100;
 	const config: AxiosRequestConfig = {
 		method: "GET",
-		url: `api/student/all?page=${pageNumber}`,
+		url: `api/student/all?page=${pageNumber}&limit=${pageLimit}`,
 		headers: headerConfg()
 	};
 	return await apiRequest(config);
@@ -52,4 +53,3 @@ export const weeklyMetrics = async () => {
 	};
 	return await apiRequest(config);
 };
-

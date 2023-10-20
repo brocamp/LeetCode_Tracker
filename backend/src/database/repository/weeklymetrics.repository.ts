@@ -1,6 +1,6 @@
 import { WeeklyMetrics } from "../model";
 
-export class weeklymetricsRepository {
+export class WeeklymetricsRepository {
 	async weeklyMetrics() {
 		return WeeklyMetrics.aggregate([
 			{
@@ -19,7 +19,7 @@ export class weeklymetricsRepository {
 		]);
 	}
 
-	async getLastDaySubmissionCount():Promise<{totalStudentsSolved:number}[]> {
+	async getLastDaySubmissionCount(): Promise<{ totalStudentsSolved: number }[]> {
 		return WeeklyMetrics.aggregate([
 			{
 				$sort: { createdAt: -1 }
@@ -30,7 +30,7 @@ export class weeklymetricsRepository {
 			{
 				$project: {
 					_id: 0,
-					totalStudentsSolved: 1,
+					totalStudentsSolved: 1
 				}
 			}
 		]);

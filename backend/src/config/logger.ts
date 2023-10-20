@@ -5,7 +5,7 @@ const { combine, timestamp, json, errors } = winston.format;
 /* The  code block is creating a logger object using the
 Winston library. */
 const logger = winston.createLogger({
-	level: "info",
+	level: "error",
 	format: combine(timestamp(), json()),
 	transports: [
 		new winston.transports.File({

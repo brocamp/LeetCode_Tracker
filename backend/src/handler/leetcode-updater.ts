@@ -65,7 +65,6 @@ export const LeetStudentProfileUpdate = async () => {
 		})
 	);
 
-	
 	/* This code block is responsible for updating the weekly metrics of student submissions. */
 	let submissionResult = await studentRepository.getMetrics();
 

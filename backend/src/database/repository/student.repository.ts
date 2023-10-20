@@ -74,10 +74,10 @@ export class StudentRepository {
 	async getMetrics(): Promise<{ submissionCount: number }[]> {
 		// Get the current date
 		const currentDate = new Date();
-		
+
 		// Calculate the starting time of yesterday (12:00 AM)
 		const startTime = new Date(currentDate);
-		startTime.setHours(0, 0, 0, 0);// Set to 00:00:00:000
+		startTime.setHours(0, 0, 0, 0); // Set to 00:00:00:000
 
 		// Get the Unix timestamp in milliseconds
 		const unixTimestamp = startTime.getTime();

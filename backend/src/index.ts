@@ -1,15 +1,9 @@
 import "dotenv/config";
-import "reflect-metadata";
-
-import * as cli from "./cli/ui";
 import app from "./app";
-
-import { connectMongoDb } from "./config";
+import { connectMongoDb, logger } from "./config";
 import { LeetcodeDailyUpdateTask, WeeklyDatabaseUpdateTask } from "./handler/cronjob";
 
 const start = async () => {
-	cli.printIntro();
-
 	await connectMongoDb(process.env.MONGO_URI!);
 
 	LeetcodeDailyUpdateTask.start();
@@ -17,9 +11,14 @@ const start = async () => {
 	WeeklyDatabaseUpdateTask.start();
 
 	app.listen(process.env.PORT!, () => {
-		cli.print(`App is Running on port ${process.env.PORT} `);
-		cli.printOutro();
+		console.log(`App is Running on port ${process.env.PORT} `);
 	});
 };
+
+["uncaughtException", "unhandledRejection"].forEach((event) =>
+	process.on(event, (err) => {
+		logger.error(`something bad happened: ${event}, msg: ${err.stack || err}`);
+	})
+);
 
 start();

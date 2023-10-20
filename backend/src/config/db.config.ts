@@ -1,11 +1,10 @@
 import mongoose from "mongoose";
 import { DatabaseConnectionError } from "../api/errors";
-import { print } from "../cli/ui";
 
 export const connectMongoDb = async (connectionUri: string) => {
 	try {
 		await mongoose.connect(connectionUri);
-		print("Database Connected Successfully");
+		console.log("Database Connected Successfully");
 	} catch (error) {
 		throw new DatabaseConnectionError();
 	}

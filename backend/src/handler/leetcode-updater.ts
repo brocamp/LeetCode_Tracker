@@ -5,7 +5,6 @@ import { getProfile, getTotalSolved, getRecentSubmissionList } from "./leetcode"
 import { isToday, isAlreadySolvedOrNot, IsAlreadyInDb } from "./utils";
 import pLimit from "p-limit";
 
-
 /* This queue allows a maximum of 2 concurrent executions of the code block passed to it. It ensures that only 2
 students' profiles are updated at a time, preventing excessive resource usage and potential
 performance issues. */
@@ -22,7 +21,7 @@ export const LeetStudentProfileUpdate = async () => {
 	const students = await studentRepository.find();
 
 	// Concurrency: Process students concurrently
-	await Promise.all(
+	await Promise.allSettled(
 		students.map(async (student) => {
 			await queue(async () => {
 				try {
@@ -89,14 +88,18 @@ export const LeetStudentProfileUpdate = async () => {
 };
 
 export const weeklyUpdate = async () => {
-	const students = await Students.find({});
+	try {
+		const students = await Students.find({});
 
-	await Promise.all(
-		students.map(async (student) => {
-			await queue(async () => {
-				student.totalSolvedCountInThisWeek = 0;
-				await student.save();
-			});
-		})
-	);
+		await Promise.allSettled(
+			students.map(async (student) => {
+				await queue(async () => {
+					student.totalSolvedCountInThisWeek = 0;
+					await student.save();
+				});
+			})
+		);
+	} catch (error: any) {
+		logger.error(error.stack || error);
+	}
 };

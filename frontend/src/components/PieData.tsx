@@ -14,7 +14,7 @@ function PieData() {
 
 	useEffect(() => {
 		const dailyMetricsHandler = async () => {
-			const response: any = await getDailyMetrics();
+			const response:any = await getDailyMetrics();
 			if (response.status === 200) {
 				const notCompletedStudents = response.data.totalStudents - response.data.yesterdaySolvedStudentsCount;
 				const completPersantage = (response.data.yesterdaySolvedStudentsCount / response.data.totalStudents) * 100;

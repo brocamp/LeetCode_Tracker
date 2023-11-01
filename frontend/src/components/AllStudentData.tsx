@@ -171,6 +171,7 @@ function AllStudentData() {
 								<div className="   pt-1 flex  h-8 w-full">
 									<>
 										<button
+                                        
 											onClick={() => handleShowStudent(dataObject.leetcodeId)}
 											type="button"
 											className="py-3 ml-4 cursor-pointer px-4 inline-flex justify-center items-center gap-2 rounded-xl border border-transparent font-semibold  hover:-translate-y-1 transition-all duration-500  bg-blue-100 text-blue-800 underline underline-offset-2    text-sm dark:focus:ring-offset-gray-800"
@@ -179,7 +180,7 @@ function AllStudentData() {
 										</button>
 										<div
 											id="hs-static-backdrop-modal"
-											className="hs-overlay hidden fixed inset-0 z-[60] overflow-x-hidden overflow-y-auto bg-black bg-opacity-50 flex justify-center items-center"
+											className="hs-overlay hidden w-full h-full fixed top-60 left-0 ml-24 z-[60]  overflow-x-hidden overflow-y-auto [--overlay-backdrop:static]"
 											data-hs-overlay-keyboard="false">
 											<div className="hs-overlay-open:mt-7 hs-overlay-open:opacity-100 hs-overlay-open:duration-500 mt-0 opacity-0  ease-out transition-all sm:max-w-lg sm:w-full m-3 sm:mx-auto">
 												<div className="flex flex-col bg-white border shadow-sm rounded-xl">
@@ -234,7 +235,7 @@ function AllStudentData() {
 										</div>
 									</>
 									<span className=" ml-10 text-md font-medium ">
-										{currentPage === 1 ? index + 1 : (currentPage - 1) * 100 + index + 1}
+										{currentPage === 1 ? currentPage * 0 + (index + 1) : currentPage * 10 + (index + 1)}
 									</span>
 								</div>
 								<div className="  pt-1 flex justify-center h-8 w-full">

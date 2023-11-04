@@ -64,4 +64,17 @@ router.get("/weekly-metrics", reqAuth, async (req: Request, res: Response) => {
 	res.json({ lastWeekReport });
 });
 
+router.post("/edit/:id", reqAuth, async (req: Request, res: Response) => {
+	const data = req.body as StudentDTO;
+	const id = req.params.id as string;
+	const student = await studentRepository.findById(id);
+	if (!student) throw new BadRequestError("No student found");
+	if (data.leetcodeId) {
+		const idExist = await getProfile(data.leetcodeId);
+		if (!idExist) throw new BadRequestError("No leetcode id exist");
+	}
+	const result = await studentRepository.editProfile(id, data);
+	res.json(202).json(result);
+});
+
 export { router as StudentRouter };

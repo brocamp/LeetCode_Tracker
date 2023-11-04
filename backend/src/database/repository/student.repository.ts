@@ -158,4 +158,21 @@ export class StudentRepository {
 		const student = await Students.findOne({ phone });
 		return student;
 	}
+
+	async editProfile(id: string, data: StudentDTO) {
+		return await Students.updateOne(
+			{ _id: id },
+			{
+				$set: {
+					name: data.name,
+					lastName: data.lastName,
+					batch: data.batch,
+					domain: data.domain,
+					phone: data.phone,
+					email: data.email,
+					leetcodeId: data.leetcodeId
+				}
+			}
+		);
+	}
 }

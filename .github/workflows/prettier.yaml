@@ -15,4 +15,5 @@ jobs:
       - name:  run Prettier
         run: |
           cd backend
+          npm install
           npm run prettier

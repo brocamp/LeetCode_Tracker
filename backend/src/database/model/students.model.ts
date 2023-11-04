@@ -88,7 +88,6 @@ const studentSchema = new Schema<IStudent>(
 	{
 		toJSON: {
 			transform(doc, ret) {
-				delete ret._id;
 				delete ret.__v;
 			}
 		}

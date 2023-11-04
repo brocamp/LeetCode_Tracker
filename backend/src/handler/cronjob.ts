@@ -4,8 +4,11 @@ import { LeetStudentProfileUpdate, weeklyUpdate } from "./leetcode-updater";
 /* The code is defining a task called `LeetcodeDailyUpdateTask` using the `cron.schedule` function from
 the `node-cron` library. This task is scheduled to run every day at 23:15 (11:15 PM) in the
 Asia/Kolkata timezone. */
+
+const dailyUpdateTimeSchedule = process.env.NODE_ENV == "production" ? "30 23 * * *" : "*/5 * * * *";
+
 export const LeetcodeDailyUpdateTask = cron.schedule(
-	"30 23 * * *",
+	dailyUpdateTimeSchedule,
 	async () => {
 		console.log("Students LeetCode Data Updating");
 		await LeetStudentProfileUpdate();

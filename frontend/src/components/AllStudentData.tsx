@@ -34,7 +34,6 @@ function AllStudentData() {
 	const [totalpageNumber, setTotalPageNumber] = useState(1);
 	const [currentPage, setCurrentPage] = useState(1);
 	const [uiControle, setUiControll] = useState(false);
-	const [updateui, setUpdateui] = useState(false);
 	const [searchInput, setSearchInput] = useState("") as any;
 	const [isInputEmpty, setIsInputEmpty] = useState(true);
 	const [editeData, setediteData] = useState() as any;

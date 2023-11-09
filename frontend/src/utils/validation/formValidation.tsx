@@ -102,9 +102,6 @@ export const studentAuthSchema: ZodType<studentAuth> = z.object({
     }),
   domain: z
     .string()
-    .refine((value) => /^[A-Z ]+$/.test(value), {
-      message: "Domain must contain only uppercase letters"
-    })
     .refine((value) => value.trim() !== "", {
       message: "Domain cannot be empty"
     })

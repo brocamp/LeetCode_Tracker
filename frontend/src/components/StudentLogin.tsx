@@ -116,6 +116,8 @@ function StudentLogin() {
                                     <option value="LOWCODE">LOWCODE</option>
                                     <option value="GAMEDEVELOPEMENT">GAME DEVELOPEMENT</option>
                                     <option value="FRONTEND">FRONT END</option>
+                                    <option value="KOTLIN">KOTLIN</option>
+                                    <option value="SPRIN GBOOT">SPRING BOOT</option>
                                 </select>
                             </div>
                             {errors.batch?.message ? (

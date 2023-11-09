@@ -36,8 +36,6 @@ const App = () => {
 							</Route>
 							<Route path="*" element={<ErrorComponent />} />
 						</Route>
-						{/*  */}
-						{/* Catching invallied routes */}
 					</Routes>
 				</BrowserRouter>
 			</div>

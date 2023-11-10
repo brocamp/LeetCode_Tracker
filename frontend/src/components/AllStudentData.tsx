@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getAllStudents, searchStudents } from "../utils/api/config/axios.GetApi";
+import { deleteStudentData } from "../utils/api/config/axios.DeleteApi";
 import { Toaster, toast } from "react-hot-toast";
 import axios from "axios";
 import { Ring } from "@uiball/loaders";
@@ -34,9 +35,11 @@ function AllStudentData() {
 	const [totalpageNumber, setTotalPageNumber] = useState(1);
 	const [currentPage, setCurrentPage] = useState(1);
 	const [uiControle, setUiControll] = useState(false);
+	const [editeUicontroll, setEditeUiControl] = useState(false);
 	const [searchInput, setSearchInput] = useState("") as any;
 	const [isInputEmpty, setIsInputEmpty] = useState(true);
 	const [editeData, setediteData] = useState() as any;
+	const [renderCount, setRenderCount] = useState(0);
 
 	useEffect(() => {
 		const handleAllStudents = async () => {
@@ -44,7 +47,7 @@ function AllStudentData() {
 				const response: any = await getAllStudents(currentPage);
 				if (response?.status === 200) {
 					setTotalPageNumber(response.data.result.totalPages);
-
+					console.log(response.data.result.students, "log");
 					setAllStudentsData(response.data.result.students);
 				} else if (response.response.status === 404) {
 					toast.error("Ooops...! Couldn't find rank table");
@@ -66,7 +69,7 @@ function AllStudentData() {
 			}
 		};
 		handleAllStudents();
-	}, [currentPage, searchInput]);
+	}, [currentPage, searchInput,renderCount,editeUicontroll]);
 
 	const handlePageChange = (pageNumber: number) => {
 		setCurrentPage(pageNumber);
@@ -94,6 +97,7 @@ function AllStudentData() {
 		setSvgData("");
 		setUiControll(false);
 	};
+
 	const handleInputChange = (event: any) => {
 		const inputValue = event.target.value;
 		if (timer) {
@@ -110,46 +114,55 @@ function AllStudentData() {
 		}
 	};
 
-	const handleEditeUi = (data:any) => {
-        console.log(uiControle);
-		setUiControll(true);
+	const handleEditeUi = (data: any) => {
+		console.log(uiControle);
+		setEditeUiControl(true);
+		console.log(data,"edite data...."); 
 		setediteData(data);
 	};
-const handleUiBack=()=>{
-    setUiControll(false);
-}
+	const handleUiBack = () => {
+		setEditeUiControl(false);
+	};
+
+	const handledeleteStudent = async (id: string) => {
+		const response: any = await deleteStudentData(id);
+		console.log(response, "response delete");
+		if (response.status === 200) {
+			toast.success("Data succesfully deleted");
+			setRenderCount(renderCount + 1);
+		} else if (response.status === 400) {
+			toast.error("Student not exist or somenthing went wrong");
+			setRenderCount(renderCount + 1);
+		} else {
+			toast.error("Oops..! something went wrong");
+			setRenderCount(renderCount + 1);
+		}
+	};
 
 	return (
 		<>
 			<Toaster position="top-center" reverseOrder={false} />
-			{uiControle ? (
-                <>
-                  {/* <button className="" onClick={handleUiBack}>Cancel</button> */}
-                  <button
-  type="button"
-  onClick={handleUiBack}
-  className="w-full flex  ml-[4.5rem] mt-3 items-center justify-center  px-5 py-2 text-sm text-gray-700 transition-colors duration-200 bg-white border rounded-lg gap-x-2 sm:w-auto dark:hover:bg-gray-800 dark:bg-gray-900 hover:bg-gray-100 dark:text-gray-200 dark:border-gray-700"
->
-  <svg
-    className="w-5 h-5 rtl:rotate-180"
-    xmlns="http://www.w3.org/2000/svg"
-    fill="none"
-    viewBox="0 0 24 24"
-    strokeWidth="1.5"
-    stroke="currentColor"
-  >
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18"
-    />
-  </svg>
-  <span>Go back</span>
-</button>
-
-				<StudentsDataUpdate data={editeData}/>
-                </>
-              
+			{editeUicontroll ? (
+				<>
+					{" "}
+					{/* <button className="" onClick={handleUiBack}>Cancel</button> */}
+					<button
+						type="button"
+						onClick={handleUiBack}
+						className="w-full flex  ml-[4.5rem] mt-3 items-center justify-center  px-5 py-2 text-sm text-gray-700 transition-colors duration-200 bg-white border rounded-lg gap-x-2 sm:w-auto dark:hover:bg-gray-800 dark:bg-gray-900 hover:bg-gray-100 dark:text-gray-200 dark:border-gray-700">
+						<svg
+							className="w-5 h-5 rtl:rotate-180"
+							xmlns="http://www.w3.org/2000/svg"
+							fill="none"
+							viewBox="0 0 24 24"
+							strokeWidth="1.5"
+							stroke="currentColor">
+							<path strokeLinecap="round" strokeLinejoin="round" d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18" />
+						</svg>
+						<span>Go back</span>
+					</button>
+					<StudentsDataUpdate data={editeData} />
+				</>
 			) : (
 				<div className=" h-[43rem]   p-5 rounded-lg mt-3 w-full bg-white border border-slate-200">
 					<div className="mb-3 w-[50%] flex justify-between">
@@ -283,11 +296,11 @@ const handleUiBack=()=>{
 									<div className=" pt-1 flex justify-center h-8 w-full">
 										<span className=" text-md font-medium ">{dataObject.leetcodeId}</span>
 									</div>
-									<div className="   pt-1 flex mr-3  h-8 w-full">
+									<div key={index} className="   pt-1 flex mr-3  h-8 w-full">
 										<button
-                                        onClick={()=>{
-                                            handleEditeUi(dataObject)
-                                        }}
+											onClick={() => {
+												handleEditeUi(dataObject);
+											}}
 											type="button"
 											className="py-3 ml-4 cursor-pointer px-4 inline-flex justify-center items-center gap-2 rounded-xl border border-transparent font-semibold  hover:-translate-y-1 transition-all duration-500  bg-blue-100 text-blue-800 underline underline-offset-2    text-sm dark:focus:ring-offset-gray-800">
 											Update
@@ -295,11 +308,12 @@ const handleUiBack=()=>{
 										<button
 											type="button"
 											className="py-3 ml-4 cursor-pointer px-4 inline-flex justify-center items-center gap-2 rounded-xl border border-transparent font-semibold  hover:-translate-y-1 transition-all duration-500  bg-red-600 text-white underline underline-offset-2    text-sm dark:focus:ring-offset-gray-800"
-											data-hs-overlay="#hs-sign-out-alert">
+											data-hs-overlay={`${"#hs-sign-out-alert"}` + dataObject._id}>
 											Remove
 										</button>
 										<div
-											id="hs-sign-out-alert"
+											key={index}
+											id={`${"hs-sign-out-alert"}` + dataObject._id}
 											className="hs-overlay  bg-black/20  hidden w-full h-full fixed top-0 left-0 z-[60] overflow-x-hidden overflow-y-auto">
 											<div className="hs-overlay-open:mt-7 hs-overlay-open:opacity-100 hs-overlay-open:duration-500 mt-0 opacity-0 ease-out transition-all sm:max-w-lg sm:w-full m-3 sm:mx-auto">
 												<div className="relative flex flex-col top-56 bg-white shadow-lg rounded-xl">
@@ -307,7 +321,7 @@ const handleUiBack=()=>{
 														<button
 															type="button"
 															className="inline-flex flex-shrink-0 justify-center items-center h-8 w-8 rounded-md text-black hover:text-   transition-all text-sm"
-															data-hs-overlay="#hs-sign-out-alert">
+															data-hs-overlay={`${"#hs-sign-out-alert"}` + dataObject._id}>
 															<span className="sr-only">Close</span>
 															<svg
 																className="w-3.5 h-3.5"
@@ -343,14 +357,14 @@ const handleUiBack=()=>{
 															<button
 																type="button"
 																className="py-2.5 px-4 inline-flex justify-center items-center gap-2 hover:-translate-y-1 transition-all duration-500 rounded-md border font-medium bg-white text-gray-700 shadow-sm align-middle  hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-blue-600  text-sm "
-																data-hs-overlay="#hs-sign-out-alert">
+																data-hs-overlay={`${"#hs-sign-out-alert"}` + dataObject._id}>
 																Cancel
 															</button>
-
 															<button
+																onClick={() => handledeleteStudent(dataObject._id)}
 																type="button"
 																className="py-2.5 px-4 inline-flex justify-center bg-black  hover:-translate-y-1 transition-all duration-500 items-center gap-2 rounded-md border border-transparent font-semibold  text-white  text-sm "
-																data-hs-overlay="#hs-sign-out-alert">
+																data-hs-overlay={`${"#hs-sign-out-alert"}` + dataObject._id}>
 																Confirm
 															</button>
 														</div>
@@ -400,3 +414,4 @@ const handleUiBack=()=>{
 }
 
 export default AllStudentData;
+

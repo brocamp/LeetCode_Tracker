@@ -69,20 +69,20 @@ router.post("/edit/:id", reqAuth, async (req: Request, res: Response) => {
 	const id = req.params.id as string;
 	const student = await studentRepository.findById(id);
 	if (!student) throw new BadRequestError("No student found");
-	if (data.leetcodeId) {
+	if (data.leetcodeId !== '' || data.leetcodeId !== undefined) {
 		const idExist = await getProfile(data.leetcodeId);
-		if (!idExist) throw new BadRequestError("No leetcode id exist");
+		if (idExist?.matchedUser === null) throw new BadRequestError("No leetcode id exist");
 	}
 	const result = await studentRepository.editProfile(id, data);
 	res.json(202).json(result);
 });
 
-router.delete("/delete/:id",reqAuth,async(req:Request,res:Response)=>{
-	const id = req.params.id as string
-	const student = await studentRepository.findById(id)
-	if(!student) throw new BadRequestError("student not exist")
-	 await studentRepository.deleteStudent(id)
-	res.status(200).json({message:"Data deleted"})
-})
+router.delete("/delete/:id", reqAuth, async (req: Request, res: Response) => {
+	const id = req.params.id as string;
+	const student = await studentRepository.findById(id);
+	if (!student) throw new BadRequestError("student not exist");
+	await studentRepository.deleteStudent(id);
+	res.status(200).json({ message: "Data deleted" });
+});
 
 export { router as StudentRouter };

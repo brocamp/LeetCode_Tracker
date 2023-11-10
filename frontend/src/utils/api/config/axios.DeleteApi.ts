@@ -6,6 +6,7 @@ export const deleteStudentData = async (id:string) => {
 		method: "DELETE",
 		url: `api/student/delete/`+id,
 		headers: headerConfg()
+        
 	};
 	return await apiRequest(config);
 };

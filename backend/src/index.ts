@@ -17,7 +17,7 @@ const start = async () => {
 
 ["uncaughtException", "unhandledRejection"].forEach((event) =>
 	process.on(event, (err) => {
-		logger.error(`something bad happened: ${event}, msg: ${err.stack || err}`);
+		logger.error(`something bad happened : ${event}, msg: ${err.stack || err}`);
 		process.exit(1)
 	})
 );

@@ -159,6 +159,11 @@ export class StudentRepository {
 		return student;
 	}
 
+	async deleteStudent(id:string){
+		const student = await Students.findByIdAndDelete(id)
+		return student
+	}
+
 	async editProfile(id: string, data: StudentDTO) {
 		return await Students.updateOne(
 			{ _id: id },

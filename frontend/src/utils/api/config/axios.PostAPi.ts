@@ -21,8 +21,6 @@ export const adminVerify = async (verifyPayload: verifyPayload) => {
 	};
 	return await apiRequest(config);
 };
-
-
 export const studentsAuth = async (authPayload: studentAuth) => {
 	const config: AxiosRequestConfig = {
 		method: "POST",
@@ -32,4 +30,12 @@ export const studentsAuth = async (authPayload: studentAuth) => {
 	};
 	return await apiRequest(config);
 };
-
+export const editeStudentData = async (id:string,payload:any) => {
+	const config: AxiosRequestConfig = {
+		method: "POST",
+		url: `api/student/edit/`+id,
+		headers: headerConfg(),
+		data:payload
+	};
+	return await apiRequest(config);
+};

@@ -17,6 +17,7 @@ const Login = () => {
 	const handlePhoneNumber = async (data: PhoneNumberData) => {
 		// Admin authenrication Api
 		const response: any = await adminAuth(data.phone);
+		console.log(response,'otp response');
 		if (response.status === 200) {
 			setOtp(false);
 			setNumber(data.phone);

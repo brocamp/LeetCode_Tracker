@@ -69,7 +69,7 @@ function AllStudentData() {
 			}
 		};
 		handleAllStudents();
-	}, [currentPage, searchInput,renderCount,editeUicontroll]);
+	}, [currentPage, searchInput, renderCount, editeUicontroll]);
 
 	const handlePageChange = (pageNumber: number) => {
 		setCurrentPage(pageNumber);
@@ -117,7 +117,7 @@ function AllStudentData() {
 	const handleEditeUi = (data: any) => {
 		console.log(uiControle);
 		setEditeUiControl(true);
-		console.log(data,"edite data...."); 
+		console.log(data, "edite data....");
 		setediteData(data);
 	};
 	const handleUiBack = () => {
@@ -191,7 +191,7 @@ function AllStudentData() {
 									onChange={handleInputChange}
 									id="default-search"
 									className="block w-[30rem] h-10 p-4 pl-10 text-sm outline-none  text-gray-900 border border-gray-300 rounded-lg bg-gray-50  focus:border-black "
-									placeholder="Search students..."
+									placeholder="Search students... Eg Batch name domain"
 								/>
 							</div>
 						</div>
@@ -414,4 +414,3 @@ function AllStudentData() {
 }
 
 export default AllStudentData;
-

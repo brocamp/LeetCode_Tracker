@@ -67,6 +67,37 @@ export class StudentRepository {
 		return result;
 	}
 
+	async searchNotDone(query: string) {
+		const fuzzyQuery = new RegExp(this.escapeRegex(query), "gi");
+
+		const result = await Students.find({
+			$or: [
+				{
+					name: { $regex: fuzzyQuery },
+					totalNotSubmissionCount: { $gt: 3 }
+				},
+				{
+					batch: { $regex: fuzzyQuery },
+					totalNotSubmissionCount: { $gt: 3 }
+				},
+				{
+					domain: { $regex: fuzzyQuery },
+					totalNotSubmissionCount: { $gt: 3 }
+				},
+				{
+					email: query,
+					totalNotSubmissionCount: { $gt: 3 }
+				},
+				{
+					leetcodeId: query,
+					totalNotSubmissionCount: { $gt: 3 }
+				}
+			]
+		});
+
+		return result;
+	}
+
 	escapeRegex(text: string) {
 		return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
 	}
@@ -159,9 +190,9 @@ export class StudentRepository {
 		return student;
 	}
 
-	async deleteStudent(id:string){
-		const student = await Students.findByIdAndDelete(id)
-		return student
+	async deleteStudent(id: string) {
+		const student = await Students.findByIdAndDelete(id);
+		return student;
 	}
 
 	async editProfile(id: string, data: StudentDTO) {

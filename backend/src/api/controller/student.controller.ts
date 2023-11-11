@@ -48,8 +48,13 @@ router.get("/all", reqAuth, async (req: Request, res: Response) => {
 
 router.get("/search", reqAuth, async (req: Request, res: Response) => {
 	const query = req.query.query as string;
-
 	const result = await studentRepository.search(query);
+	res.json({ result });
+});
+
+router.get("/search/not", reqAuth, async (req: Request, res: Response) => {
+	const query = req.query.query as string;
+	const result = await studentRepository.searchNotDone(query);
 	res.json({ result });
 });
 

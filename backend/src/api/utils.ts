@@ -8,11 +8,11 @@ import axios from "axios";
  * @param {string} phone - The `phone` parameter is a string that represents the phone number to which
  * the OTP (One-Time Password) will be sent.
  */
+
 export const SendOTP = async (otp: number, phone: string) => {
 	try {
 		const apiUrl = "https://www.fast2sms.com/dev/bulkV2";
-		const apiKey = process.env.OTP_API_KEY!;
-
+		const apiKey = process.env.NODE_ENV == "dev" ? "" : process.env.OTP_API_KEY;
 		const requestData = {
 			variables_values: String(otp),
 			route: "otp",

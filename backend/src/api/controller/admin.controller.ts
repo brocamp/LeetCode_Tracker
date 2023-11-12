@@ -11,9 +11,11 @@ const router = express.Router();
 const repository = new AdminRepository();
 
 router.post("/signin", signinValidator, validateRequest, async (req: Request, res: Response) => {
-	const { phone } = req.body;
+	const { phone, resend } = req.body as { phone: string; resend: boolean };
 	const Admin = await repository.findByPhone(phone);
-	console.log(Admin)
+	if (!resend) {
+		if (Admin?.otp !== null) throw new BadRequestError("Otp Already Sended");
+	}
 	if (!Admin) throw new BadRequestError("admin dosent exist");
 	const otp = Math.floor(1000 + Math.random() * 9000);
 	Admin.otp = otp;

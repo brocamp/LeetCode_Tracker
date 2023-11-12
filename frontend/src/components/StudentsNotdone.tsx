@@ -113,7 +113,7 @@ const StudentsNotdone = () => {
 								<input
 									id="default-search"
 									className="block w-[30rem] h-10 p-4 pl-10 text-sm outline-none  text-gray-900 border border-gray-300 rounded-lg bg-gray-50  focus:border-black "
-									placeholder="Search students... Eg Batch name domain"
+									placeholder="Search students... Eg batch-number name domain etc"
 									onChange={handleInputChange}
 								/>
 							</div>

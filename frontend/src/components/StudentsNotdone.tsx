@@ -1,26 +1,62 @@
 import { useEffect, useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
-import { getNotDoneStudents } from "../utils/api/config/axios.GetApi";
+import { getNotDoneStudents, searchStudentsNotDone } from "../utils/api/config/axios.GetApi";
 import axios from "axios";
 import { Ring } from "@uiball/loaders";
+type UserData = [
+	{
+		batch: string;
+		domain: string;
+		email: string;
+		lastSubmissionDate: string;
+		leetcodeId: string;
+		name: string;
+		phone: string;
+		solved: {
+			all: number;
+			easy: number;
+			medium: number;
+			hard: number;
+		};
+		solvedQuestionsInThisWeek: string[];
+		totalNotSubmissionCount: number;
+		totalSolvedCountInThisWeek: number;
+		_id: string;
+	}
+];
 const StudentsNotdone = () => {
-	const [allStudentsNotDone, setAllStudentsNotDone] = useState() as any;
 	const [uiControle, setUiControll] = useState(false);
 	const [svgData, setSvgData] = useState("") as any;
+	const [searchInput, setSearchInput] = useState("") as any;
+	const [isInputEmpty, setIsInputEmpty] = useState(true);
+	const [allStudentsData, setAllStudentsData] = useState<UserData[]>([]);
 
+	let timer: number | undefined;
 	useEffect(() => {
 		const handleLeaderBoard = async () => {
-			const response: any = await getNotDoneStudents();
-			if (response?.status === 200) {
-				setAllStudentsNotDone(response.data.result);
-			} else if (response.response.status === 404) {
-				toast.error("Ooops...! Couldn't find rank table");
+			if (isInputEmpty) {
+				const response: any = await getNotDoneStudents();
+				if (response?.status === 200) {
+					setAllStudentsData(response.data.result);
+				} else if (response.response.status === 404) {
+					toast.error("Ooops...! Couldn't find rank table");
+				} else {
+					toast.error(`${response.response.data.errors[0].message}`);
+				}
 			} else {
-				toast.error(`${response.response.data.errors[0].message}`);
+				const response:any = await searchStudentsNotDone(searchInput)
+				console.log(response,"response coming frontend");
+				if (response?.status === 200) {
+					setAllStudentsData(response.data.result);
+				} else if (response.response.status === 404) {
+					toast.error("Ooops...! Couldn't find rank table");
+				} 
 			}
+		
 		};
+	
 		handleLeaderBoard();
-	}, []);
+	}, [searchInput]);
 	const handleShowStudent = (userName: string) => {
 		axios.get(`https://leetcard.jacoblin.cool/${userName}?ext=heatmap&theme=forest`).then((response: any) => {
 			setSvgData(response.data);
@@ -31,6 +67,21 @@ const StudentsNotdone = () => {
 		setSvgData("");
 		setUiControll(false);
 	};
+	const handleInputChange = (event:any) => {
+		const value = event.target.value
+		if (timer) {
+			clearTimeout(timer);
+		}
+		timer = setTimeout(() => {
+			setSearchInput(event.target.value);
+		}, 1000);
+		if (value === "") {
+			setSearchInput("");
+			setIsInputEmpty(true);
+		} else {
+			setIsInputEmpty(false);
+		}
+	}
 
 	return (
 		<>
@@ -62,7 +113,8 @@ const StudentsNotdone = () => {
 								<input
 									id="default-search"
 									className="block w-[30rem] h-10 p-4 pl-10 text-sm outline-none  text-gray-900 border border-gray-300 rounded-lg bg-gray-50  focus:border-black "
-									placeholder="Search students..."
+									placeholder="Search students... Eg Batch name domain"
+									onChange={handleInputChange}
 								/>
 							</div>
 						</div>
@@ -152,7 +204,7 @@ const StudentsNotdone = () => {
 				</div>
 
 				<div className="   mt-5 h-[27rem] pb-2  overflow-auto w-auto">
-					{allStudentsNotDone?.map((dataObject: any, index: number) => {
+					{allStudentsData?.map((dataObject: any, index: number) => {
 						return (
 							<div
 								key={index}
@@ -271,3 +323,5 @@ const StudentsNotdone = () => {
 };
 
 export default StudentsNotdone;
+
+

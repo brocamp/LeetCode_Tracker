@@ -45,6 +45,15 @@ export const searchStudents = async (query: string) => {
 	return await apiRequest(config);
 };
 
+export const searchStudentsNotDone = async (query: string) => {
+	const config: AxiosRequestConfig = {
+		method: "GET",
+		url: `api/student/search/not?query=${query}`,
+		headers: headerConfg()
+	};
+	return await apiRequest(config);
+};
+
 export const weeklyMetrics = async () => {
 	const config: AxiosRequestConfig = {
 		method: "GET",

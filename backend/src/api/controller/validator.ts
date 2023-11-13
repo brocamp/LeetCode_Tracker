@@ -17,7 +17,8 @@ const Domains = [
 	"NODEJS",
 	"DEVOPS",
 	"LOWCODE",
-	"GAMEDEVELOPEMENT"
+	"GAMEDEVELOPEMENT",
+	"KOTLIN"
 ];
 
 export const studentValidator = [

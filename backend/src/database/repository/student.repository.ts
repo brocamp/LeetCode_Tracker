@@ -162,7 +162,7 @@ export class StudentRepository {
 				$sort: { totalSolvedCountInThisWeek: -1 }
 			},
 			{
-				$limit: 5
+				$limit: 100
 			},
 			{
 				$project: {

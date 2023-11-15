@@ -42,7 +42,8 @@ export const studentValidator = [
 		.isLength({ min: 2 })
 		.withMessage("Batch should be at least 2 characters long")
 		.isLength({ max: 10 })
-		.withMessage("Batch should be less than 10 characters"),
+		.withMessage("Batch should be less than 10 characters")
+		.toUpperCase(),
 
 	// Last name validation
 	body("lastName")

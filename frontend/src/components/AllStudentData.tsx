@@ -289,7 +289,7 @@ function AllStudentData() {
 										</span>
 									</div>
 									<div className="  pt-1 flex justify-center h-8 w-full">
-										<span className=" text-md font-medium ">{dataObject.name}</span>
+										<span className=" text-md font-medium ">{dataObject.name +" "+ dataObject.lastName}</span>
 									</div>
 									<div className="  pt-1 flex justify-center h-8 w-full">
 										<span className=" text-md font-medium ">{dataObject.batch}</span>

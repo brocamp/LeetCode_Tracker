@@ -11,7 +11,7 @@ const start = async () => {
 	WeeklyDatabaseUpdateTask.start();
 
 	app.listen(process.env.PORT!, () => {
-		console.log(`App is Running on port ${process.env.PORT} `);
+		console.log(`server is Running on port ${process.env.PORT} `);
 	});
 };
 

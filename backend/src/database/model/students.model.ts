@@ -30,6 +30,8 @@ export interface IStudent extends Document {
 	lastSubmissionDate: string;
 	totalSolvedCountInThisWeek: number;
 	solvedQuestionsInThisWeek: string[];
+	lastMailSendDate: Date | null;
+	mailCount: number;
 }
 
 const studentSchema = new Schema<IStudent>(
@@ -83,6 +85,13 @@ const studentSchema = new Schema<IStudent>(
 		solvedQuestionsInThisWeek: {
 			type: [String],
 			default: []
+		},
+		lastMailSendDate: {
+			type: Date
+		},
+		mailCount: {
+			type: Number,
+			default: 0
 		}
 	},
 	{

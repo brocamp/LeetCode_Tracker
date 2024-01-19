@@ -1,14 +1,15 @@
-import { logger } from "../config";
-import { Students, WeeklyMetrics } from "../database/model";
+import { logger, mailConfig } from "../config";
+import { IStudent, StudentDTO, Students, WeeklyMetrics } from "../database/model";
 import { StudentRepository } from "../database/repository";
 import { getProfile, getTotalSolved, getRecentSubmissionList } from "./leetcode";
+import { sendBatchMail, sendMail } from "./mail";
 import { isToday, isAlreadySolvedOrNot, IsAlreadyInDb } from "./utils";
 import pLimit from "p-limit";
 
-/* This queue allows a maximum of 2 concurrent executions of the code block passed to it. It ensures that only 2
+/* This queue allows a maximum of 1 concurrent executions of the code block passed to it. It ensures that only 2
 students' profiles are updated at a time, preventing excessive resource usage and potential
 performance issues. */
-const queue = pLimit(2);
+const queue = pLimit(1);
 
 /**
  * The LeetStudentProfileUpdate function updates the profiles of Leet students by retrieving their
@@ -17,9 +18,8 @@ const queue = pLimit(2);
  */
 export const LeetStudentProfileUpdate = async () => {
 	let studentRepository = new StudentRepository();
-
+	let studentInMailList: IStudent[] = [];
 	const students = await studentRepository.find();
-
 	// Concurrency: Process students concurrently
 	await Promise.allSettled(
 		students.map(async (student) => {
@@ -66,6 +66,13 @@ export const LeetStudentProfileUpdate = async () => {
 
 					student.totalSolvedCountInThisWeek += solvedToday!.length;
 
+					if (student.totalNotSubmissionCount >= 3) {
+						const currentDate = new Date();
+						const threeDaysAgo = new Date(currentDate);
+						threeDaysAgo.setDate(currentDate.getDate() - 7);
+						studentInMailList.push(student)
+					}
+
 					await student.save();
 				} catch (error: any) {
 					logger.error(error.stack);
@@ -85,6 +92,9 @@ export const LeetStudentProfileUpdate = async () => {
 		totalStudentsSolved: submissionResult[0]?.submissionCount || 0,
 		day: currentDay
 	});
+
+	await sendBatchMail(studentInMailList)
+
 };
 
 export const weeklyUpdate = async () => {

@@ -1,4 +1,3 @@
-
 import "./App.css";
 // import { privateRoutes,routes } from "./utils/routes/routes";
 import { Routes, Route } from "react-router-dom";
@@ -44,4 +43,3 @@ const App = () => {
 };
 
 export default App;
-

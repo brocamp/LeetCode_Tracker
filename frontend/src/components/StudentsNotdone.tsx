@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
 import { getNotDoneStudents, searchStudentsNotDone } from "../utils/api/config/axios.GetApi";
@@ -31,7 +32,7 @@ const StudentsNotdone = () => {
 	const [isInputEmpty, setIsInputEmpty] = useState(true);
 	const [allStudentsData, setAllStudentsData] = useState<UserData[]>([]);
 
-	let timer: number | undefined;
+	let timer: any
 	useEffect(() => {
 		const handleLeaderBoard = async () => {
 			if (isInputEmpty) {
@@ -44,17 +45,16 @@ const StudentsNotdone = () => {
 					toast.error(`${response.response.data.errors[0].message}`);
 				}
 			} else {
-				const response:any = await searchStudentsNotDone(searchInput)
-				console.log(response,"response coming frontend");
+				const response: any = await searchStudentsNotDone(searchInput);
+				console.log(response, "response coming frontend");
 				if (response?.status === 200) {
 					setAllStudentsData(response.data.result);
 				} else if (response.response.status === 404) {
 					toast.error("Ooops...! Couldn't find rank table");
-				} 
+				}
 			}
-		
 		};
-	
+
 		handleLeaderBoard();
 	}, [searchInput]);
 	const handleShowStudent = (userName: string) => {
@@ -67,8 +67,8 @@ const StudentsNotdone = () => {
 		setSvgData("");
 		setUiControll(false);
 	};
-	const handleInputChange = (event:any) => {
-		const value = event.target.value
+	const handleInputChange = (event: any) => {
+		const value = event.target.value;
 		if (timer) {
 			clearTimeout(timer);
 		}
@@ -81,7 +81,7 @@ const StudentsNotdone = () => {
 		} else {
 			setIsInputEmpty(false);
 		}
-	}
+	};
 
 	return (
 		<>
@@ -275,7 +275,7 @@ const StudentsNotdone = () => {
 									<span className=" ml-10 text-md font-medium ">{index + 1}</span>
 								</div>
 								<div className="  pt-1 flex justify-center h-8 w-full">
-									<span className=" text-md font-medium ">{dataObject.name +" "+ dataObject.lastName} </span>
+									<span className=" text-md font-medium ">{dataObject.name + " " + dataObject.lastName} </span>
 								</div>
 								<div className="  pt-1 flex justify-center h-8 w-full">
 									<span className=" text-md font-medium ">{dataObject.batch}</span>
@@ -323,5 +323,3 @@ const StudentsNotdone = () => {
 };
 
 export default StudentsNotdone;
-
-

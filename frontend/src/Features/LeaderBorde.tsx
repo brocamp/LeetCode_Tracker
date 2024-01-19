@@ -23,7 +23,6 @@ const LeaderBorder = () => {
 			<Toaster position="top-center" reverseOrder={false} />
 			<div className="p-5 h-[38rem] ">
 				<div className="flex mr-6 justify-end">
-
 					<div className="text-center">
 						<button
 							type="button"
@@ -55,7 +54,7 @@ const LeaderBorder = () => {
 												fill="currentColor"
 											/>
 										</svg>
-									</button>	
+									</button>
 								</div>
 								<div className="p-4 sm:p-10 text-center overflow-y-auto">
 									{/* Icon */}
@@ -90,11 +89,9 @@ const LeaderBorder = () => {
 							</div>
 						</div>
 					</div>
-
 				</div>
 				<div className="p-5   h-[38rem]">
 					{leaderBordRank?.map((object: any, index: number) => {
-						
 						return <LeaderBoard index={index} rank={object} />;
 					})}
 				</div>
@@ -102,6 +99,5 @@ const LeaderBorder = () => {
 		</>
 	);
 };
-
 
 export default LeaderBorder;

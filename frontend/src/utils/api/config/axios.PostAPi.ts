@@ -3,7 +3,6 @@ import { apiRequest, headerConfg } from "./axios.Config";
 import { verifyPayload } from "../api.Types/axios.Postapi.Types";
 import { studentAuth } from "../../validation/formValidation";
 
-
 export const adminAuth = async (Phone: string) => {
 	const config: AxiosRequestConfig = {
 		method: "POST",
@@ -30,12 +29,12 @@ export const studentsAuth = async (authPayload: studentAuth) => {
 	};
 	return await apiRequest(config);
 };
-export const editeStudentData = async (id:string,payload:any) => {
+export const editeStudentData = async (id: string, payload: any) => {
 	const config: AxiosRequestConfig = {
 		method: "POST",
-		url: `api/student/edit/`+id,
+		url: `api/student/edit/` + id,
 		headers: headerConfg(),
-		data:payload
+		data: payload
 	};
 	return await apiRequest(config);
 };

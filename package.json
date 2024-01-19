@@ -1,0 +1,14 @@
+{
+  "name": "leetcode_tracker",
+  "version": "1.0.0",
+  "description": "A leetcode daily challenge tracker to monitor student's perfomance in Brocamp",
+  "author": "Packapeer Academy Pvt ltd",
+  "main": "src/index.ts",
+  "scripts": {
+    "start": "pnpm --stream -r start",
+    "build": "tsc",
+    "dev": "pnpm --stream -r dev",
+    "prettier": "pnpm --stream -r prettier"
+  },
+  "license": "MIT"
+}

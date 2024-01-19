@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const LeaderBoard = (prop: any) => {
 	console.log(prop);
-	
+
 	return (
 		<>
 			<div
@@ -47,7 +47,11 @@ const LeaderBoard = (prop: any) => {
 						<h1 className="text-center">{prop.rank.leetcodeId}</h1>
 					</div>
 					<div className="h-full p-2 w-full">
-						<Link to={`https://leetcode.com/${prop.rank.leetcodeId}/`}  className="text-blue-600 ml-10 cursor-pointer underline underline-offset-2 text-lg text-center">View</Link>
+						<Link
+							to={`https://leetcode.com/${prop.rank.leetcodeId}/`}
+							className="text-blue-600 ml-10 cursor-pointer underline underline-offset-2 text-lg text-center">
+							View
+						</Link>
 					</div>
 				</div>
 			</div>
@@ -56,4 +60,3 @@ const LeaderBoard = (prop: any) => {
 };
 
 export default LeaderBoard;
-

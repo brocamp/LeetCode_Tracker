@@ -6,8 +6,6 @@ import { verifyPayload } from "../utils/api/api.Types/axios.Postapi.Types";
 import { useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 
-
-
 const Login = () => {
 	const [otp, setOtp] = useState(true);
 	const [number, setNumber] = useState("");
@@ -17,7 +15,7 @@ const Login = () => {
 	const handlePhoneNumber = async (data: PhoneNumberData) => {
 		// Admin authenrication Api
 		const response: any = await adminAuth(data.phone);
-		console.log(response,'otp response');
+		console.log(response, "otp response");
 		if (response.status === 200) {
 			setOtp(false);
 			setNumber(data.phone);
@@ -27,7 +25,6 @@ const Login = () => {
 			toast.error("Ooops...! Invalid mobile phone provide a valid phone");
 		}
 	};
-
 
 	const hanldleFormOtp = async (data: OtpData) => {
 		const verifyPayload: verifyPayload = {
@@ -45,7 +42,6 @@ const Login = () => {
 		} else if (response.response.status === 404) {
 			toast.error("Ooops..! Error occured");
 		} else {
-
 			toast.error("Ooops...! Invalied OTP");
 		}
 	};

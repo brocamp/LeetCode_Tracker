@@ -3,38 +3,38 @@ import { editeStudentData } from "../utils/api/config/axios.PostAPi";
 import { toast } from "react-hot-toast";
 
 function StudentsDataUpdate(data: any) {
-	const [formdata,setFormData]=useState({
-		  name:"",
-		  lastName:"",
-		  email:"",
-		  domain:"",
-		  batch:"",
-		  phone:"",
-		  leetcodeId:""
+	const [formdata, setFormData] = useState({
+		name: "",
+		lastName: "",
+		email: "",
+		domain: "",
+		batch: "",
+		phone: "",
+		leetcodeId: ""
 	});
-	useEffect(()=>{
+	useEffect(() => {
 		setFormData({
 			...formdata,
-			name:data.data.name,
-			lastName:data.data.lastName,
-			email:data.data.email,
-			domain:data.data.domain,
-			batch:data.data.batch,
-			phone:data.data.phone,
-			leetcodeId:data.data.leetcodeId
-		})
-	},[])
+			name: data.data.name,
+			lastName: data.data.lastName,
+			email: data.data.email,
+			domain: data.data.domain,
+			batch: data.data.batch,
+			phone: data.data.phone,
+			leetcodeId: data.data.leetcodeId
+		});
+	}, []);
 
-	const formSubmit=async(id:string)=>{
-		const response:any = await editeStudentData(id,formdata);
-		if(response.status === 200){
-          toast.success("Data succesufully updated")
-		}else if(response.status === 400){
-		  toast.error("leetcode id is not exist or student not found")
-		}else{
-			toast.error("Oops...! something went wrong")
+	const formSubmit = async (id: string) => {
+		const response: any = await editeStudentData(id, formdata);
+		if (response.status === 200) {
+			toast.success("Data succesufully updated");
+		} else if (response.status === 400) {
+			toast.error("leetcode id is not exist or student not found");
+		} else {
+			toast.error("Oops...! something went wrong");
 		}
-	}
+	};
 
 	return (
 		<>
@@ -48,12 +48,12 @@ function StudentsDataUpdate(data: any) {
 							</label>
 							<div className="flex  hover:border-black/70 items-center mt-1 cursor-pointer shadow-sm  border-2 mb-3 py-3 px-3 rounded-lg ">
 								<input
-								    onChange={e=>
+									onChange={(e) =>
 										setFormData({
-										  ...formdata,
-										  name:e.target.value
+											...formdata,
+											name: e.target.value
 										})
-									  }
+									}
 									value={formdata.name}
 									className="pl-2 w-full cursor-pointer   outline-none border-none"
 									type="text"
@@ -68,11 +68,11 @@ function StudentsDataUpdate(data: any) {
 							</label>
 							<div className="flex  hover:border-black/70 items-center mt-1 cursor-pointer shadow-sm  border-2 mb-3 py-3 px-3 rounded-lg ">
 								<input
-								    onChange={e=>
-                                      setFormData({
-										...formdata,
-										name:e.target.value
-									  })
+									onChange={(e) =>
+										setFormData({
+											...formdata,
+											name: e.target.value
+										})
 									}
 									value={formdata.lastName}
 									className="pl-2 w-full cursor-pointer   outline-none border-none"
@@ -87,12 +87,17 @@ function StudentsDataUpdate(data: any) {
 								Domain
 							</label>
 							<div className="flex  hover:border-black/70 items-center mt-2 cursor-pointer shadow-sm border-2 mb-3 py-3 px-3 rounded-lg ">
-								<select onChange={e=>
-                                      setFormData({
-										...formdata,
-										domain:e.target.value
-									  })
-									} value={formdata.domain} name="domain" placeholder="Domain" className="w-full cursor-pointer outline-none border-none">
+								<select
+									onChange={(e) =>
+										setFormData({
+											...formdata,
+											domain: e.target.value
+										})
+									}
+									value={formdata.domain}
+									name="domain"
+									placeholder="Domain"
+									className="w-full cursor-pointer outline-none border-none">
 									<option value="MERN">MERN</option>
 									<option value="MEAN">MEAN</option>
 									<option value="PYTHON">PYTHON</option>
@@ -122,13 +127,13 @@ function StudentsDataUpdate(data: any) {
 							</label>
 							<div className="flex  hover:border-black/70 items-center mt-1 cursor-pointer shadow-sm  border-2 mb-3 py-3 px-3 rounded-lg ">
 								<input
-								    onChange={e=>
+									onChange={(e) =>
 										setFormData({
-										  ...formdata,
-										  batch:e.target.value
+											...formdata,
+											batch: e.target.value
 										})
-									  }
-								    name="batch"
+									}
+									name="batch"
 									value={formdata.batch}
 									className="pl-2 w-full cursor-pointer   outline-none border-none"
 									type="text"
@@ -142,13 +147,13 @@ function StudentsDataUpdate(data: any) {
 							</label>
 							<div className="flex  hover:border-black/70 items-center mt-1 cursor-pointer shadow-sm  border-2 mb-3 py-3 px-3 rounded-lg ">
 								<input
-								  onChange={e=>
-									setFormData({
-									  ...formdata,
-									  phone:e.target.value
-									})
-								  }
-								    name="phone"
+									onChange={(e) =>
+										setFormData({
+											...formdata,
+											phone: e.target.value
+										})
+									}
+									name="phone"
 									value={formdata.phone}
 									className="pl-2 w-full cursor-pointer   outline-none border-none"
 									type="text"
@@ -162,14 +167,14 @@ function StudentsDataUpdate(data: any) {
 							</label>
 							<div className="flex  hover:border-black/70 items-center mt-1 cursor-pointer shadow-sm  border-2  py-3 px-3 rounded-lg ">
 								<input
-								   onChange={e=>
-									setFormData({
-									  ...formdata,
-									  email:e.target.value
-									})
-								  }
-								    name="email"
-								    value={formdata.email}
+									onChange={(e) =>
+										setFormData({
+											...formdata,
+											email: e.target.value
+										})
+									}
+									name="email"
+									value={formdata.email}
 									className="pl-2 w-full cursor-pointer   outline-none border-none"
 									type="text"
 									placeholder="Mail"
@@ -182,13 +187,13 @@ function StudentsDataUpdate(data: any) {
 							</label>
 							<div className="flex  hover:border-black/70 items-center mt-1 cursor-pointer shadow-sm  border-2 mb-3 py-3 px-3 rounded-lg ">
 								<input
-								   onChange={e=>
-									setFormData({
-									  ...formdata,
-									  leetcodeId:e.target.value
-									})
-								  }
-								    name="leetcodeId"
+									onChange={(e) =>
+										setFormData({
+											...formdata,
+											leetcodeId: e.target.value
+										})
+									}
+									name="leetcodeId"
 									value={formdata.leetcodeId}
 									className="pl-2 w-full cursor-pointer   outline-none border-none"
 									type="text"
@@ -199,7 +204,7 @@ function StudentsDataUpdate(data: any) {
 					</div>
 					<div className="mt-6 flex justify-end gap-x-4">
 						<button
-						    onClick={()=>formSubmit(data.data._id)}
+							onClick={() => formSubmit(data.data._id)}
 							type="button"
 							className="py-2.5 px-4 inline-flex justify-center bg-black  hover:-translate-y-1 transition-all duration-500 items-center gap-2 rounded-md border border-transparent font-semibold  text-white  text-sm "
 							data-hs-overlay="#hs-sign-out-alert">

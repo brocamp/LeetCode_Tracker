@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 import { getDailyMetrics } from "../utils/api/config/axios.GetApi";
 import toast, { Toaster } from "react-hot-toast";
 
-
-
 function PieData() {
 	const [isHovered, setIsHovered] = useState(false);
 	const [completedStudents, setCompletedStudents] = useState<number>(0);
@@ -67,7 +65,6 @@ function PieData() {
 									className={
 										isHovered ? "  text-center  text-lg font-bold" : "text-slate-500 text-center text-lg  font-bold"
 									}>
-
 									{isHovered ? `${notCompletePersantage.toFixed(1)}%` : `${completePersantage.toFixed(1)}%`}
 								</h1>
 							</div>

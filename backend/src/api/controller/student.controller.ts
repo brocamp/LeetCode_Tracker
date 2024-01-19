@@ -74,7 +74,7 @@ router.post("/edit/:id", reqAuth, async (req: Request, res: Response) => {
 	const id = req.params.id as string;
 	const student = await studentRepository.findById(id);
 	if (!student) throw new BadRequestError("No student found");
-	if (data.leetcodeId !== '' || data.leetcodeId !== undefined) {
+	if (data.leetcodeId !== "" || data.leetcodeId !== undefined) {
 		const idExist = await getProfile(data.leetcodeId);
 		if (idExist?.matchedUser === null) throw new BadRequestError("No leetcode id exist");
 	}

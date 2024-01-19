@@ -70,7 +70,7 @@ export const LeetStudentProfileUpdate = async () => {
 						const currentDate = new Date();
 						const threeDaysAgo = new Date(currentDate);
 						threeDaysAgo.setDate(currentDate.getDate() - 7);
-						studentInMailList.push(student)
+						studentInMailList.push(student);
 					}
 
 					await student.save();
@@ -93,8 +93,7 @@ export const LeetStudentProfileUpdate = async () => {
 		day: currentDay
 	});
 
-	await sendBatchMail(studentInMailList)
-
+	await sendBatchMail(studentInMailList);
 };
 
 export const weeklyUpdate = async () => {

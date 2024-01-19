@@ -26,7 +26,12 @@ export const sendBatchMail = async (students: IStudent[]) => {
 	for (const student of students) {
 		let lastMailSendDate = student.lastMailSendDate;
 		if (student.totalNotSubmissionCount >= 3 && isMoreThanNDaysAgo(lastMailSendDate!, 3)) {
-			await sendMail({ from: process.env.MAIL!, to: student.email, subject: process.env.SUBJECT!, text: process.env.MAILTEXT! });
+			await sendMail({
+				from: process.env.MAIL!,
+				to: student.email,
+				subject: process.env.SUBJECT!,
+				text: process.env.MAILTEXT!
+			});
 			await Students.findByIdAndUpdate(student.id, {
 				lastMailSendDate: new Date()
 			});

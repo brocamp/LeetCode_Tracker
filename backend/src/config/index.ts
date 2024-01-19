@@ -1,8 +1,7 @@
 export * from "./db.config";
 export * from "./logger";
 
-
 export const mailConfig = {
-    mailSubject: 'something',
-    text:'something'
-}
+	mailSubject: "something",
+	text: "something"
+};
